@@ -1,0 +1,15 @@
+//
+//  prefix.pch
+//  DFTimelineView
+//
+//  Created by Allen Zhong on 15/9/27.
+//  Copyright (c) 2015年 Datafans, Inc. All rights reserved.
+//
+
+#ifndef DFTimelineView_prefix_pch
+#define DFTimelineView_prefix_pch
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+#endif
