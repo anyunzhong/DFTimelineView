@@ -24,4 +24,6 @@ typedef NS_ENUM(NSUInteger, LineItemType){
 @property (nonatomic, strong) NSString *title;
 
 
+@property (nonatomic, strong) NSString *location;
+
 @end

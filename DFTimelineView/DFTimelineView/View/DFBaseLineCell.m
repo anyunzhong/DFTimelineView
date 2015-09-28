@@ -13,8 +13,16 @@
 #define UserNickFont [UIFont systemFontOfSize:16]
 #define TitleLabelFont [UIFont systemFontOfSize:13]
 
+#define LocationLabelFont [UIFont systemFontOfSize:11]
+
+#define TimeLabelFont [UIFont systemFontOfSize:12]
+
 //#define UserNickLabelHeight 15
 #define UserNickMaxWidth 150
+
+#define LocationLabelHeight 15
+
+#define TimeLabelHeight 15
 
 #define UserNickLineHeight 1.0f
 
@@ -25,11 +33,21 @@
 
 @interface DFBaseLineCell()
 
+
+@property (nonatomic, strong) DFBaseLineItem *item;
+
 @property (nonatomic, strong) UIImageView *userAvatarView;
 
 @property (nonatomic, strong) MLLinkLabel *userNickLabel;
 
 @property (nonatomic, strong) UILabel *titleLabel;
+
+
+@property (nonatomic, strong) UILabel *locationLabel;
+
+@property (nonatomic, strong) UILabel *timeLabel;
+
+@property (nonatomic, strong) UIButton *likeCmtButton;
 
 @end
 
@@ -100,12 +118,48 @@
         //_bodyView.backgroundColor = [UIColor redColor];
         [self.contentView addSubview:_bodyView];
     }
+    
+    
+    
+    if (_locationLabel == nil) {
+        _locationLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _locationLabel.textColor = [UIColor lightGrayColor];
+        _locationLabel.font = LocationLabelFont;
+        _locationLabel.hidden = YES;
+        [self.contentView addSubview:_locationLabel];
+    }
+    
+    
+    
+    if (_timeLabel == nil) {
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _timeLabel.textColor = [UIColor lightGrayColor];
+        _timeLabel.font = TimeLabelFont;
+        _timeLabel.hidden = YES;
+        [self.contentView addSubview:_timeLabel];
+    }
+    
+    
+    if (_likeCmtButton == nil) {
+        _likeCmtButton = [[UIButton alloc] initWithFrame:CGRectZero];
+        //_likeCmtButton.backgroundColor = [UIColor darkGrayColor];
+        _likeCmtButton.hidden = YES;
+        [_likeCmtButton setImage:[UIImage imageNamed:@"AlbumOperateMore"] forState:UIControlStateNormal];
+        [_likeCmtButton setImage:[UIImage imageNamed:@"AlbumOperateMoreHL"] forState:UIControlStateHighlighted];
+        [self.contentView addSubview:_likeCmtButton];
+    }
+
+
+
 }
 
 
 
 -(void)updateWithItem:(DFBaseLineItem *)item
 {
+    self.item = item;
+    
+    
     [_userAvatarView sd_setImageWithURL:[NSURL URLWithString:item.userAvatar]];
     
     NSAttributedString *userNick  = [[NSAttributedString alloc] initWithString:item.userNick];
@@ -122,7 +176,7 @@
     _userNickLabel.attributedText = userNick;
     
     
-    x = CGRectGetMaxX(_userNickLabel.frame) + 10;
+    x = CGRectGetMaxX(_userNickLabel.frame) + Padding;
     width = [UIScreen mainScreen].bounds.size.width - x - Margin;
     _titleLabel.frame = CGRectMake(x, y, width, height);
     _titleLabel.text = item.title;
@@ -132,17 +186,61 @@
 
 -(void)updateBodyView:(CGFloat) height
 {
-    CGFloat x, y, width;
+    CGFloat x, y, width, sumHeight=0.0;
     x = _bodyView.frame.origin.x;
     y = _bodyView.frame.origin.y;
     width = _bodyView.frame.size.width;
     height = height;
     _bodyView.frame = CGRectMake(x, y, width, height);
+    
+    
+    //位置
+    if (self.item.location != nil && ![self.item.location isEqualToString:@""]) {
+        y = CGRectGetMaxY(_bodyView.frame) + Padding;
+        height = LocationLabelHeight;
+        _locationLabel.hidden = NO;
+        _locationLabel.frame = CGRectMake(x, y, width, height);
+        _locationLabel.text = self.item.location;
+        
+        sumHeight+=LocationLabelHeight+Padding;
+        
+    }else{
+        _locationLabel.hidden = YES;
+    }
+    
+    //时间
+    y = CGRectGetMaxY(_bodyView.frame) + sumHeight + Padding;
+    width = 100;
+    height = TimeLabelHeight;
+    _timeLabel.hidden = NO;
+    _timeLabel.frame = CGRectMake(x, y, width, height);
+    _timeLabel.text = @"昨天";
+    
+    
+    //点赞评论按钮
+    width = 25;
+    height = 25;
+    x = CGRectGetMaxX(_bodyView.frame) - width;
+    _likeCmtButton.hidden = NO;
+    _likeCmtButton.frame = CGRectMake(x, y-5, width, height);
+
+    
 }
 
 +(CGFloat)getCellHeight:(DFBaseLineItem *)item
 {
-    return Margin*2 + UserAvatarSize;
+    //基本
+    CGFloat height = Margin + UserAvatarSize;
+    
+    //位置
+    if (item.location != nil && ![item.location isEqualToString:@""]) {
+        height+=LocationLabelHeight+Padding;
+    }
+    
+    //时间
+    height+= TimeLabelHeight + Padding;
+    
+    return height;
 }
 
 @end

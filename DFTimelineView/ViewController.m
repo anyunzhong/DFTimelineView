@@ -74,6 +74,7 @@
     [thumbImages addObject:@"http://file-cdn.datafans.net/avatar/20150922171658733807.jpeg_160x160.jpeg"];
     textImageItem.thumbImages = thumbImages;
     
+    textImageItem.location = @"凯旋新世界";
     [self addItem:textImageItem];
 
 
@@ -126,6 +127,9 @@
     
     textImageItem3.width = 300;
     textImageItem3.height = 210;
+    
+    textImageItem3.location = @"广州信息港";
+    
     [self addItem:textImageItem3];
 
     

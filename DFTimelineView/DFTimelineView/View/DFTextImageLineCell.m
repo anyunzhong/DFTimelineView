@@ -20,6 +20,8 @@
 
 #define TextImageSpace 10
 
+#define GridMaxWidth (BodyMaxWidth)*0.85
+
 @interface DFTextImageLineCell()
 
 @property (strong, nonatomic) MLLinkLabel *textContentLabel;
@@ -68,7 +70,7 @@
         
         x = 0;
         y = 0;
-        width = BodyMaxWidth;
+        width = GridMaxWidth;
         height = width;
         
         _gridImageView = [[DFGridImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
@@ -117,7 +119,7 @@
     
     CGFloat height = [DFBaseLineCell getCellHeight:item];
     
-    CGFloat gridHeight = [DFGridImageView getHeight:item.thumbImages maxWidth:BodyMaxWidth oneImageWidth:item.width oneImageHeight:item.height];
+    CGFloat gridHeight = [DFGridImageView getHeight:item.thumbImages maxWidth:GridMaxWidth oneImageWidth:item.width oneImageHeight:item.height];
 
     return height+textSize.height + gridHeight+TextImageSpace;
 }
