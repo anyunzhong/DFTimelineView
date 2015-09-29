@@ -13,7 +13,7 @@
 #define UserNickFont [UIFont systemFontOfSize:16]
 #define TitleLabelFont [UIFont systemFontOfSize:13]
 
-#define LocationLabelFont [UIFont systemFontOfSize:11]
+#define LocationLabelFont [UIFont systemFontOfSize:10]
 
 #define TimeLabelFont [UIFont systemFontOfSize:12]
 
@@ -27,8 +27,16 @@
 #define UserNickLineHeight 1.0f
 
 
+#define LikeLabelFont [UIFont systemFontOfSize:14]
+
+#define LikeLabelLineHeight 1.1f
+
+#define LikeCommentTimeSpace 3
+
+
 #import "DFBaseLineCell.h"
 #import "MLLinkLabel.h"
+#import "DFLikeCommentView.h"
 
 
 @interface DFBaseLineCell()
@@ -48,6 +56,10 @@
 @property (nonatomic, strong) UILabel *timeLabel;
 
 @property (nonatomic, strong) UIButton *likeCmtButton;
+
+
+
+@property (nonatomic, strong) DFLikeCommentView *likeCommentView;
 
 @end
 
@@ -71,7 +83,7 @@
 {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    CGFloat x, y, width, height;
+    CGFloat x = 0.0, y, width, height;
     
     if (_userAvatarView == nil ) {
         
@@ -148,9 +160,16 @@
         [_likeCmtButton setImage:[UIImage imageNamed:@"AlbumOperateMoreHL"] forState:UIControlStateHighlighted];
         [self.contentView addSubview:_likeCmtButton];
     }
-
-
-
+    
+    
+    if (_likeCommentView == nil) {
+        y = 0;
+        width = BodyMaxWidth;
+        height = 10;
+        _likeCommentView = [[DFLikeCommentView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+        [self.contentView addSubview:_likeCommentView];  
+    }
+    
 }
 
 
@@ -186,13 +205,26 @@
 
 -(void)updateBodyView:(CGFloat) height
 {
-    CGFloat x, y, width, sumHeight=0.0;
+    CGFloat x, y, width;
     x = _bodyView.frame.origin.x;
     y = _bodyView.frame.origin.y;
     width = _bodyView.frame.size.width;
     height = height;
     _bodyView.frame = CGRectMake(x, y, width, height);
     
+    [self updateLocationLikeComment:height];
+    
+}
+
+
+-(void) updateLocationLikeComment:(CGFloat)height
+{
+    
+    CGFloat x, y, width, sumHeight=0.0;
+    
+    x = _bodyView.frame.origin.x;
+    y = _bodyView.frame.origin.y;
+    width = _bodyView.frame.size.width;
     
     //位置
     if (self.item.location != nil && ![self.item.location isEqualToString:@""]) {
@@ -222,8 +254,25 @@
     height = 25;
     x = CGRectGetMaxX(_bodyView.frame) - width;
     _likeCmtButton.hidden = NO;
-    _likeCmtButton.frame = CGRectMake(x, y-5, width, height);
-
+    _likeCmtButton.frame = CGRectMake(x+2, y-7, width, height);
+    
+    
+    //点赞和评论
+    if (self.item.likes == nil && self.item.comments == nil) {
+        
+        _likeCommentView.hidden = YES;
+    }else{
+        _likeCommentView.hidden = NO;
+        
+        x = CGRectGetMinX(_timeLabel.frame);
+        y = CGRectGetMaxY(_timeLabel.frame)+LikeCommentTimeSpace;
+        width = _likeCommentView.frame.size.width;
+        height = [DFLikeCommentView getHeight:self.item maxWidth:BodyMaxWidth];
+        _likeCommentView.frame = CGRectMake(x, y, width, height);
+        [_likeCommentView updateWithItem:self.item];
+    }
+    
+    
     
 }
 
@@ -239,6 +288,11 @@
     
     //时间
     height+= TimeLabelHeight + Padding;
+    
+    //点赞和评论
+    if (!(item.likes == nil && item.comments == nil)) {
+        height+=[DFLikeCommentView getHeight:item maxWidth:BodyMaxWidth]+LikeCommentTimeSpace;
+    }
     
     return height;
 }

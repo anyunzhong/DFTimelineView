@@ -61,6 +61,13 @@
         _textContentLabel.activeLinkTextAttributes = nil;
         _textContentLabel.lineHeightMultiple = TextLineHeight;
         
+        
+        [_textContentLabel setDidClickLinkBlock:^(MLLink *link, NSString *linkText, MLLinkLabel *label) {
+            NSString *tips = [NSString stringWithFormat:@"Click\nlinkType:%ld\nlinkText:%@\nlinkValue:%@",link.linkType,linkText,link.linkValue];
+            NSLog(@"%@", tips);
+        }];
+
+        
         [self.bodyView addSubview:_textContentLabel];
     }
     
@@ -89,12 +96,14 @@
     
     CGSize textSize = [MLLinkLabel getViewSize:text maxWidth:BodyMaxWidth font:TextFont lineHeight:TextLineHeight lines:0];
 
+    
     _textContentLabel.attributedText = text;
     [_textContentLabel sizeToFit];
     
     _textContentLabel.frame = CGRectMake(0, 0, BodyMaxWidth, textSize.height);
     
-    CGFloat gridHeight = [_gridImageView getHeight:item.thumbImages oneImageWidth:item.width oneImageHeight:item.height];
+    CGFloat gridHeight = [DFGridImageView getHeight:item.thumbImages maxWidth:GridMaxWidth oneImageWidth:item.width oneImageHeight:item.height];
+
     
     CGFloat x, y, width, height;
     x = _gridImageView.frame.origin.x;

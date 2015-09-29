@@ -44,7 +44,7 @@
     textImageItem.userAvatar = @"http://file-cdn.datafans.net/avatar/1.jpeg";
     textImageItem.userNick = @"Allen";
     textImageItem.title = @"";
-    textImageItem.text = @"你是我的小苹果 小苹果 我爱你 就像老鼠爱大米 18680551720";
+    textImageItem.text = @"你是我的小苹果 小苹果 我爱你 就像老鼠爱大米 18680551720 [亲亲]";
     
     NSMutableArray *srcImages = [NSMutableArray array];
     [srcImages addObject:@"http://file-cdn.datafans.net/avatar/20150922172455735824.jpeg"];
@@ -75,6 +75,26 @@
     textImageItem.thumbImages = thumbImages;
     
     textImageItem.location = @"凯旋新世界";
+    
+    NSMutableArray *likes = [NSMutableArray array];
+    [likes addObject:@"Allen"];
+    [likes addObject:@"奥巴马"];
+    [likes addObject:@"梅长舒"];
+    [likes addObject:@"胡八一"];
+    [likes addObject:@"Jack"];
+    [likes addObject:@"小王八"];
+    [likes addObject:@"一起👌"];
+    [likes addObject:@"神经病"];
+    [likes addObject:@"💐love"];
+    textImageItem.likes = likes;
+    
+    
+    
+    NSMutableArray *comments = [NSMutableArray array];
+    [comments addObject:@"决战紫禁之巅: hello world"];
+    [comments addObject:@"妖神: 出世 哈哈"];
+    [comments addObject:@"但愿人长久: 千里共婵娟"];
+    textImageItem.comments = comments;
     [self addItem:textImageItem];
 
 
@@ -101,6 +121,17 @@
     [thumbImages2 addObject:@"http://file-cdn.datafans.net/avatar/20150922171658733807.jpeg_160x160.jpeg"];
     textImageItem2.thumbImages = thumbImages2;
     
+    
+    NSMutableArray *likes2 = [NSMutableArray array];
+    [likes2 addObject:@"Allen"];
+    [likes2 addObject:@"Yanhuahuang"];
+    //textImageItem2.likes = likes2;
+    
+    
+    NSMutableArray *comments2 = [NSMutableArray array];
+    [comments2 addObject:@"小苹果: hello world"];
+    [comments2 addObject:@"妖神: 出世 哈哈"];
+    textImageItem2.comments = comments2;
     
     [self addItem:textImageItem2];
 

@@ -65,6 +65,9 @@
 		11D758ED1BB8E6C300F554D7 /* AlbumOperateMoreHL@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11D758E71BB8E6C300F554D7 /* AlbumOperateMoreHL@3x.png */; };
 		11D758EE1BB8E6C300F554D7 /* Like@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11D758E81BB8E6C300F554D7 /* Like@2x.png */; };
 		11D758EF1BB8E6C300F554D7 /* Like@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11D758E91BB8E6C300F554D7 /* Like@3x.png */; };
+		11D758F21BB8EA5E00F554D7 /* LikeCmtBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11D758F01BB8EA5E00F554D7 /* LikeCmtBg@2x.png */; };
+		11D758F31BB8EA5E00F554D7 /* LikeCmtBg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11D758F11BB8EA5E00F554D7 /* LikeCmtBg@3x.png */; };
+		11D758F71BB8F36C00F554D7 /* DFLikeCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D758F61BB8F36C00F554D7 /* DFLikeCommentView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -178,6 +181,10 @@
 		11D758E71BB8E6C300F554D7 /* AlbumOperateMoreHL@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlbumOperateMoreHL@3x.png"; sourceTree = "<group>"; };
 		11D758E81BB8E6C300F554D7 /* Like@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Like@2x.png"; sourceTree = "<group>"; };
 		11D758E91BB8E6C300F554D7 /* Like@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Like@3x.png"; sourceTree = "<group>"; };
+		11D758F01BB8EA5E00F554D7 /* LikeCmtBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LikeCmtBg@2x.png"; sourceTree = "<group>"; };
+		11D758F11BB8EA5E00F554D7 /* LikeCmtBg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LikeCmtBg@3x.png"; sourceTree = "<group>"; };
+		11D758F51BB8F36C00F554D7 /* DFLikeCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFLikeCommentView.h; sourceTree = "<group>"; };
+		11D758F61BB8F36C00F554D7 /* DFLikeCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFLikeCommentView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +265,7 @@
 		11D7584F1BB7D81500F554D7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				11D758F41BB8F35000F554D7 /* LikeCommentView */,
 				11D758C41BB8213A00F554D7 /* DFGridImageView */,
 				11D758501BB7D85D00F554D7 /* DFBaseLineCell.h */,
 				11D758511BB7D85D00F554D7 /* DFBaseLineCell.m */,
@@ -409,6 +417,8 @@
 		11D758E31BB8E6C300F554D7 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				11D758F01BB8EA5E00F554D7 /* LikeCmtBg@2x.png */,
+				11D758F11BB8EA5E00F554D7 /* LikeCmtBg@3x.png */,
 				11D758E41BB8E6C300F554D7 /* AlbumOperateMore@2x.png */,
 				11D758E51BB8E6C300F554D7 /* AlbumOperateMore@3x.png */,
 				11D758E61BB8E6C300F554D7 /* AlbumOperateMoreHL@2x.png */,
@@ -417,6 +427,15 @@
 				11D758E91BB8E6C300F554D7 /* Like@3x.png */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		11D758F41BB8F35000F554D7 /* LikeCommentView */ = {
+			isa = PBXGroup;
+			children = (
+				11D758F51BB8F36C00F554D7 /* DFLikeCommentView.h */,
+				11D758F61BB8F36C00F554D7 /* DFLikeCommentView.m */,
+			);
+			path = LikeCommentView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -480,6 +499,8 @@
 				11D758EA1BB8E6C300F554D7 /* AlbumOperateMore@2x.png in Resources */,
 				11D758311BB7D43B00F554D7 /* Images.xcassets in Resources */,
 				11D758A71BB7E71400F554D7 /* Expression.plist in Resources */,
+				11D758F31BB8EA5E00F554D7 /* LikeCmtBg@3x.png in Resources */,
+				11D758F21BB8EA5E00F554D7 /* LikeCmtBg@2x.png in Resources */,
 				11D758EC1BB8E6C300F554D7 /* AlbumOperateMoreHL@2x.png in Resources */,
 				11D758EB1BB8E6C300F554D7 /* AlbumOperateMore@3x.png in Resources */,
 				11D758DC1BB83B9C00F554D7 /* MJPhotoBrowser.bundle in Resources */,
@@ -522,6 +543,7 @@
 				11D7584D1BB7D66300F554D7 /* DFBaseLineItem.m in Sources */,
 				11D758BE1BB7E71400F554D7 /* UIImage+GIF.m in Sources */,
 				11D758E01BB83B9C00F554D7 /* MJPhotoToolbar.m in Sources */,
+				11D758F71BB8F36C00F554D7 /* DFLikeCommentView.m in Sources */,
 				11D758BF1BB7E71400F554D7 /* UIImage+MultiFormat.m in Sources */,
 				11D758DD1BB83B9C00F554D7 /* MJPhotoBrowser.m in Sources */,
 				11D7585A1BB7DB8300F554D7 /* DFBaseLineCellAdapter.m in Sources */,

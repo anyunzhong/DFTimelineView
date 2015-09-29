@@ -172,32 +172,6 @@
     
 }
 
--(CGFloat)getHeight:(NSMutableArray *)images oneImageWidth:(CGFloat)oneImageWidth oneImageHeight:(CGFloat)oneImageHeight
-{
-    CGFloat height= (self.frame.size.width - 2*Padding)/3;
-    
-    if (images == nil || images.count == 0) {
-        return 0.0;
-    }
-    
-    if (images.count == 1) {
-        if (oneImageWidth > OneImageMaxWidth) {
-            return oneImageHeight*(OneImageMaxWidth/oneImageWidth);
-        }
-        return oneImageHeight;
-    }
-    
-    if (images.count >1 && images.count <=3 ) {
-        return height;
-    }
-    
-    if (images.count >3 && images.count <=6 ) {
-        return height*2+Padding;
-    }
-    
-    return height*3+Padding*2;
-    
-}
 
 +(CGFloat)getHeight:(NSMutableArray *)images maxWidth:(CGFloat)maxWidth oneImageWidth:(CGFloat)oneImageWidth oneImageHeight:(CGFloat)oneImageHeight
 {
