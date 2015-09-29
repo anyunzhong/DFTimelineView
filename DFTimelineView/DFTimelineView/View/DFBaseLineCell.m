@@ -258,7 +258,7 @@
     
     
     //点赞和评论
-    if (self.item.likes == nil && self.item.comments == nil) {
+    if (self.item.likes.count ==0 && self.item.comments.count == 0) {
         
         _likeCommentView.hidden = YES;
     }else{
@@ -290,7 +290,7 @@
     height+= TimeLabelHeight + Padding;
     
     //点赞和评论
-    if (!(item.likes == nil && item.comments == nil)) {
+    if (!(item.likes.count == 0 && item.comments.count == 0)) {
         height+=[DFLikeCommentView getHeight:item maxWidth:BodyMaxWidth]+LikeCommentTimeSpace;
     }
     

@@ -11,6 +11,8 @@
 
 #import "DFTextImageLineCellAdapter.h"
 #import "DFBaseLineCell.h"
+#import "DFLineLikeItem.h"
+#import "DFLineCommentItem.h"
 
 
 @interface DFTimeLineViewController ()
@@ -94,8 +96,92 @@
 
 -(void)addItem:(DFBaseLineItem *)item
 {
+    [self genLikeAttrString:item];
+    [self genCommentAttrString:item];
+    
     [_items addObject:item];
     [_tableView reloadData];
+}
+
+
+
+-(void) genLikeAttrString:(DFBaseLineItem *) item
+{
+    if (item.likes.count == 0) {
+        return;
+    }
+    
+    if (item.likesStr == nil) {
+        NSMutableArray *likes = item.likes;
+        NSString *result = @"";
+        
+        for (int i=0; i<likes.count;i++) {
+            DFLineLikeItem *like = [likes objectAtIndex:i];
+            if (i == 0) {
+                result = [NSString stringWithFormat:@"%@",like.userNick];
+            }else{
+                result = [NSString stringWithFormat:@"%@, %@", result, like.userNick];
+            }
+        }
+        
+        NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:result];
+        NSUInteger position = 0;
+        for (int i=0; i<likes.count;i++) {
+            DFLineLikeItem *like = [likes objectAtIndex:i];
+            [attrStr addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%lu", (unsigned long)like.userId] range:NSMakeRange(position, like.userNick.length)];
+            position += like.userNick.length+2;
+        }
+        
+        item.likesStr = attrStr;
+    }
+
+}
+
+-(void) genCommentAttrString:(DFBaseLineItem *)item
+{
+    if (item.commentsStr== nil) {
+        NSMutableArray *comments = item.comments;
+        NSString *result = @"";
+        
+        for (int i=0; i<comments.count;i++) {
+            DFLineCommentItem *comment = [comments objectAtIndex:i];
+            if (comment.replyUserId == 0) {
+                if (i == 0) {
+                    result = [NSString stringWithFormat:@"%@: %@",comment.userNick, comment.text];
+                }else{
+                    result = [NSString stringWithFormat:@"%@\n%@: %@", result, comment.userNick,  comment.text];
+                }
+            }else{
+                if (i == 0) {
+                    result = [NSString stringWithFormat:@"%@ 回复 %@: %@",comment.userNick, comment.replyUserNick, comment.text];
+                }else{
+                    result = [NSString stringWithFormat:@"%@\n%@ 回复 %@: %@", result, comment.userNick, comment.replyUserNick,  comment.text];
+                }
+            }
+            
+            NSLog(@"result: %@", result);
+            
+        }
+        
+        NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:result];
+                    NSUInteger position = 0;
+                    for (int i=0; i<comments.count;i++) {
+                        DFLineCommentItem *comment = [comments objectAtIndex:i];
+                        if (comment.replyUserId == 0) {
+                            [attrStr addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%lu", (unsigned long)comment.userId] range:NSMakeRange(position, comment.userNick.length)];
+                            position += comment.userNick.length + comment.text.length + 3;
+                        }else{
+                            [attrStr addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%lu", (unsigned long)comment.userId] range:NSMakeRange(position, comment.userNick.length)];
+                            position += comment.userNick.length + 4;
+                            [attrStr addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%lu", (unsigned long)comment.replyUserId] range:NSMakeRange(position, comment.replyUserNick.length)];
+                            position += comment.text.length + comment.replyUserNick.length + 3;
+                        }
+                        
+                    }
+        
+        item.commentsStr = attrStr;
+    }
+
 }
 
 @end

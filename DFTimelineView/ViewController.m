@@ -11,6 +11,10 @@
 #import "DFTextImageLineItem.h"
 
 
+#import "DFLineLikeItem.h"
+#import "DFLineCommentItem.h"
+
+
 @interface ViewController ()
 
 @end
@@ -76,25 +80,42 @@
     
     textImageItem.location = @"凯旋新世界";
     
-    NSMutableArray *likes = [NSMutableArray array];
-    [likes addObject:@"Allen"];
-    [likes addObject:@"奥巴马"];
-    [likes addObject:@"梅长舒"];
-    [likes addObject:@"胡八一"];
-    [likes addObject:@"Jack"];
-    [likes addObject:@"小王八"];
-    [likes addObject:@"一起👌"];
-    [likes addObject:@"神经病"];
-    [likes addObject:@"💐love"];
-    textImageItem.likes = likes;
+    
+    DFLineLikeItem *likeItem1_1 = [[DFLineLikeItem alloc] init];
+    likeItem1_1.userId = 10086;
+    likeItem1_1.userNick = @"Allen";
+    [textImageItem.likes addObject:likeItem1_1];
+    
+    
+    DFLineLikeItem *likeItem1_2 = [[DFLineLikeItem alloc] init];
+    likeItem1_2.userId = 10088;
+    likeItem1_2.userNick = @"奥巴马";
+    [textImageItem.likes addObject:likeItem1_2];
     
     
     
-    NSMutableArray *comments = [NSMutableArray array];
-    [comments addObject:@"决战紫禁之巅: hello world"];
-    [comments addObject:@"妖神: 出世 哈哈"];
-    [comments addObject:@"但愿人长久: 千里共婵娟"];
-    textImageItem.comments = comments;
+    DFLineCommentItem *commentItem1_1 = [[DFLineCommentItem alloc] init];
+    commentItem1_1.userId = 10086;
+    commentItem1_1.userNick = @"习大大";
+    commentItem1_1.text = @"精彩 大家鼓掌";
+    [textImageItem.comments addObject:commentItem1_1];
+    
+    
+    DFLineCommentItem *commentItem1_2 = [[DFLineCommentItem alloc] init];
+    commentItem1_2.userId = 10088;
+    commentItem1_2.userNick = @"奥巴马";
+    commentItem1_2.text = @"欢迎来到美利坚";
+    commentItem1_2.replyUserId = 10086;
+    commentItem1_2.replyUserNick = @"习大大";
+    [textImageItem.comments addObject:commentItem1_2];
+    
+    
+    DFLineCommentItem *commentItem1_3 = [[DFLineCommentItem alloc] init];
+    commentItem1_3.userId = 10010;
+    commentItem1_3.userNick = @"神雕侠侣";
+    commentItem1_3.text = @"呵呵";
+    [textImageItem.comments addObject:commentItem1_3];
+    
     [self addItem:textImageItem];
 
 
@@ -121,17 +142,26 @@
     [thumbImages2 addObject:@"http://file-cdn.datafans.net/avatar/20150922171658733807.jpeg_160x160.jpeg"];
     textImageItem2.thumbImages = thumbImages2;
     
+    DFLineLikeItem *likeItem2_1 = [[DFLineLikeItem alloc] init];
+    likeItem2_1.userId = 10086;
+    likeItem2_1.userNick = @"Allen";
+    [textImageItem2.likes addObject:likeItem2_1];
     
-    NSMutableArray *likes2 = [NSMutableArray array];
-    [likes2 addObject:@"Allen"];
-    [likes2 addObject:@"Yanhuahuang"];
-    //textImageItem2.likes = likes2;
     
+    DFLineCommentItem *commentItem2_1 = [[DFLineCommentItem alloc] init];
+    commentItem2_1.userId = 10088;
+    commentItem2_1.userNick = @"奥巴马";
+    commentItem2_1.text = @"欢迎来到美利坚";
+    commentItem2_1.replyUserId = 10086;
+    commentItem2_1.replyUserNick = @"习大大";
+    [textImageItem2.comments addObject:commentItem2_1];
     
-    NSMutableArray *comments2 = [NSMutableArray array];
-    [comments2 addObject:@"小苹果: hello world"];
-    [comments2 addObject:@"妖神: 出世 哈哈"];
-    textImageItem2.comments = comments2;
+    DFLineCommentItem *commentItem2_2 = [[DFLineCommentItem alloc] init];
+    commentItem2_2.userId = 10010;
+    commentItem2_2.userNick = @"神雕侠侣";
+    commentItem2_2.text = @"大家好";
+    [textImageItem2.comments addObject:commentItem2_2];
+    
     
     [self addItem:textImageItem2];
 
@@ -160,6 +190,8 @@
     textImageItem3.height = 210;
     
     textImageItem3.location = @"广州信息港";
+    
+    
     
     [self addItem:textImageItem3];
 

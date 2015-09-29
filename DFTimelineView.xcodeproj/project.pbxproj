@@ -68,6 +68,8 @@
 		11D758F21BB8EA5E00F554D7 /* LikeCmtBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11D758F01BB8EA5E00F554D7 /* LikeCmtBg@2x.png */; };
 		11D758F31BB8EA5E00F554D7 /* LikeCmtBg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11D758F11BB8EA5E00F554D7 /* LikeCmtBg@3x.png */; };
 		11D758F71BB8F36C00F554D7 /* DFLikeCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D758F61BB8F36C00F554D7 /* DFLikeCommentView.m */; };
+		11D758FB1BBA8C4C00F554D7 /* DFLineLikeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D758FA1BBA8C4C00F554D7 /* DFLineLikeItem.m */; };
+		11D758FE1BBA8C5D00F554D7 /* DFLineCommentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D758FD1BBA8C5D00F554D7 /* DFLineCommentItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -185,6 +187,10 @@
 		11D758F11BB8EA5E00F554D7 /* LikeCmtBg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LikeCmtBg@3x.png"; sourceTree = "<group>"; };
 		11D758F51BB8F36C00F554D7 /* DFLikeCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFLikeCommentView.h; sourceTree = "<group>"; };
 		11D758F61BB8F36C00F554D7 /* DFLikeCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFLikeCommentView.m; sourceTree = "<group>"; };
+		11D758F91BBA8C4C00F554D7 /* DFLineLikeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFLineLikeItem.h; sourceTree = "<group>"; };
+		11D758FA1BBA8C4C00F554D7 /* DFLineLikeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFLineLikeItem.m; sourceTree = "<group>"; };
+		11D758FC1BBA8C5D00F554D7 /* DFLineCommentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFLineCommentItem.h; sourceTree = "<group>"; };
+		11D758FD1BBA8C5D00F554D7 /* DFLineCommentItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFLineCommentItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +260,7 @@
 		11D7584A1BB7D63A00F554D7 /* Item */ = {
 			isa = PBXGroup;
 			children = (
+				11D758F81BBA8C3100F554D7 /* LikeComment */,
 				11D7584B1BB7D66300F554D7 /* DFBaseLineItem.h */,
 				11D7584C1BB7D66300F554D7 /* DFBaseLineItem.m */,
 				11D758641BB7E12800F554D7 /* DFTextImageLineItem.h */,
@@ -438,6 +445,17 @@
 			path = LikeCommentView;
 			sourceTree = "<group>";
 		};
+		11D758F81BBA8C3100F554D7 /* LikeComment */ = {
+			isa = PBXGroup;
+			children = (
+				11D758F91BBA8C4C00F554D7 /* DFLineLikeItem.h */,
+				11D758FA1BBA8C4C00F554D7 /* DFLineLikeItem.m */,
+				11D758FC1BBA8C5D00F554D7 /* DFLineCommentItem.h */,
+				11D758FD1BBA8C5D00F554D7 /* DFLineCommentItem.m */,
+			);
+			path = LikeComment;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -538,6 +556,7 @@
 				11D758B01BB7E71400F554D7 /* NSMutableAttributedString+MLLabel.m in Sources */,
 				11D758B21BB7E71400F554D7 /* NSString+MLLabel.m in Sources */,
 				11D758C11BB7E71400F554D7 /* UIImageView+HighlightedWebCache.m in Sources */,
+				11D758FB1BBA8C4C00F554D7 /* DFLineLikeItem.m in Sources */,
 				11D758B41BB7E71400F554D7 /* NSData+ImageContentType.m in Sources */,
 				11D758B81BB7E71400F554D7 /* SDWebImageDownloader.m in Sources */,
 				11D7584D1BB7D66300F554D7 /* DFBaseLineItem.m in Sources */,
@@ -562,6 +581,7 @@
 				11D758E11BB83B9C00F554D7 /* MJPhotoView.m in Sources */,
 				11D758AE1BB7E71400F554D7 /* NSAttributedString+MLExpression.m in Sources */,
 				11D758631BB7DDBA00F554D7 /* DFLineCellAdapterManager.m in Sources */,
+				11D758FE1BBA8C5D00F554D7 /* DFLineCommentItem.m in Sources */,
 				11D758B91BB7E71400F554D7 /* SDWebImageDownloaderOperation.m in Sources */,
 				11D758AA1BB7E71400F554D7 /* MLLabelLayoutManager.m in Sources */,
 				11D758AC1BB7E71400F554D7 /* MLLinkLabel.m in Sources */,

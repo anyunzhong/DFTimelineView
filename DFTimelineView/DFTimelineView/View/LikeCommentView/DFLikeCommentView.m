@@ -8,6 +8,8 @@
 
 #import "DFLikeCommentView.h"
 #import "MLLinkLabel.h"
+#import "DFLineLikeItem.h"
+#import "DFLineCommentItem.h"
 
 
 #define TopMargin 10
@@ -226,36 +228,9 @@
     
     if (item.likes.count > 0) {
         
-        NSMutableAttributedString *likesStr = item.likesStr;
-        
-        if (likesStr == nil) {
-            NSMutableArray *likes = item.likes;
-            NSString *result = @"";
-            
-            for (int i=0; i<likes.count;i++) {
-                NSString *like = [likes objectAtIndex:i];
-                if (i == 0) {
-                    result = [NSString stringWithFormat:@"%@",like];
-                }else{
-                    result = [NSString stringWithFormat:@"%@, %@", result, like];
-                }
-            }
-            
-            NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:result];
-            NSUInteger position = 0;
-            for (int i=0; i<likes.count;i++) {
-                NSString *like = [likes objectAtIndex:i];
-                [attrStr addAttribute:NSLinkAttributeName value:@"http://baidu.com" range:NSMakeRange(position, like.length)];
-                position += like.length+2;
-            }
-            
-            item.likesStr = attrStr;
-            likesStr = attrStr;
-        }
-
         CGFloat width = maxWidth -  LikeIconLeftMargin - LikeIconSize - LikeLabelIconSpace - LikeLabelRightMargin;
         
-        CGSize textSize = [MLLinkLabel getViewSize:likesStr maxWidth:width font:LikeLabelFont lineHeight:LikeLabelLineHeight lines:0];
+        CGSize textSize = [MLLinkLabel getViewSize:item.likesStr maxWidth:width font:LikeLabelFont lineHeight:LikeLabelLineHeight lines:0];
         
         height+= textSize.height;
     }
@@ -263,36 +238,9 @@
     
     if (item.comments.count > 0) {
         
-        NSMutableAttributedString *commentStr = item.commentsStr;
-        
-        if (commentStr == nil) {
-            NSMutableArray *comments = item.comments;
-            NSString *result = @"";
-            
-            for (int i=0; i<comments.count;i++) {
-                NSString *comment = [comments objectAtIndex:i];
-                if (i == 0) {
-                    result = [NSString stringWithFormat:@"%@",comment];
-                }else{
-                    result = [NSString stringWithFormat:@"%@\n%@", result, comment];
-                }
-            }
-            
-            NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:result];
-//            NSUInteger position = 0;
-//            for (int i=0; i<likes.count;i++) {
-//                NSString *like = [likes objectAtIndex:i];
-//                [attrStr addAttribute:NSLinkAttributeName value:@"http://baidu.com" range:NSMakeRange(position, like.length)];
-//                position += like.length+2;
-//            }
-            
-            item.commentsStr = attrStr;
-            commentStr = attrStr;
-        }
-        
         CGFloat width = maxWidth - CommentLabelMargin*2;
         
-        CGSize textSize = [MLLinkLabel getViewSize:commentStr maxWidth:width font:CommentLabelFont lineHeight:CommentLabelLineHeight lines:0];
+        CGSize textSize = [MLLinkLabel getViewSize:item.commentsStr maxWidth:width font:CommentLabelFont lineHeight:CommentLabelLineHeight lines:0];
         
         height+= textSize.height;
         

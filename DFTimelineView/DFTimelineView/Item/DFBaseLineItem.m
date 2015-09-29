@@ -14,6 +14,9 @@
 {
     self = [super init];
     if (self) {
+        
+        _likes = [NSMutableArray array];
+        _comments = [NSMutableArray array];
     }
     return self;
 }
