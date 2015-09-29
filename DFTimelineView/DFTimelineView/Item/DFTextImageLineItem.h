@@ -15,4 +15,7 @@
 @property (nonatomic, strong) NSMutableArray *srcImages;
 @property (nonatomic, assign) CGFloat width;
 @property (nonatomic, assign) CGFloat height;
+
+@property (nonatomic, strong) NSAttributedString *attrText;
+
 @end

@@ -49,6 +49,8 @@
 
 @property (strong, nonatomic) MLLinkLabel *commentLabel;
 
+@property (strong, nonatomic) UIView *divider;
+
 @end
 
 
@@ -141,6 +143,12 @@
         
         [self addSubview:_commentLabel];
     }
+    
+    if (_divider == nil) {
+        _divider = [[UIView alloc] initWithFrame:CGRectZero];
+        _divider.backgroundColor = [UIColor colorWithWhite:225/255.0 alpha:1.0];
+        [self addSubview:_divider];
+    }
 
     
 }
@@ -162,6 +170,9 @@
 -(void)updateWithItem:(DFBaseLineItem *)item
 {
     CGFloat x, y, width;
+    
+    
+    _divider.hidden = YES;
     
     if (item.likes.count > 0) {
         
@@ -198,6 +209,10 @@
         y = TopMargin;
         if (item.likes.count > 0) {
             y = CGRectGetMaxY(_likeLabel.frame) + LikeCommentSpace;
+            
+            //显示分割线
+            _divider.hidden = NO;
+            _divider.frame = CGRectMake(0, y, self.frame.size.width, 0.5);
         }
         width = self.frame.size.width - 2*CommentLabelMargin;
         

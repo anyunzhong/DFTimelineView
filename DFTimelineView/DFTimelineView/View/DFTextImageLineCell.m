@@ -14,6 +14,11 @@
 #import "DFGridImageView.h"
 
 
+#import "NSString+MLExpression.h"
+
+#import "DFEmotionsManager.h"
+
+
 #define TextFont [UIFont systemFontOfSize:14]
 
 #define TextLineHeight 1.2f
@@ -91,13 +96,9 @@
 {
     [super updateWithItem:item];
     
-    
-    NSAttributedString *text  = [[NSAttributedString alloc] initWithString:item.text];
-    
-    CGSize textSize = [MLLinkLabel getViewSize:text maxWidth:BodyMaxWidth font:TextFont lineHeight:TextLineHeight lines:0];
+    CGSize textSize = [MLLinkLabel getViewSize:item.attrText maxWidth:BodyMaxWidth font:TextFont lineHeight:TextLineHeight lines:0];
 
-    
-    _textContentLabel.attributedText = text;
+    _textContentLabel.attributedText = item.attrText;
     [_textContentLabel sizeToFit];
     
     _textContentLabel.frame = CGRectMake(0, 0, BodyMaxWidth, textSize.height);
@@ -121,10 +122,11 @@
 
 +(CGFloat)getCellHeight:(DFTextImageLineItem *)item
 {
-    
-    NSAttributedString *text  = [[NSAttributedString alloc] initWithString:item.text];
-    
-    CGSize textSize = [MLLinkLabel getViewSize:text maxWidth:BodyMaxWidth font:TextFont lineHeight:TextLineHeight lines:0];
+    if (item.attrText == nil) {
+        item.attrText  = [item.text expressionAttributedStringWithExpression:[[DFEmotionsManager sharedInstance] sharedMLExpression]];
+    }
+
+    CGSize textSize = [MLLinkLabel getViewSize:item.attrText maxWidth:BodyMaxWidth font:TextFont lineHeight:TextLineHeight lines:0];
     
     CGFloat height = [DFBaseLineCell getCellHeight:item];
     

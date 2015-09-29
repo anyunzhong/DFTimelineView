@@ -70,6 +70,7 @@
 		11D758F71BB8F36C00F554D7 /* DFLikeCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D758F61BB8F36C00F554D7 /* DFLikeCommentView.m */; };
 		11D758FB1BBA8C4C00F554D7 /* DFLineLikeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D758FA1BBA8C4C00F554D7 /* DFLineLikeItem.m */; };
 		11D758FE1BBA8C5D00F554D7 /* DFLineCommentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D758FD1BBA8C5D00F554D7 /* DFLineCommentItem.m */; };
+		11D759011BBAA04400F554D7 /* DFEmotionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D759001BBAA04400F554D7 /* DFEmotionsManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -191,6 +192,8 @@
 		11D758FA1BBA8C4C00F554D7 /* DFLineLikeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFLineLikeItem.m; sourceTree = "<group>"; };
 		11D758FC1BBA8C5D00F554D7 /* DFLineCommentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFLineCommentItem.h; sourceTree = "<group>"; };
 		11D758FD1BBA8C5D00F554D7 /* DFLineCommentItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFLineCommentItem.m; sourceTree = "<group>"; };
+		11D758FF1BBAA04400F554D7 /* DFEmotionsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFEmotionsManager.h; sourceTree = "<group>"; };
+		11D759001BBAA04400F554D7 /* DFEmotionsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFEmotionsManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,6 +310,8 @@
 		11D758671BB7E71400F554D7 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				11D758FF1BBAA04400F554D7 /* DFEmotionsManager.h */,
+				11D759001BBAA04400F554D7 /* DFEmotionsManager.m */,
 				11D758CB1BB83B9C00F554D7 /* MJPhotoBrowser */,
 				11D758681BB7E71400F554D7 /* MLLabel */,
 				11D758821BB7E71400F554D7 /* SDWebImage */,
@@ -568,6 +573,7 @@
 				11D7585A1BB7DB8300F554D7 /* DFBaseLineCellAdapter.m in Sources */,
 				11D758C01BB7E71400F554D7 /* UIImage+WebP.m in Sources */,
 				11D758BC1BB7E71400F554D7 /* SDWebImagePrefetcher.m in Sources */,
+				11D759011BBAA04400F554D7 /* DFEmotionsManager.m in Sources */,
 				11D758B11BB7E71400F554D7 /* NSString+MLExpression.m in Sources */,
 				11D758A81BB7E71400F554D7 /* MLExpressionManager.m in Sources */,
 				11D758521BB7D85D00F554D7 /* DFBaseLineCell.m in Sources */,
@@ -717,6 +723,7 @@
 				11D758451BB7D43B00F554D7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
