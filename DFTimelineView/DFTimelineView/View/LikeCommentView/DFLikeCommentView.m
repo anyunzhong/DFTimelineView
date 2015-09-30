@@ -110,10 +110,15 @@
         _likeLabel.activeLinkTextAttributes = nil;
         _likeLabel.lineHeightMultiple = LikeLabelLineHeight;
         
+        __block DFLikeCommentView *likeCommentView = self;
         
         [_likeLabel setDidClickLinkBlock:^(MLLink *link, NSString *linkText, MLLinkLabel *label) {
-            NSString *tips = [NSString stringWithFormat:@"Click\nlinkType:%ld\nlinkText:%@\nlinkValue:%@",(unsigned long)link.linkType,linkText,link.linkValue];
-            NSLog(@"%@", tips);
+
+            if (_delegate != nil && [_delegate respondsToSelector:@selector(onClickUser:)]) {
+                
+                NSUInteger userId = [link.linkValue integerValue];
+                [likeCommentView.delegate onClickUser:userId];
+            }
         }];
         
         
@@ -136,10 +141,17 @@
         _commentLabel.lineHeightMultiple = CommentLabelLineHeight;
         
         
+        __block DFLikeCommentView *likeCommentView = self;
+        
         [_commentLabel setDidClickLinkBlock:^(MLLink *link, NSString *linkText, MLLinkLabel *label) {
-            NSString *tips = [NSString stringWithFormat:@"Click\nlinkType:%ld\nlinkText:%@\nlinkValue:%@",(unsigned long)link.linkType,linkText,link.linkValue];
-            NSLog(@"%@", tips);
+            
+            if (_delegate != nil && [_delegate respondsToSelector:@selector(onClickUser:)]) {
+                
+                NSUInteger userId = [link.linkValue integerValue];
+                [likeCommentView.delegate onClickUser:userId];
+            }
         }];
+
         
         [self addSubview:_commentLabel];
     }

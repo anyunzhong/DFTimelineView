@@ -218,15 +218,42 @@
 
 -(void)onComment:(long long)itemId
 {
+    //评论
     NSLog(@"onComment: %lld", itemId);
 }
 
 
 -(void)onLike:(long long)itemId
 {
+    //点赞
     NSLog(@"onLike: %lld", itemId);
 }
 
+
+-(void)onClickUser:(NSUInteger)userId
+{
+    //点击左边头像 或者 点击评论和赞的用户昵称
+    NSLog(@"onClickUser: %ld", userId);
+}
+
+
+-(void)onClickUserAvatar
+{
+    //点击封面上的头像
+    NSLog(@"onClickUserAvatar");
+}
+
+
+-(NSString *) getCoverUrl:(CGFloat) width height:(CGFloat) height
+{
+    return [NSString stringWithFormat:@"http://file-cdn.datafans.net/temp/12.jpg_%dx%d.jpeg", (int)width, (int)height];
+}
+
+
+-(NSString *) getAvatarUrl:(CGFloat) width height:(CGFloat) height
+{
+    return [NSString stringWithFormat:@"http://file-cdn.datafans.net/avatar/1.jpeg_%dx%d.jpeg", (int)width, (int)height];
+}
 
 
 - (void)didReceiveMemoryWarning {

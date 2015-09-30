@@ -42,12 +42,13 @@
 #import "DFLikeCommentToolbar.h"
 
 
-@interface DFBaseLineCell()<DFLikeCommentToolbarDelegate>
+@interface DFBaseLineCell()<DFLikeCommentToolbarDelegate, DFLikeCommentViewDelegate>
 
 
 @property (nonatomic, strong) DFBaseLineItem *item;
 
 @property (nonatomic, strong) UIImageView *userAvatarView;
+@property (nonatomic, strong) UIButton *userAvatarButton;
 
 @property (nonatomic, strong) MLLinkLabel *userNickLabel;
 
@@ -105,6 +106,10 @@
         _userAvatarView = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
         _userAvatarView.backgroundColor = [UIColor lightGrayColor];
         [self.contentView addSubview:_userAvatarView];
+        
+        _userAvatarButton = [[UIButton alloc] initWithFrame:_userAvatarView.frame];
+        [_userAvatarButton addTarget:self action:@selector(onClickUserAvatar:) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:_userAvatarButton];
     }
     
     if (_userNickLabel == nil) {
@@ -176,6 +181,7 @@
         width = BodyMaxWidth;
         height = 10;
         _likeCommentView = [[DFLikeCommentView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+        _likeCommentView.delegate = self;
         [self.contentView addSubview:_likeCommentView];  
     }
 
@@ -332,6 +338,14 @@
 
 
 
+-(void) onClickUserAvatar:(id)sender
+{
+    if (_delegate != nil && [_delegate respondsToSelector:@selector(onClickUser:)]) {
+        [_delegate onClickUser:self.item.userId];
+    }
+}
+
+
 -(void) onClickLikeCommentBtn:(id)sender
 {
     _isLikeCommentToolbarShow = !_isLikeCommentToolbarShow;
@@ -371,6 +385,18 @@
     if (_delegate != nil && [_delegate respondsToSelector:@selector(onComment:)]) {
         [_delegate onComment:self.item.itemId];
     }
+}
+
+
+
+#pragma mark - DFLikeCommentViewDelegate
+
+-(void)onClickUser:(NSUInteger)userId
+{
+    if (_delegate != nil && [_delegate respondsToSelector:@selector(onClickUser:)]) {
+        [_delegate onClickUser:userId];
+    }
+
 }
 
 @end

@@ -8,7 +8,20 @@
 
 #import "DFBaseLineItem.h"
 
+@protocol DFLikeCommentViewDelegate <NSObject>
+
+@required
+-(void) onClickUser:(NSUInteger) userId;
+
+@end
+
+
+
 @interface DFLikeCommentView : UIView
+
+
+@property (nonatomic, assign) id<DFLikeCommentViewDelegate> delegate;
+
 
 -(void) updateWithItem:(DFBaseLineItem *) item;
 

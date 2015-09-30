@@ -27,6 +27,9 @@
 -(void) onLike:(long long) itemId;
 -(void) onComment:(long long) itemId;
 
+-(void) onClickUser:(NSUInteger) userId;
+
+
 @end
 
 @interface DFBaseLineCell : UITableViewCell

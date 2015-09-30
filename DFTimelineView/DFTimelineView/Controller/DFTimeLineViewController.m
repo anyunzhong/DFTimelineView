@@ -13,13 +13,27 @@
 #import "DFBaseLineCell.h"
 #import "DFLineLikeItem.h"
 #import "DFLineCommentItem.h"
+#import "UIImageView+WebCache.h"
 
+
+#define TableHeaderHeight 270*([UIScreen mainScreen].bounds.size.width / 375.0)
+#define CoverHeight 240*([UIScreen mainScreen].bounds.size.width / 375.0)
+
+
+#define AvatarSize 70*([UIScreen mainScreen].bounds.size.width / 375.0)
+#define AvatarRightMargin 15
+#define AvatarPadding 2
 
 @interface DFTimeLineViewController ()<DFLineCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *items;
 
 @property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, strong) UIImageView *cover;
+
+
+@property (nonatomic, strong) UIImageView *userAvatar;
 
 
 @end
@@ -46,7 +60,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self initTableView];
+    
+    [self initHeader];
+    
+}
+
+
+-(void) initTableView
+{
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+    _tableView.backgroundColor = [UIColor darkGrayColor];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorInset = UIEdgeInsetsZero;
@@ -54,6 +78,50 @@
         _tableView.layoutMargins = UIEdgeInsetsZero;
     }
     [self.view addSubview:_tableView];
+}
+
+-(void) initHeader
+{
+    CGFloat x,y,width, height;
+    x=0;
+    y=0;
+    width = self.view.frame.size.width;
+    height = TableHeaderHeight;
+    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    header.backgroundColor = [UIColor whiteColor];
+    _tableView.tableHeaderView = header;
+    
+    
+    //封面
+    height = CoverHeight;
+    _cover = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    
+    //这里可以根据scale来获取相应尺寸的图片 图片可能比较大 加载慢
+    NSString *url = [self getCoverUrl:width*2 height:height*2];
+    [_cover sd_setImageWithURL:[NSURL URLWithString:url]];
+    [header addSubview:_cover];
+    
+    //用户头像
+    x = self.view.frame.size.width - AvatarRightMargin - AvatarSize;
+    y = header.frame.size.height - AvatarSize;
+    width = AvatarSize;
+    height = width;
+    
+    UIButton *avatarBg = [[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    avatarBg.backgroundColor = [UIColor whiteColor];
+    avatarBg.layer.borderWidth=0.5;
+    avatarBg.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    [avatarBg addTarget:self action:@selector(onClickUserAvatar:) forControlEvents:UIControlEventTouchUpInside];
+    [header addSubview:avatarBg];
+    
+    x = AvatarPadding;
+    y = x;
+    width = CGRectGetWidth(avatarBg.frame) - 2*AvatarPadding;
+    height = width;
+    _userAvatar = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    [avatarBg addSubview:_userAvatar];
+    [_userAvatar sd_setImageWithURL:[NSURL URLWithString:[self getAvatarUrl:width*2 height:height*2]]];
+    
     
 }
 
@@ -130,6 +198,10 @@
 
 
 
+-(void) onClickUserAvatar:(id) sender
+{
+    [self onClickUserAvatar];
+}
 
 
 -(void)onComment:(long long)itemId
@@ -143,9 +215,31 @@
     
 }
 
+-(void)onClickUser:(NSUInteger)userId
+{
+    
+}
+
+
+-(void)onClickUserAvatar
+{
+    
+}
 
 
 
+
+
+-(NSString *) getCoverUrl:(CGFloat) width height:(CGFloat) height
+{
+    return nil;
+}
+
+
+-(NSString *) getAvatarUrl:(CGFloat) width height:(CGFloat) height
+{
+    return nil;
+}
 
 
 -(void) genLikeAttrString:(DFBaseLineItem *) item
