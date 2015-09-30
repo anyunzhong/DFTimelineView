@@ -13,7 +13,7 @@
 
 @implementation DFTextImageLineCellAdapter
 
--(CGFloat)getCellHeight:(DFBaseLineItem *)item
+-(CGFloat) getCellHeightByCount:(DFBaseLineItem *)item
 {
     return [DFTextImageLineCell getCellHeight:item];
 }

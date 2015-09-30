@@ -33,13 +33,16 @@
 
 #define LikeCommentTimeSpace 3
 
+#define ToolbarWidth 150
+#define ToolbarHeight 30
 
 #import "DFBaseLineCell.h"
 #import "MLLinkLabel.h"
 #import "DFLikeCommentView.h"
+#import "DFLikeCommentToolbar.h"
 
 
-@interface DFBaseLineCell()
+@interface DFBaseLineCell()<DFLikeCommentToolbarDelegate>
 
 
 @property (nonatomic, strong) DFBaseLineItem *item;
@@ -61,6 +64,12 @@
 
 @property (nonatomic, strong) DFLikeCommentView *likeCommentView;
 
+
+@property (nonatomic, strong) DFLikeCommentToolbar *likeCommentToolbar;
+
+
+@property (nonatomic, assign) BOOL isLikeCommentToolbarShow;
+
 @end
 
 
@@ -73,6 +82,8 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        
+        _isLikeCommentToolbarShow = NO;
         
         [self initBaseCell];
     }
@@ -110,7 +121,6 @@
         _userNickLabel.linkTextAttributes = nil;
         _userNickLabel.activeLinkTextAttributes = nil;
         _userNickLabel.lineHeightMultiple = UserNickLineHeight;
-        //_userNickLabel.backgroundColor  = [UIColor darkGrayColor];
         [self.contentView addSubview:_userNickLabel];
     }
     
@@ -127,7 +137,6 @@
         width = BodyMaxWidth;
         height = 1;
         _bodyView = [[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
-        //_bodyView.backgroundColor = [UIColor redColor];
         [self.contentView addSubview:_bodyView];
     }
     
@@ -135,7 +144,7 @@
     
     if (_locationLabel == nil) {
         _locationLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _locationLabel.textColor = [UIColor lightGrayColor];
+        _locationLabel.textColor = [UIColor colorWithRed:35/255.0 green:83/255.0 blue:120/255.0 alpha:1.0];
         _locationLabel.font = LocationLabelFont;
         _locationLabel.hidden = YES;
         [self.contentView addSubview:_locationLabel];
@@ -154,10 +163,10 @@
     
     if (_likeCmtButton == nil) {
         _likeCmtButton = [[UIButton alloc] initWithFrame:CGRectZero];
-        //_likeCmtButton.backgroundColor = [UIColor darkGrayColor];
         _likeCmtButton.hidden = YES;
         [_likeCmtButton setImage:[UIImage imageNamed:@"AlbumOperateMore"] forState:UIControlStateNormal];
         [_likeCmtButton setImage:[UIImage imageNamed:@"AlbumOperateMoreHL"] forState:UIControlStateHighlighted];
+        [_likeCmtButton addTarget:self action:@selector(onClickLikeCommentBtn:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:_likeCmtButton];
     }
     
@@ -169,10 +178,26 @@
         _likeCommentView = [[DFLikeCommentView alloc] initWithFrame:CGRectMake(x, y, width, height)];
         [self.contentView addSubview:_likeCommentView];  
     }
+
     
+    
+    if (_likeCommentToolbar == nil) {
+        y = 0;
+        x = 0;
+        width = ToolbarWidth;
+        height = ToolbarHeight;
+        _likeCommentToolbar = [[DFLikeCommentToolbar alloc] initWithFrame:CGRectMake(x, y, width, height)];
+        _likeCommentToolbar.delegate = self;
+        _likeCommentToolbar.hidden = YES;
+        [self.contentView addSubview:_likeCommentToolbar];
+    }
+
 }
 
 
+
+
+#pragma mark - Method
 
 -(void)updateWithItem:(DFBaseLineItem *)item
 {
@@ -257,6 +282,13 @@
     _likeCmtButton.frame = CGRectMake(x+2, y-7, width, height);
     
     
+    //点赞和评论Toolbar
+    width = _likeCommentToolbar.frame.size.width;
+    height = _likeCommentToolbar.frame.size.height;
+    x = CGRectGetMinX(_likeCmtButton.frame) - width - 10;
+    y = CGRectGetMinY(_likeCmtButton.frame) - 1;
+    _likeCommentToolbar.frame = CGRectMake(x, y, width, height);
+    
     //点赞和评论
     if (self.item.likes.count ==0 && self.item.comments.count == 0) {
         
@@ -295,6 +327,50 @@
     }
     
     return height;
+}
+
+
+
+
+-(void) onClickLikeCommentBtn:(id)sender
+{
+    _isLikeCommentToolbarShow = !_isLikeCommentToolbarShow;
+    _likeCommentToolbar.hidden = !_isLikeCommentToolbarShow;
+}
+
+
+
+-(void)hideLikeCommentToolbar
+{
+    if (_isLikeCommentToolbarShow == NO) {
+        return;
+    }
+    _isLikeCommentToolbarShow = NO;
+    _likeCommentToolbar.hidden = YES;
+}
+
+
+#pragma mark - DFLikeCommentToolbarDelegate
+
+-(void)onLike
+{
+   
+    [self hideLikeCommentToolbar];
+    
+    if (_delegate != nil && [_delegate respondsToSelector:@selector(onLike:)]) {
+        [_delegate onLike:self.item.itemId];
+    }
+}
+
+
+-(void)onComment
+{
+    
+    [self hideLikeCommentToolbar];
+    
+    if (_delegate != nil && [_delegate respondsToSelector:@selector(onComment:)]) {
+        [_delegate onComment:self.item.itemId];
+    }
 }
 
 @end

@@ -15,7 +15,12 @@ typedef NS_ENUM(NSUInteger, LineItemType){
 
 @interface DFBaseLineItem : NSObject
 
+//时间轴itemID 需要全局唯一 一般服务器下发
+@property (nonatomic, assign) long long itemId;
+
 @property (nonatomic, assign) LineItemType itemType;
+
+@property (nonatomic, assign) CGFloat cellHeight;
 
 @property (nonatomic, assign) NSUInteger userId;
 @property (nonatomic, strong) NSString *userNick;

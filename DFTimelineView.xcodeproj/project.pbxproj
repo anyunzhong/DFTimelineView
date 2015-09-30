@@ -71,6 +71,12 @@
 		11D758FB1BBA8C4C00F554D7 /* DFLineLikeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D758FA1BBA8C4C00F554D7 /* DFLineLikeItem.m */; };
 		11D758FE1BBA8C5D00F554D7 /* DFLineCommentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D758FD1BBA8C5D00F554D7 /* DFLineCommentItem.m */; };
 		11D759011BBAA04400F554D7 /* DFEmotionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D759001BBAA04400F554D7 /* DFEmotionsManager.m */; };
+		11D759051BBAC8DD00F554D7 /* DFLikeCommentToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D759041BBAC8DD00F554D7 /* DFLikeCommentToolbar.m */; };
+		11D7590B1BBACC2700F554D7 /* AlbumComment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11D759061BBACC2700F554D7 /* AlbumComment@2x.png */; };
+		11D7590C1BBACC2700F554D7 /* AlbumComment@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11D759071BBACC2700F554D7 /* AlbumComment@3x.png */; };
+		11D7590D1BBACC2700F554D7 /* AlbumLike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11D759081BBACC2700F554D7 /* AlbumLike@2x.png */; };
+		11D7590E1BBACC2700F554D7 /* AlbumLike@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11D759091BBACC2700F554D7 /* AlbumLike@3x.png */; };
+		11D7590F1BBACC2700F554D7 /* AlbumOperateMoreViewBkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11D7590A1BBACC2700F554D7 /* AlbumOperateMoreViewBkg@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -194,6 +200,13 @@
 		11D758FD1BBA8C5D00F554D7 /* DFLineCommentItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFLineCommentItem.m; sourceTree = "<group>"; };
 		11D758FF1BBAA04400F554D7 /* DFEmotionsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFEmotionsManager.h; sourceTree = "<group>"; };
 		11D759001BBAA04400F554D7 /* DFEmotionsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFEmotionsManager.m; sourceTree = "<group>"; };
+		11D759031BBAC8DD00F554D7 /* DFLikeCommentToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFLikeCommentToolbar.h; sourceTree = "<group>"; };
+		11D759041BBAC8DD00F554D7 /* DFLikeCommentToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFLikeCommentToolbar.m; sourceTree = "<group>"; };
+		11D759061BBACC2700F554D7 /* AlbumComment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlbumComment@2x.png"; sourceTree = "<group>"; };
+		11D759071BBACC2700F554D7 /* AlbumComment@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlbumComment@3x.png"; sourceTree = "<group>"; };
+		11D759081BBACC2700F554D7 /* AlbumLike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlbumLike@2x.png"; sourceTree = "<group>"; };
+		11D759091BBACC2700F554D7 /* AlbumLike@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlbumLike@3x.png"; sourceTree = "<group>"; };
+		11D7590A1BBACC2700F554D7 /* AlbumOperateMoreViewBkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlbumOperateMoreViewBkg@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +288,7 @@
 		11D7584F1BB7D81500F554D7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				11D759021BBAC8B400F554D7 /* LikeCommentToolbar */,
 				11D758F41BB8F35000F554D7 /* LikeCommentView */,
 				11D758C41BB8213A00F554D7 /* DFGridImageView */,
 				11D758501BB7D85D00F554D7 /* DFBaseLineCell.h */,
@@ -429,6 +443,11 @@
 		11D758E31BB8E6C300F554D7 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				11D759061BBACC2700F554D7 /* AlbumComment@2x.png */,
+				11D759071BBACC2700F554D7 /* AlbumComment@3x.png */,
+				11D759081BBACC2700F554D7 /* AlbumLike@2x.png */,
+				11D759091BBACC2700F554D7 /* AlbumLike@3x.png */,
+				11D7590A1BBACC2700F554D7 /* AlbumOperateMoreViewBkg@2x.png */,
 				11D758F01BB8EA5E00F554D7 /* LikeCmtBg@2x.png */,
 				11D758F11BB8EA5E00F554D7 /* LikeCmtBg@3x.png */,
 				11D758E41BB8E6C300F554D7 /* AlbumOperateMore@2x.png */,
@@ -459,6 +478,15 @@
 				11D758FD1BBA8C5D00F554D7 /* DFLineCommentItem.m */,
 			);
 			path = LikeComment;
+			sourceTree = "<group>";
+		};
+		11D759021BBAC8B400F554D7 /* LikeCommentToolbar */ = {
+			isa = PBXGroup;
+			children = (
+				11D759031BBAC8DD00F554D7 /* DFLikeCommentToolbar.h */,
+				11D759041BBAC8DD00F554D7 /* DFLikeCommentToolbar.m */,
+			);
+			path = LikeCommentToolbar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -520,16 +548,21 @@
 			files = (
 				11D758EE1BB8E6C300F554D7 /* Like@2x.png in Resources */,
 				11D758EA1BB8E6C300F554D7 /* AlbumOperateMore@2x.png in Resources */,
+				11D7590B1BBACC2700F554D7 /* AlbumComment@2x.png in Resources */,
 				11D758311BB7D43B00F554D7 /* Images.xcassets in Resources */,
+				11D7590E1BBACC2700F554D7 /* AlbumLike@3x.png in Resources */,
+				11D7590F1BBACC2700F554D7 /* AlbumOperateMoreViewBkg@2x.png in Resources */,
 				11D758A71BB7E71400F554D7 /* Expression.plist in Resources */,
 				11D758F31BB8EA5E00F554D7 /* LikeCmtBg@3x.png in Resources */,
 				11D758F21BB8EA5E00F554D7 /* LikeCmtBg@2x.png in Resources */,
 				11D758EC1BB8E6C300F554D7 /* AlbumOperateMoreHL@2x.png in Resources */,
 				11D758EB1BB8E6C300F554D7 /* AlbumOperateMore@3x.png in Resources */,
+				11D7590D1BBACC2700F554D7 /* AlbumLike@2x.png in Resources */,
 				11D758DC1BB83B9C00F554D7 /* MJPhotoBrowser.bundle in Resources */,
 				11D758A61BB7E71400F554D7 /* ClippedExpression.bundle in Resources */,
 				11D758EF1BB8E6C300F554D7 /* Like@3x.png in Resources */,
 				11D758ED1BB8E6C300F554D7 /* AlbumOperateMoreHL@3x.png in Resources */,
+				11D7590C1BBACC2700F554D7 /* AlbumComment@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,6 +597,7 @@
 				11D758FB1BBA8C4C00F554D7 /* DFLineLikeItem.m in Sources */,
 				11D758B41BB7E71400F554D7 /* NSData+ImageContentType.m in Sources */,
 				11D758B81BB7E71400F554D7 /* SDWebImageDownloader.m in Sources */,
+				11D759051BBAC8DD00F554D7 /* DFLikeCommentToolbar.m in Sources */,
 				11D7584D1BB7D66300F554D7 /* DFBaseLineItem.m in Sources */,
 				11D758BE1BB7E71400F554D7 /* UIImage+GIF.m in Sources */,
 				11D758E01BB83B9C00F554D7 /* MJPhotoToolbar.m in Sources */,

@@ -15,7 +15,7 @@
 #import "DFLineCommentItem.h"
 
 
-@interface DFTimeLineViewController ()
+@interface DFTimeLineViewController ()<DFLineCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *items;
 
@@ -49,6 +49,10 @@
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.separatorInset = UIEdgeInsetsZero;
+    if ([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        _tableView.layoutMargins = UIEdgeInsetsZero;
+    }
     [self.view addSubview:_tableView];
     
 }
@@ -82,8 +86,29 @@
     DFBaseLineCellAdapter *adapter = [self getAdapter:item.itemType];
     
     UITableViewCell *cell = [adapter getCell:tableView];
+    
+    ((DFBaseLineCell *)cell).delegate = self;
+    
+    cell.separatorInset = UIEdgeInsetsZero;
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        cell.layoutMargins = UIEdgeInsetsZero;
+    }
     [adapter updateCell:cell message:item];
+    
     return cell;
+}
+
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //点击所有cell空白地方 隐藏toolbar
+    NSInteger rows =  [tableView numberOfRowsInSection:0];
+    for (int row = 0; row < rows; row++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+        DFBaseLineCell *cell  = (DFBaseLineCell *)[tableView cellForRowAtIndexPath:indexPath];
+        [cell hideLikeCommentToolbar];
+    }
 }
 
 
@@ -102,6 +127,24 @@
     [_items addObject:item];
     [_tableView reloadData];
 }
+
+
+
+
+
+-(void)onComment:(long long)itemId
+{
+    
+}
+
+
+-(void)onLike:(long long)itemId
+{
+    
+}
+
+
+
 
 
 
@@ -134,7 +177,7 @@
         
         item.likesStr = attrStr;
     }
-
+    
 }
 
 -(void) genCommentAttrString:(DFBaseLineItem *)item
@@ -153,9 +196,9 @@
                 }
             }else{
                 if (i == 0) {
-                    result = [NSString stringWithFormat:@"%@ 回复 %@: %@",comment.userNick, comment.replyUserNick, comment.text];
+                    result = [NSString stringWithFormat:@"%@回复%@: %@",comment.userNick, comment.replyUserNick, comment.text];
                 }else{
-                    result = [NSString stringWithFormat:@"%@\n%@ 回复 %@: %@", result, comment.userNick, comment.replyUserNick,  comment.text];
+                    result = [NSString stringWithFormat:@"%@\n%@回复%@: %@", result, comment.userNick, comment.replyUserNick,  comment.text];
                 }
             }
             
@@ -164,24 +207,26 @@
         }
         
         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:result];
-                    NSUInteger position = 0;
-                    for (int i=0; i<comments.count;i++) {
-                        DFLineCommentItem *comment = [comments objectAtIndex:i];
-                        if (comment.replyUserId == 0) {
-                            [attrStr addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%lu", (unsigned long)comment.userId] range:NSMakeRange(position, comment.userNick.length)];
-                            position += comment.userNick.length + comment.text.length + 3;
-                        }else{
-                            [attrStr addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%lu", (unsigned long)comment.userId] range:NSMakeRange(position, comment.userNick.length)];
-                            position += comment.userNick.length + 4;
-                            [attrStr addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%lu", (unsigned long)comment.replyUserId] range:NSMakeRange(position, comment.replyUserNick.length)];
-                            position += comment.text.length + comment.replyUserNick.length + 3;
-                        }
-                        
-                    }
+        NSUInteger position = 0;
+        for (int i=0; i<comments.count;i++) {
+            DFLineCommentItem *comment = [comments objectAtIndex:i];
+            if (comment.replyUserId == 0) {
+                [attrStr addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%lu", (unsigned long)comment.userId] range:NSMakeRange(position, comment.userNick.length)];
+                position += comment.userNick.length + comment.text.length + 3;
+            }else{
+                [attrStr addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%lu", (unsigned long)comment.userId] range:NSMakeRange(position, comment.userNick.length)];
+                position += comment.userNick.length + 2;
+                [attrStr addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%lu", (unsigned long)comment.replyUserId] range:NSMakeRange(position, comment.replyUserNick.length)];
+                position += comment.text.length + comment.replyUserNick.length + 3;
+            }
+            
+        }
         
         item.commentsStr = attrStr;
     }
-
+    
 }
+
+
 
 @end

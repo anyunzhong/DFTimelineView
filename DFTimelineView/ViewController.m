@@ -43,6 +43,7 @@
 -(void) initData
 {
     DFTextImageLineItem *textImageItem = [[DFTextImageLineItem alloc] init];
+    textImageItem.itemId = 1;
     textImageItem.itemType = LineItemTypeTextImage;
     textImageItem.userId = 10086;
     textImageItem.userAvatar = @"http://file-cdn.datafans.net/avatar/1.jpeg";
@@ -78,7 +79,7 @@
     [thumbImages addObject:@"http://file-cdn.datafans.net/temp/19.jpg_160x160.jpeg"];
     textImageItem.thumbImages = thumbImages;
     
-    textImageItem.location = @"凯旋新世界";
+    textImageItem.location = @"中国 • 广州";
     
     
     DFLineLikeItem *likeItem1_1 = [[DFLineLikeItem alloc] init];
@@ -117,9 +118,10 @@
     [textImageItem.comments addObject:commentItem1_3];
     
     [self addItem:textImageItem];
-
-
+    
+    
     DFTextImageLineItem *textImageItem2 = [[DFTextImageLineItem alloc] init];
+    textImageItem2.itemId = 2;
     textImageItem2.itemType = LineItemTypeTextImage;
     textImageItem2.userId = 10088;
     textImageItem2.userAvatar = @"http://file-cdn.datafans.net/avatar/2.jpg";
@@ -164,11 +166,12 @@
     
     
     [self addItem:textImageItem2];
-
+    
     
     
     
     DFTextImageLineItem *textImageItem3 = [[DFTextImageLineItem alloc] init];
+    textImageItem3.itemId = 3;
     textImageItem3.itemType = LineItemTypeTextImage;
     textImageItem3.userId = 10088;
     textImageItem3.userAvatar = @"http://file-cdn.datafans.net/avatar/2.jpg";
@@ -194,11 +197,37 @@
     
     
     [self addItem:textImageItem3];
-
     
-
-
+    
+    
+    //测试滑动
+    //    [self addItem:textImageItem];
+    //    [self addItem:textImageItem2];
+    //    [self addItem:textImageItem3];
+    //
+    //    [self addItem:textImageItem];
+    //    [self addItem:textImageItem2];
+    //    [self addItem:textImageItem3];
+    
+    
+    
+    
 }
+
+
+
+-(void)onComment:(long long)itemId
+{
+    NSLog(@"onComment: %lld", itemId);
+}
+
+
+-(void)onLike:(long long)itemId
+{
+    NSLog(@"onLike: %lld", itemId);
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

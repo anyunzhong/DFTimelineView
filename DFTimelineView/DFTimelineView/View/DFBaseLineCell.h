@@ -18,11 +18,23 @@
 
 #define  BodyMaxWidth [UIScreen mainScreen].bounds.size.width - UserAvatarSize - 3*Margin
 
+
+
+
+@protocol DFLineCellDelegate <NSObject>
+
+@optional
+-(void) onLike:(long long) itemId;
+-(void) onComment:(long long) itemId;
+
+@end
+
 @interface DFBaseLineCell : UITableViewCell
 
 
 @property (nonatomic, strong) UIView *bodyView;
 
+@property (nonatomic, assign) id<DFLineCellDelegate> delegate;
 
 
 -(void) updateWithItem:(DFBaseLineItem *) item;
@@ -30,5 +42,7 @@
 +(CGFloat) getCellHeight:(DFBaseLineItem *) item;
 
 -(void)updateBodyView:(CGFloat) height;
+
+-(void) hideLikeCommentToolbar;
 
 @end
