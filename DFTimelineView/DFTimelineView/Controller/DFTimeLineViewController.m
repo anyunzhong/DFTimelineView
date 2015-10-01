@@ -16,6 +16,7 @@
 #import "UIImageView+WebCache.h"
 
 
+
 #define TableHeaderHeight 270*([UIScreen mainScreen].bounds.size.width / 375.0)
 #define CoverHeight 240*([UIScreen mainScreen].bounds.size.width / 375.0)
 
@@ -36,6 +37,13 @@
 @property (nonatomic, strong) UIImageView *userAvatar;
 
 
+@property (nonatomic, strong) UIView *footer;
+
+
+@property (nonatomic, assign) BOOL isLoadingMore;
+
+
+
 @end
 
 @implementation DFTimeLineViewController
@@ -48,6 +56,8 @@
     if (self) {
         
         _items = [NSMutableArray array];
+        
+        _isLoadingMore = NO;
         
         DFLineCellAdapterManager *manager = [DFLineCellAdapterManager sharedInstance];
         
@@ -64,13 +74,15 @@
     
     [self initHeader];
     
+    [self initFooter];
+    
 }
 
 
 -(void) initTableView
 {
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
-    _tableView.backgroundColor = [UIColor darkGrayColor];
+    //_tableView.backgroundColor = [UIColor darkGrayColor];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorInset = UIEdgeInsetsZero;
@@ -121,6 +133,30 @@
     _userAvatar = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
     [avatarBg addSubview:_userAvatar];
     [_userAvatar sd_setImageWithURL:[NSURL URLWithString:[self getAvatarUrl:width*2 height:height*2]]];
+    
+    
+}
+
+
+-(void) initFooter
+{
+    CGFloat x,y,width, height;
+    x=0;
+    y=0;
+    width = self.view.frame.size.width;
+    height = 0.1;
+    
+    _footer = [[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    _footer.backgroundColor = [UIColor clearColor];
+    _tableView.tableFooterView = _footer;
+    
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    
+    indicator.center = CGPointMake(_footer.frame.size.width/2, 30);
+    indicator.hidden = YES;
+    [indicator startAnimating];
+    
+    [_footer addSubview:indicator];
     
     
 }
@@ -180,6 +216,7 @@
 }
 
 
+#pragma mark - Method
 
 -(DFBaseLineCellAdapter *) getAdapter:(LineItemType)itemType
 {
@@ -204,6 +241,9 @@
 }
 
 
+
+#pragma mark - DFLineCellDelegate
+
 -(void)onComment:(long long)itemId
 {
     
@@ -226,6 +266,80 @@
     
 }
 
+
+
+
+#pragma mark - PullMoreFooterDelegate
+
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    //NSLog(@"size: %f  offset:  %f", scrollView.contentSize.height, scrollView.contentOffset.y+self.tableView.frame.size.height);
+    
+    if (_isLoadingMore) {
+        return;
+    }
+    
+    if (scrollView.contentOffset.y+self.tableView.frame.size.height - 30 > scrollView.contentSize.height) {
+        
+        [self showFooter];
+    }
+}
+
+
+-(void) showFooter
+{
+    NSLog(@"show footer");
+    
+    CGRect frame = _tableView.tableFooterView.frame;
+    CGFloat x,y,width,height;
+    width = frame.size.width;
+    height = 50;
+    x = frame.origin.x;
+    y = frame.origin.y;
+    _footer.frame = CGRectMake(x, y, width, height);
+    _tableView.tableFooterView = _footer;
+    
+    _isLoadingMore = YES;
+    [self loadMore];
+
+}
+
+
+-(void) hideFooter
+{
+    NSLog(@"hide footer");
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        CGRect frame = _tableView.tableFooterView.frame;
+        CGFloat x,y,width,height;
+        width = frame.size.width;
+        height = 0.1;
+        x = frame.origin.x;
+        y = frame.origin.y;
+        _footer.frame = CGRectMake(x, y, width, height);
+        _tableView.tableFooterView = _footer;
+        
+        _isLoadingMore = NO;
+
+    }];
+    
+}
+
+
+
+-(void) loadMore
+{
+    dispatch_time_t time=dispatch_time(DISPATCH_TIME_NOW, 2*NSEC_PER_SEC);
+    dispatch_after(time, dispatch_get_main_queue(), ^{
+        [self hideFooter];
+    });
+}
+
+
+
+#pragma mark - Method
 
 
 
