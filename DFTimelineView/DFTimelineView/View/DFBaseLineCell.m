@@ -115,7 +115,7 @@
     if (_userNickLabel == nil) {
         
         _userNickLabel =[[MLLinkLabel alloc] initWithFrame:CGRectZero];
-        _userNickLabel.textColor = [UIColor colorWithRed:25/255.0 green:45/255.0 blue:47/255.0 alpha:1.0];
+        _userNickLabel.textColor = HighLightTextColor;
         _userNickLabel.font = UserNickFont;
         _userNickLabel.numberOfLines = 1;
         _userNickLabel.adjustsFontSizeToFitWidth = NO;

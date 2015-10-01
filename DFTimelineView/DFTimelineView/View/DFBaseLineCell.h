@@ -9,6 +9,8 @@
 #import "UIImageView+WebCache.h"
 #import "DFBaseLineItem.h"
 
+#import "Const.h"
+
 
 #define Margin 15
 

@@ -207,6 +207,7 @@
 		11D759081BBACC2700F554D7 /* AlbumLike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlbumLike@2x.png"; sourceTree = "<group>"; };
 		11D759091BBACC2700F554D7 /* AlbumLike@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlbumLike@3x.png"; sourceTree = "<group>"; };
 		11D7590A1BBACC2700F554D7 /* AlbumOperateMoreViewBkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlbumOperateMoreViewBkg@2x.png"; sourceTree = "<group>"; };
+		11D75AA41BBD7AF700F554D7 /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +264,7 @@
 		11D758491BB7D5E500F554D7 /* DFTimelineView */ = {
 			isa = PBXGroup;
 			children = (
+				11D75AA31BBD7AE700F554D7 /* Define */,
 				11D758E31BB8E6C300F554D7 /* Resource */,
 				11D758671BB7E71400F554D7 /* Lib */,
 				11D758541BB7DA4B00F554D7 /* Adaper */,
@@ -487,6 +489,14 @@
 				11D759041BBAC8DD00F554D7 /* DFLikeCommentToolbar.m */,
 			);
 			path = LikeCommentToolbar;
+			sourceTree = "<group>";
+		};
+		11D75AA31BBD7AE700F554D7 /* Define */ = {
+			isa = PBXGroup;
+			children = (
+				11D75AA41BBD7AF700F554D7 /* Const.h */,
+			);
+			path = Define;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -10,6 +10,7 @@
 #import "MLLinkLabel.h"
 #import "DFLineLikeItem.h"
 #import "DFLineCommentItem.h"
+#import "Const.h"
 
 
 #define TopMargin 10
@@ -109,6 +110,7 @@
         _likeLabel.linkTextAttributes = nil;
         _likeLabel.activeLinkTextAttributes = nil;
         _likeLabel.lineHeightMultiple = LikeLabelLineHeight;
+        _likeLabel.linkTextAttributes = @{NSForegroundColorAttributeName: HighLightTextColor};
         
         __block DFLikeCommentView *likeCommentView = self;
         
@@ -139,6 +141,7 @@
         _commentLabel.linkTextAttributes = nil;
         _commentLabel.activeLinkTextAttributes = nil;
         _commentLabel.lineHeightMultiple = CommentLabelLineHeight;
+        _commentLabel.linkTextAttributes = @{NSForegroundColorAttributeName: HighLightTextColor};
         
         
         __block DFLikeCommentView *likeCommentView = self;
