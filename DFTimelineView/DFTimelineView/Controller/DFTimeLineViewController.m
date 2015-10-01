@@ -33,12 +33,11 @@
 
 @property (nonatomic, strong) UIImageView *cover;
 
-
 @property (nonatomic, strong) UIImageView *userAvatar;
 
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @property (nonatomic, strong) UIView *footer;
-
 
 @property (nonatomic, assign) BOOL isLoadingMore;
 
@@ -133,6 +132,15 @@
     _userAvatar = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
     [avatarBg addSubview:_userAvatar];
     [_userAvatar sd_setImageWithURL:[NSURL URLWithString:[self getAvatarUrl:width*2 height:height*2]]];
+    
+    
+    //下来刷新
+    if (_refreshControl == nil) {
+        _refreshControl = [[UIRefreshControl alloc] init];
+        [_refreshControl addTarget:self action:@selector(onPullDown:) forControlEvents:UIControlEventValueChanged];
+        [_tableView addSubview:self.refreshControl];
+    }
+
     
     
 }
@@ -302,6 +310,9 @@
     
     _isLoadingMore = YES;
     [self loadMore];
+    
+    
+    
 
 }
 
@@ -328,13 +339,29 @@
 }
 
 
+-(void) onPullDown:(id) sender
+{
+    [self refresh];
+}
+
+
+-(void) refresh
+{
+}
 
 -(void) loadMore
 {
-    dispatch_time_t time=dispatch_time(DISPATCH_TIME_NOW, 2*NSEC_PER_SEC);
-    dispatch_after(time, dispatch_get_main_queue(), ^{
-        [self hideFooter];
-    });
+}
+
+
+-(void)endLoadMore
+{
+    [self hideFooter];
+}
+
+-(void)endRefresh
+{
+    [_refreshControl endRefreshing];
 }
 
 

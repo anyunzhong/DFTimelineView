@@ -12,4 +12,10 @@
 
 -(void) addItem:(DFBaseLineItem *) item;
 
+
+-(void) endLoadMore;
+
+-(void) endRefresh;
+
+
 @end

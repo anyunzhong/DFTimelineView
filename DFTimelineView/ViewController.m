@@ -199,19 +199,6 @@
     [self addItem:textImageItem3];
     
     
-    
-    //测试滑动
-    //    [self addItem:textImageItem];
-    //    [self addItem:textImageItem2];
-    //    [self addItem:textImageItem3];
-    //
-    //    [self addItem:textImageItem];
-    //    [self addItem:textImageItem2];
-    //    [self addItem:textImageItem3];
-    
-    
-    
-    
 }
 
 
@@ -253,6 +240,60 @@
 -(NSString *) getAvatarUrl:(CGFloat) width height:(CGFloat) height
 {
     return [NSString stringWithFormat:@"http://file-cdn.datafans.net/avatar/1.jpeg_%dx%d.jpeg", (int)width, (int)height];
+}
+
+
+
+-(void) refresh
+{
+    //下来刷新
+    //模拟网络请求
+    dispatch_time_t time=dispatch_time(DISPATCH_TIME_NOW, 2*NSEC_PER_SEC);
+    dispatch_after(time, dispatch_get_main_queue(), ^{
+        [self endRefresh];
+    });
+}
+
+
+
+-(void) loadMore
+{
+    //加载更多
+    //模拟网络请求
+    dispatch_time_t time=dispatch_time(DISPATCH_TIME_NOW, 2*NSEC_PER_SEC);
+    dispatch_after(time, dispatch_get_main_queue(), ^{
+        
+        DFTextImageLineItem *textImageItem = [[DFTextImageLineItem alloc] init];
+        textImageItem.itemId = 3;
+        textImageItem.itemType = LineItemTypeTextImage;
+        textImageItem.userId = 10018;
+        textImageItem.userAvatar = @"http://file-cdn.datafans.net/avatar/1.jpeg";
+        textImageItem.userNick = @"富二代";
+        textImageItem.title = @"发表了";
+        textImageItem.text = @"你才是富二代";
+        
+        
+        NSMutableArray *srcImages3 = [NSMutableArray array];
+        [srcImages3 addObject:@"http://file-cdn.datafans.net/temp/11.jpg"];
+        textImageItem.srcImages = srcImages3;
+        
+        
+        NSMutableArray *thumbImages3 = [NSMutableArray array];
+        [thumbImages3 addObject:@"http://file-cdn.datafans.net/temp/11.jpg_640x420.jpeg"];
+        textImageItem.thumbImages = thumbImages3;
+        
+        
+        textImageItem.width = 640;
+        textImageItem.height = 360;
+
+        
+        
+        
+        textImageItem.location = @"广州信息港";
+        [self addItem:textImageItem];
+        
+        [self endLoadMore];
+    });
 }
 
 
