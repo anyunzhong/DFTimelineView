@@ -32,13 +32,13 @@
 		11D758F71BB8F36C00F554D7 /* DFLikeCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D758F61BB8F36C00F554D7 /* DFLikeCommentView.m */; };
 		11D758FB1BBA8C4C00F554D7 /* DFLineLikeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D758FA1BBA8C4C00F554D7 /* DFLineLikeItem.m */; };
 		11D758FE1BBA8C5D00F554D7 /* DFLineCommentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D758FD1BBA8C5D00F554D7 /* DFLineCommentItem.m */; };
-		11D759011BBAA04400F554D7 /* DFEmotionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D759001BBAA04400F554D7 /* DFEmotionsManager.m */; };
 		11D759051BBAC8DD00F554D7 /* DFLikeCommentToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D759041BBAC8DD00F554D7 /* DFLikeCommentToolbar.m */; };
 		11D7590B1BBACC2700F554D7 /* AlbumComment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11D759061BBACC2700F554D7 /* AlbumComment@2x.png */; };
 		11D7590C1BBACC2700F554D7 /* AlbumComment@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11D759071BBACC2700F554D7 /* AlbumComment@3x.png */; };
 		11D7590D1BBACC2700F554D7 /* AlbumLike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11D759081BBACC2700F554D7 /* AlbumLike@2x.png */; };
 		11D7590E1BBACC2700F554D7 /* AlbumLike@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11D759091BBACC2700F554D7 /* AlbumLike@3x.png */; };
 		11D7590F1BBACC2700F554D7 /* AlbumOperateMoreViewBkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11D7590A1BBACC2700F554D7 /* AlbumOperateMoreViewBkg@2x.png */; };
+		11E157981BC0293900F2F99A /* DFFaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E157971BC0293900F2F99A /* DFFaceManager.m */; };
 		FDBBC1BA891E2AED5A17C223 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7388AAC42C4B4A3183F925 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -86,8 +86,6 @@
 		11D758FA1BBA8C4C00F554D7 /* DFLineLikeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFLineLikeItem.m; sourceTree = "<group>"; };
 		11D758FC1BBA8C5D00F554D7 /* DFLineCommentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFLineCommentItem.h; sourceTree = "<group>"; };
 		11D758FD1BBA8C5D00F554D7 /* DFLineCommentItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFLineCommentItem.m; sourceTree = "<group>"; };
-		11D758FF1BBAA04400F554D7 /* DFEmotionsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFEmotionsManager.h; sourceTree = "<group>"; };
-		11D759001BBAA04400F554D7 /* DFEmotionsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFEmotionsManager.m; sourceTree = "<group>"; };
 		11D759031BBAC8DD00F554D7 /* DFLikeCommentToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFLikeCommentToolbar.h; sourceTree = "<group>"; };
 		11D759041BBAC8DD00F554D7 /* DFLikeCommentToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFLikeCommentToolbar.m; sourceTree = "<group>"; };
 		11D759061BBACC2700F554D7 /* AlbumComment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlbumComment@2x.png"; sourceTree = "<group>"; };
@@ -96,6 +94,8 @@
 		11D759091BBACC2700F554D7 /* AlbumLike@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlbumLike@3x.png"; sourceTree = "<group>"; };
 		11D7590A1BBACC2700F554D7 /* AlbumOperateMoreViewBkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlbumOperateMoreViewBkg@2x.png"; sourceTree = "<group>"; };
 		11D75AA41BBD7AF700F554D7 /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
+		11E157961BC0293900F2F99A /* DFFaceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFFaceManager.h; sourceTree = "<group>"; };
+		11E157971BC0293900F2F99A /* DFFaceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFFaceManager.m; sourceTree = "<group>"; };
 		22443A8775E23D18891FEAC9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A2A89A39EA353891C22903B7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DA7388AAC42C4B4A3183F925 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,8 +228,8 @@
 		11D758671BB7E71400F554D7 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				11D758FF1BBAA04400F554D7 /* DFEmotionsManager.h */,
-				11D759001BBAA04400F554D7 /* DFEmotionsManager.m */,
+				11E157961BC0293900F2F99A /* DFFaceManager.h */,
+				11E157971BC0293900F2F99A /* DFFaceManager.m */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -451,12 +451,12 @@
 				11D7585D1BB7DCB000F554D7 /* DFTextImageLineCellAdapter.m in Sources */,
 				11D758CA1BB8385100F554D7 /* DFImageUnitView.m in Sources */,
 				11D758261BB7D43B00F554D7 /* main.m in Sources */,
+				11E157981BC0293900F2F99A /* DFFaceManager.m in Sources */,
 				11D758FB1BBA8C4C00F554D7 /* DFLineLikeItem.m in Sources */,
 				11D759051BBAC8DD00F554D7 /* DFLikeCommentToolbar.m in Sources */,
 				11D7584D1BB7D66300F554D7 /* DFBaseLineItem.m in Sources */,
 				11D758F71BB8F36C00F554D7 /* DFLikeCommentView.m in Sources */,
 				11D7585A1BB7DB8300F554D7 /* DFBaseLineCellAdapter.m in Sources */,
-				11D759011BBAA04400F554D7 /* DFEmotionsManager.m in Sources */,
 				11D758521BB7D85D00F554D7 /* DFBaseLineCell.m in Sources */,
 				11D758571BB7DACC00F554D7 /* DFTimeLineViewController.m in Sources */,
 				11D758631BB7DDBA00F554D7 /* DFLineCellAdapterManager.m in Sources */,

@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 Datafans, Inc. All rights reserved.
 //
 
-#import "DFEmotionsManager.h"
+#import "DFFaceManager.h"
 
-@interface DFEmotionsManager()
+@interface DFFaceManager()
 
 
 @property (strong, nonatomic) NSMutableArray *emotions;
@@ -18,9 +18,9 @@
 @end
 
 
-@implementation DFEmotionsManager
+@implementation DFFaceManager
 
-static  DFEmotionsManager *_manager=nil;
+static  DFFaceManager *_manager=nil;
 
 
 #pragma mark - Lifecycle
@@ -29,7 +29,7 @@ static  DFEmotionsManager *_manager=nil;
 {
     @synchronized(self){
         if (_manager == nil) {
-            _manager = [[DFEmotionsManager alloc] init];
+            _manager = [[DFFaceManager alloc] init];
         }
     }
     return _manager;

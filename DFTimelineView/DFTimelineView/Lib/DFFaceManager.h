@@ -10,7 +10,7 @@
 
 
 
-@interface DFEmotionsManager : NSObject
+@interface DFFaceManager : NSObject
 
 
 +(instancetype) sharedInstance;
