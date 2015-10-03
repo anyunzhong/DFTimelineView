@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "DFTimelineView"
-  s.version      = "1.0.0"
+  s.version      = "1.2.0"
   s.summary      = "仿微信朋友圈"
 
   # This description is used to generate tags and improve search results.
@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/anyunzhong/DFTimelineView.git", :tag => "1.0.0" }
+  s.source       = { :git => "https://github.com/anyunzhong/DFTimelineView.git", :tag => "1.2.0" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
