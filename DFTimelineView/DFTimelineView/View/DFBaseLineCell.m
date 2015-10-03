@@ -37,7 +37,7 @@
 #define ToolbarHeight 30
 
 #import "DFBaseLineCell.h"
-#import "MLLinkLabel.h"
+#import <MLLabel+Size.h>
 #import "DFLikeCommentView.h"
 #import "DFLikeCommentToolbar.h"
 

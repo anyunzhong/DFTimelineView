@@ -1,0 +1,79 @@
+PODS:
+  - AFNetworking (2.6.0):
+    - AFNetworking/NSURLConnection (= 2.6.0)
+    - AFNetworking/NSURLSession (= 2.6.0)
+    - AFNetworking/Reachability (= 2.6.0)
+    - AFNetworking/Security (= 2.6.0)
+    - AFNetworking/Serialization (= 2.6.0)
+    - AFNetworking/UIKit (= 2.6.0)
+  - AFNetworking/NSURLConnection (2.6.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.6.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.0)
+  - AFNetworking/Security (2.6.0)
+  - AFNetworking/Serialization (2.6.0)
+  - AFNetworking/UIKit (2.6.0):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - DFCommon (1.1.0):
+    - AFNetworking (~> 2.6.0)
+    - EGOTableViewPullRefresh (~> 0.1.0)
+    - FMDB (~> 2.5)
+    - MBProgressHUD (~> 0.9.1)
+    - MJPhotoBrowser (~> 1.0.2)
+    - MJRefresh (~> 2.4.11)
+    - MLLabel (~> 1.7)
+    - ODRefreshControl (~> 1.2)
+    - SDWebImage (~> 3.7.3)
+  - EGOTableViewPullRefresh (0.1.0)
+  - FMDB (2.5):
+    - FMDB/standard (= 2.5)
+  - FMDB/common (2.5)
+  - FMDB/standard (2.5):
+    - FMDB/common
+  - MBProgressHUD (0.9.1)
+  - MJPhotoBrowser (1.0.2):
+    - SDWebImage
+    - SVProgressHUD
+    - YLGIFImage
+  - MJRefresh (2.4.11)
+  - MLLabel (1.7)
+  - ODRefreshControl (1.2)
+  - SDWebImage (3.7.3):
+    - SDWebImage/Core (= 3.7.3)
+  - SDWebImage/Core (3.7.3)
+  - SVProgressHUD (1.1.3)
+  - YLGIFImage (0.11)
+
+DEPENDENCIES:
+  - DFCommon (from `https://github.com/anyunzhong/DFCommon.git`)
+
+EXTERNAL SOURCES:
+  DFCommon:
+    :git: https://github.com/anyunzhong/DFCommon.git
+
+CHECKOUT OPTIONS:
+  DFCommon:
+    :commit: 4e7e4b1a5baebdc424776b3d2442820dfa7dc0e3
+    :git: https://github.com/anyunzhong/DFCommon.git
+
+SPEC CHECKSUMS:
+  AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
+  DFCommon: b88b23dc53efa7b81470122a0911ec12a46bd248
+  EGOTableViewPullRefresh: d4c15be51914f4168d6fd7529b6ad3a4ab01e5f4
+  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  MJPhotoBrowser: f55e8490231f44a78ca6455105a1c798a142c95f
+  MJRefresh: b327947f35ab3eb16ca42646b26f7347e6aa7186
+  MLLabel: 928a154301481a93f79427b93af7691d3c17d37d
+  ODRefreshControl: 907e6149d72dde488d5917ccfabee5bd8d711a20
+  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
+  YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
+
+COCOAPODS: 0.39.0.beta.5

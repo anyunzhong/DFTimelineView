@@ -9,7 +9,7 @@
 #import "DFTextImageLineCell.h"
 #import "DFTextImageLineItem.h"
 
-#import "MLLinkLabel.h"
+#import <MLLabel+Size.h>
 
 #import "DFGridImageView.h"
 
