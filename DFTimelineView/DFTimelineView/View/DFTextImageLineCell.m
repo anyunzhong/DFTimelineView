@@ -16,7 +16,7 @@
 
 #import "NSString+MLExpression.h"
 
-#import "DFEmotionsManager.h"
+#import "DFFaceManager.h"
 
 
 #define TextFont [UIFont systemFontOfSize:14]
@@ -124,7 +124,7 @@
 +(CGFloat)getCellHeight:(DFTextImageLineItem *)item
 {
     if (item.attrText == nil) {
-        item.attrText  = [item.text expressionAttributedStringWithExpression:[[DFEmotionsManager sharedInstance] sharedMLExpression]];
+        item.attrText  = [item.text expressionAttributedStringWithExpression:[[DFFaceManager sharedInstance] sharedMLExpression]];
     }
 
     CGSize textSize = [MLLinkLabel getViewSize:item.attrText maxWidth:BodyMaxWidth font:TextFont lineHeight:TextLineHeight lines:0];

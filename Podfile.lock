@@ -20,7 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.6.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - DFCommon (1.1.0):
+  - DFCommon (1.2.0):
     - AFNetworking (~> 2.6.0)
     - EGOTableViewPullRefresh (~> 0.1.0)
     - FMDB (~> 2.5)
@@ -51,20 +51,21 @@ PODS:
   - YLGIFImage (0.11)
 
 DEPENDENCIES:
-  - DFCommon (from `https://github.com/anyunzhong/DFCommon.git`)
+  - DFCommon (from `https://github.com/anyunzhong/DFCommon.git`, tag `1.2.1`)
 
 EXTERNAL SOURCES:
   DFCommon:
     :git: https://github.com/anyunzhong/DFCommon.git
+    :tag: 1.2.1
 
 CHECKOUT OPTIONS:
   DFCommon:
-    :commit: 4e7e4b1a5baebdc424776b3d2442820dfa7dc0e3
     :git: https://github.com/anyunzhong/DFCommon.git
+    :tag: 1.2.1
 
 SPEC CHECKSUMS:
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
-  DFCommon: b88b23dc53efa7b81470122a0911ec12a46bd248
+  DFCommon: d68a2bfc9398eb055d78e921422b837c0fa7be67
   EGOTableViewPullRefresh: d4c15be51914f4168d6fd7529b6ad3a4ab01e5f4
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
