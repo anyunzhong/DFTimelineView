@@ -10,12 +10,12 @@ pod 'DFCommon', :git => 'https://github.com/anyunzhong/DFCommon.git', :tag => '1
 pod 'DFTimelineView', :git => 'https://github.com/anyunzhong/DFTimelineView.git', :tag => '1.2.2'
 
 
-  
-  
-    
 
 
- ![image](https://github.com/anyunzhong/DFTimelineView/blob/master/cover1.jpg)
 
 
- ![image](https://github.com/anyunzhong/DFTimelineView/blob/master/cover2.jpg)
+
+![image](https://github.com/anyunzhong/DFTimelineView/blob/master/cover1.jpg)
+
+
+![image](https://github.com/anyunzhong/DFTimelineView/blob/master/cover2.jpg)
