@@ -40,6 +40,7 @@
 #import <MLLabel+Size.h>
 #import "DFLikeCommentView.h"
 #import "DFLikeCommentToolbar.h"
+#import <DFToolUtil.h>
 
 
 @interface DFBaseLineCell()<DFLikeCommentToolbarDelegate, DFLikeCommentViewDelegate>
@@ -277,7 +278,7 @@
     height = TimeLabelHeight;
     _timeLabel.hidden = NO;
     _timeLabel.frame = CGRectMake(x, y, width, height);
-    _timeLabel.text = @"昨天";
+    _timeLabel.text = [DFToolUtil preettyTime:self.item.ts];
     
     
     //点赞评论按钮

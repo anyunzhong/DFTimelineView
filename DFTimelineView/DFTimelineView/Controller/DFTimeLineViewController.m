@@ -14,6 +14,7 @@
 #import "DFLineLikeItem.h"
 #import "DFLineCommentItem.h"
 #import "UIImageView+WebCache.h"
+#import <MLLabel+Size.h>
 
 
 
@@ -25,6 +26,9 @@
 #define AvatarRightMargin 15
 #define AvatarPadding 2
 
+
+#define NickFont [UIFont systemFontOfSize:20]
+
 @interface DFTimeLineViewController ()<DFLineCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *items;
@@ -34,6 +38,8 @@
 @property (nonatomic, strong) UIImageView *cover;
 
 @property (nonatomic, strong) UIImageView *userAvatar;
+
+@property (nonatomic, strong) MLLabel *userNick;
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
@@ -133,14 +139,36 @@
     [avatarBg addSubview:_userAvatar];
     [_userAvatar sd_setImageWithURL:[NSURL URLWithString:[self getAvatarUrl:width*2 height:height*2]]];
     
+    //用户昵称
+    if (_userNick == nil) {
+        NSString *nick = [self getUserNick];
+        if (nick != nil) {
+            CGSize size = [MLLabel getViewSizeByString:nick font:NickFont];
+            width = size.width;
+            height = size.height;
+            x = CGRectGetMinX(avatarBg.frame) - width - 5;
+            y = CGRectGetMidY(avatarBg.frame) - height - 2;
+            _userNick = [[MLLabel alloc] initWithFrame:CGRectMake(x, y, width, height)];
+            _userNick.textColor = [UIColor whiteColor];
+            _userNick.text = nick;
+            _userNick.font = NickFont;
+            _userNick.numberOfLines = 1;
+            _userNick.adjustsFontSizeToFitWidth = NO;
+            _userNick.textInsets = UIEdgeInsetsZero;
+            
+            [header addSubview:_userNick];
+        }
+        
+    }
     
-    //下来刷新
+    
+    //下拉刷新
     if (_refreshControl == nil) {
         _refreshControl = [[UIRefreshControl alloc] init];
         [_refreshControl addTarget:self action:@selector(onPullDown:) forControlEvents:UIControlEventValueChanged];
         [_tableView addSubview:self.refreshControl];
     }
-
+    
     
     
 }
@@ -313,7 +341,7 @@
     
     
     
-
+    
 }
 
 
@@ -333,7 +361,7 @@
         _tableView.tableFooterView = _footer;
         
         _isLoadingMore = NO;
-
+        
     }];
     
 }
@@ -378,6 +406,13 @@
 
 
 -(NSString *) getAvatarUrl:(CGFloat) width height:(CGFloat) height
+{
+    return nil;
+}
+
+
+
+-(NSString *) getUserNick
 {
     return nil;
 }

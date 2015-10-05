@@ -80,6 +80,7 @@
     textImageItem.thumbImages = thumbImages;
     
     textImageItem.location = @"中国 • 广州";
+    textImageItem.ts = [[NSDate date] timeIntervalSince1970]*1000;
     
     
     DFLineLikeItem *likeItem1_1 = [[DFLineLikeItem alloc] init];
@@ -242,6 +243,12 @@
     return [NSString stringWithFormat:@"http://file-cdn.datafans.net/avatar/1.jpeg_%dx%d.jpeg", (int)width, (int)height];
 }
 
+
+
+-(NSString *) getUserNick
+{
+    return @"Allen";
+}
 
 
 -(void) refresh
