@@ -1,6 +1,10 @@
 # DFTimelineView
 仿微信朋友圈
 
+
+Android版： https://github.com/anyunzhong/AndroidTimelineView
+
+
 使用Cocoapod
 
 platform :ios, '7.0'
