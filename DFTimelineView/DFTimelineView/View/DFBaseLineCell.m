@@ -400,4 +400,10 @@
 
 }
 
+-(void)onClickComment:(long long)commentId
+{
+    if (_delegate != nil && [_delegate respondsToSelector:@selector(onClickComment:itemId:)]) {
+        [_delegate onClickComment:commentId itemId:self.item.itemId];
+    }
+}
 @end

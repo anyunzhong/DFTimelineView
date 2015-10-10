@@ -17,6 +17,9 @@
 #import <MLLabel+Size.h>
 
 
+#import "CommentInputView.h"
+
+
 
 #define TableHeaderHeight 270*([UIScreen mainScreen].bounds.size.width / 375.0)
 #define CoverHeight 240*([UIScreen mainScreen].bounds.size.width / 375.0)
@@ -29,9 +32,15 @@
 
 #define NickFont [UIFont systemFontOfSize:20]
 
-@interface DFTimeLineViewController ()<DFLineCellDelegate>
+
+
+@interface DFTimeLineViewController ()<DFLineCellDelegate, CommentInputViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *items;
+
+@property (nonatomic, strong) NSMutableDictionary *itemDic;
+
+@property (nonatomic, strong) NSMutableDictionary *commentDic;
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -48,12 +57,18 @@
 @property (nonatomic, assign) BOOL isLoadingMore;
 
 
+@property (strong, nonatomic) CommentInputView *commentInputView;
+
+
+@property (assign, nonatomic) long long currentItemId;
+
 
 @end
 
 @implementation DFTimeLineViewController
 
 
+#pragma mark - Lifecycle
 
 - (instancetype)init
 {
@@ -61,6 +76,10 @@
     if (self) {
         
         _items = [NSMutableArray array];
+        
+        _itemDic = [NSMutableDictionary dictionary];
+        
+        _commentDic = [NSMutableDictionary dictionary];
         
         _isLoadingMore = NO;
         
@@ -72,6 +91,11 @@
     }
     return self;
 }
+
+
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -81,7 +105,40 @@
     
     [self initFooter];
     
+    [self initCommentInputView];
+    
 }
+
+
+
+
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    
+    [_commentInputView addNotify];
+    
+    [_commentInputView addObserver];
+    
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [_commentInputView removeNotify];
+    
+    [_commentInputView removeObserver];
+}
+
+
+
+
+
+
 
 
 -(void) initTableView
@@ -197,12 +254,32 @@
     
 }
 
+
+
+-(void) initCommentInputView
+{
+    if (_commentInputView == nil) {
+        _commentInputView = [[CommentInputView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        _commentInputView.hidden = YES;
+        _commentInputView.delegate = self;
+        [self.view addSubview:_commentInputView];
+    }
+        
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
 }
 
-#pragma mark - Table view data source
+
+
+
+
+
+
+
+#pragma mark - TableView DataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -239,6 +316,7 @@
 }
 
 
+#pragma mark - TabelViewDelegate
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -266,10 +344,55 @@
     [self genCommentAttrString:item];
     
     [_items addObject:item];
+    
+
+    [_itemDic setObject:item forKey:[NSNumber numberWithLongLong:item.itemId]];
+    
+    [_tableView reloadData];
+}
+
+-(DFBaseLineItem *) getItem:(long long) itemId
+{
+    return [_itemDic objectForKey:[NSNumber numberWithLongLong:itemId]];
+    
+}
+
+-(void)addLikeItem:(DFLineLikeItem *)likeItem itemId:(long long)itemId
+{
+    DFBaseLineItem *item = [self getItem:itemId];
+    [item.likes insertObject:likeItem atIndex:0];
+    
+    item.likesStr = nil;
+    item.cellHeight = 0;
+    
+    [self genLikeAttrString:item];
+    
     [_tableView reloadData];
 }
 
 
+-(void)addCommentItem:(DFLineCommentItem *)commentItem itemId:(long long)itemId
+{
+    DFBaseLineItem *item = [self getItem:itemId];
+    [item.comments addObject:commentItem];
+    item.cellHeight = 0;
+    [self genCommentAttrString:item];
+    [_tableView reloadData];
+    
+}
+
+-(void)addReplyCommentItem:(DFLineCommentItem *)commentItem itemId:(long long)itemId replyCommentId:(long long)replyCommentId
+{
+    DFLineCommentItem *replyCommentItem = [self getCommentItem:replyCommentId];
+    commentItem.replyUserId = replyCommentItem.userId;
+    commentItem.replyUserNick = replyCommentItem.userNick;
+    [self addCommentItem:commentItem itemId:itemId];
+}
+
+-(DFLineCommentItem *)getCommentItem:(long long)commentId
+{
+    return [_commentDic objectForKey:[NSNumber numberWithLongLong:commentId]];
+}
 
 -(void) onClickUserAvatar:(id) sender
 {
@@ -282,7 +405,13 @@
 
 -(void)onComment:(long long)itemId
 {
+    _currentItemId = itemId;
     
+    _commentInputView.commentId = 0;
+    
+    _commentInputView.hidden = NO;
+    
+    [_commentInputView show];
 }
 
 
@@ -302,6 +431,34 @@
     
 }
 
+
+-(void)onClickComment:(long long)commentId itemId:(long long)itemId
+{
+    
+    _currentItemId = itemId;
+    
+    _commentInputView.hidden = NO;
+    
+    _commentInputView.commentId = commentId;
+    
+    [_commentInputView show];
+    
+    DFLineCommentItem *comment = [_commentDic objectForKey:[NSNumber numberWithLongLong:commentId]];
+    [_commentInputView setPlaceHolder:[NSString stringWithFormat:@"回复: %@", comment.userNick]];
+    
+}
+
+
+-(void)onCommentCreate:(long long)commentId text:(NSString *)text
+{
+    [self onCommentCreate:commentId text:text itemId:_currentItemId];
+}
+
+
+-(void)onCommentCreate:(long long)commentId text:(NSString *)text itemId:(long long) itemId
+{
+    
+}
 
 
 
@@ -454,8 +611,11 @@
 {
     NSMutableArray *comments = item.comments;
     
+    [item.commentStrArray removeAllObjects];
+    
     for (int i=0; i<comments.count;i++) {
         DFLineCommentItem *comment = [comments objectAtIndex:i];
+        [_commentDic setObject:comment forKey:[NSNumber numberWithLongLong:comment.commentId]];
         
         NSString *resultStr;
         if (comment.replyUserId == 0) {

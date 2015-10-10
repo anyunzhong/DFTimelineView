@@ -12,6 +12,7 @@
 
 @required
 -(void) onClickUser:(NSUInteger) userId;
+-(void) onClickComment:(long long) commentId;
 
 @end
 

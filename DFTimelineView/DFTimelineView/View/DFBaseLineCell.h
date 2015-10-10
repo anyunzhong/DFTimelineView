@@ -31,6 +31,8 @@
 
 -(void) onClickUser:(NSUInteger) userId;
 
+-(void) onClickComment:(long long) commentId itemId:(long long) itemId;
+
 
 @end
 

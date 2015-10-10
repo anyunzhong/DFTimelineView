@@ -220,7 +220,7 @@
             
             MLLinkClickLabel *label;
             
-            if (i >= labelCount-1) {
+            if ( labelCount > 0 && i < labelCount) {
                 label = [_commentLabels objectAtIndex:i];
             }else{
                 label = [self createLinkLabel];
@@ -230,8 +230,9 @@
             
             DFLineCommentItem *commentItem = [item.comments objectAtIndex:i];
             
-            
-            label.attributedText = [item.commentStrArray objectAtIndex:i];
+            label.hidden = NO;
+            NSAttributedString *str = [item.commentStrArray objectAtIndex:i];
+            label.attributedText = str ;
             label.uniqueId = commentItem.commentId;
             [label sizeToFit];
             
@@ -267,10 +268,6 @@
     
 }
 
--(void) onClickComment:(UIButton *) button
-{
-    NSLog(@"Click Comment: %ld", (long)button.tag);
-}
 
 
 -(MLLinkClickLabel *) createLinkLabel
@@ -321,6 +318,9 @@
 -(void)onClickOutsideLink:(long long)uniqueId
 {
     NSLog(@"单击了Label: %lld", uniqueId);
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickComment:)]) {
+        [_delegate onClickComment:uniqueId];
+    }
 }
 
 

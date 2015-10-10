@@ -39,6 +39,7 @@
 		11D7590E1BBACC2700F554D7 /* AlbumLike@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11D759091BBACC2700F554D7 /* AlbumLike@3x.png */; };
 		11D7590F1BBACC2700F554D7 /* AlbumOperateMoreViewBkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11D7590A1BBACC2700F554D7 /* AlbumOperateMoreViewBkg@2x.png */; };
 		11E157981BC0293900F2F99A /* DFFaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E157971BC0293900F2F99A /* DFFaceManager.m */; };
+		11E157CF1BC8F6E500F2F99A /* CommentInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E157CE1BC8F6E500F2F99A /* CommentInputView.m */; };
 		FDBBC1BA891E2AED5A17C223 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7388AAC42C4B4A3183F925 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +97,8 @@
 		11D75AA41BBD7AF700F554D7 /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		11E157961BC0293900F2F99A /* DFFaceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFFaceManager.h; sourceTree = "<group>"; };
 		11E157971BC0293900F2F99A /* DFFaceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFFaceManager.m; sourceTree = "<group>"; };
+		11E157CD1BC8F6E500F2F99A /* CommentInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentInputView.h; sourceTree = "<group>"; };
+		11E157CE1BC8F6E500F2F99A /* CommentInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentInputView.m; sourceTree = "<group>"; };
 		22443A8775E23D18891FEAC9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A2A89A39EA353891C22903B7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DA7388AAC42C4B4A3183F925 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +195,7 @@
 		11D7584F1BB7D81500F554D7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				11E157CC1BC8F6D400F2F99A /* CommentInputView */,
 				11D759021BBAC8B400F554D7 /* LikeCommentToolbar */,
 				11D758F41BB8F35000F554D7 /* LikeCommentView */,
 				11D758C41BB8213A00F554D7 /* DFGridImageView */,
@@ -300,6 +304,15 @@
 				11D75AA41BBD7AF700F554D7 /* Const.h */,
 			);
 			path = Define;
+			sourceTree = "<group>";
+		};
+		11E157CC1BC8F6D400F2F99A /* CommentInputView */ = {
+			isa = PBXGroup;
+			children = (
+				11E157CD1BC8F6E500F2F99A /* CommentInputView.h */,
+				11E157CE1BC8F6E500F2F99A /* CommentInputView.m */,
+			);
+			path = CommentInputView;
 			sourceTree = "<group>";
 		};
 		80C4F7CEF958C1F2DD0212BC /* Pods */ = {
@@ -456,6 +469,7 @@
 				11D759051BBAC8DD00F554D7 /* DFLikeCommentToolbar.m in Sources */,
 				11D7584D1BB7D66300F554D7 /* DFBaseLineItem.m in Sources */,
 				11D758F71BB8F36C00F554D7 /* DFLikeCommentView.m in Sources */,
+				11E157CF1BC8F6E500F2F99A /* CommentInputView.m in Sources */,
 				11D7585A1BB7DB8300F554D7 /* DFBaseLineCellAdapter.m in Sources */,
 				11D758521BB7D85D00F554D7 /* DFBaseLineCell.m in Sources */,
 				11D758571BB7DACC00F554D7 /* DFTimeLineViewController.m in Sources */,

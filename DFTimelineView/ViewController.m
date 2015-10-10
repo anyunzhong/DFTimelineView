@@ -155,6 +155,7 @@
     
     
     DFLineCommentItem *commentItem2_1 = [[DFLineCommentItem alloc] init];
+    commentItem2_1.commentId = 18789;
     commentItem2_1.userId = 10088;
     commentItem2_1.userNick = @"奥巴马";
     commentItem2_1.text = @"欢迎来到美利坚";
@@ -163,6 +164,7 @@
     [textImageItem2.comments addObject:commentItem2_1];
     
     DFLineCommentItem *commentItem2_2 = [[DFLineCommentItem alloc] init];
+    commentItem2_2.commentId = 234657;
     commentItem2_2.userId = 10010;
     commentItem2_2.userNick = @"神雕侠侣";
     commentItem2_2.text = @"大家好";
@@ -199,6 +201,7 @@
     textImageItem3.location = @"广州信息港";
     
     DFLineCommentItem *commentItem3_1 = [[DFLineCommentItem alloc] init];
+    commentItem3_1.commentId = 78718789;
     commentItem3_1.userId = 10010;
     commentItem3_1.userNick = @"狄仁杰";
     commentItem3_1.text = @"神探是我";
@@ -214,10 +217,36 @@
 
 
 
--(void)onComment:(long long)itemId
+//-(void)onComment:(long long)itemId
+//{
+//    //评论
+//    NSLog(@"onComment: %lld", itemId);
+//}
+
+
+-(void)onCommentCreate:(long long)commentId text:(NSString *)text itemId:(long long) itemId
 {
-    //评论
-    NSLog(@"onComment: %lld", itemId);
+    //如果commentId=0 表示新增评论  否则为回复已经存在的某个评论
+    NSLog(@"新增评论: %lld  %@", commentId, text);
+    
+    if (commentId >0) {
+        
+        DFLineCommentItem *commentItem = [[DFLineCommentItem alloc] init];
+        commentItem.commentId = 1000000;
+        commentItem.userId = 10098;
+        commentItem.userNick = @"金三胖";
+        commentItem.text = text;
+        [self addReplyCommentItem:commentItem itemId:itemId replyCommentId:commentId];
+        
+        
+    }else{
+        DFLineCommentItem *commentItem = [[DFLineCommentItem alloc] init];
+        commentItem.userId = 100998;
+        commentItem.userNick = @"笨蛋";
+        commentItem.text = text;
+        [self addCommentItem:commentItem itemId:itemId];
+    }
+    
 }
 
 
@@ -225,6 +254,12 @@
 {
     //点赞
     NSLog(@"onLike: %lld", itemId);
+    
+    DFLineLikeItem *likeItem = [[DFLineLikeItem alloc] init];
+    likeItem.userId = 10092;
+    likeItem.userNick = @"琅琊榜";
+    [self addLikeItem:likeItem itemId:itemId];
+    
 }
 
 
@@ -240,6 +275,9 @@
     //点击封面上的头像
     NSLog(@"onClickUserAvatar");
 }
+
+
+
 
 
 -(NSString *) getCoverUrl:(CGFloat) width height:(CGFloat) height
