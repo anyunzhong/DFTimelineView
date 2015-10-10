@@ -19,3 +19,5 @@ pod 'DFTimelineView', :git => 'https://github.com/anyunzhong/DFTimelineView.git'
 
 
 ![image](http://file-cdn.datafans.net/temp/cover2.png_500x889.jpeg)
+
+![image](http://file-cdn.datafans.net/temp/cover3.png_500x889.jpeg)
