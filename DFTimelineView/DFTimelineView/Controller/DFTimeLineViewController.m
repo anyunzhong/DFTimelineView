@@ -452,49 +452,32 @@
 
 -(void) genCommentAttrString:(DFBaseLineItem *)item
 {
-    if (item.commentsStr== nil) {
-        NSMutableArray *comments = item.comments;
-        NSString *result = @"";
-        
-        for (int i=0; i<comments.count;i++) {
-            DFLineCommentItem *comment = [comments objectAtIndex:i];
-            if (comment.replyUserId == 0) {
-                if (i == 0) {
-                    result = [NSString stringWithFormat:@"%@: %@",comment.userNick, comment.text];
-                }else{
-                    result = [NSString stringWithFormat:@"%@\n%@: %@", result, comment.userNick,  comment.text];
-                }
-            }else{
-                if (i == 0) {
-                    result = [NSString stringWithFormat:@"%@回复%@: %@",comment.userNick, comment.replyUserNick, comment.text];
-                }else{
-                    result = [NSString stringWithFormat:@"%@\n%@回复%@: %@", result, comment.userNick, comment.replyUserNick,  comment.text];
-                }
-            }
-            
-            NSLog(@"result: %@", result);
-            
-        }
-        
-        NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:result];
-        NSUInteger position = 0;
-        for (int i=0; i<comments.count;i++) {
-            DFLineCommentItem *comment = [comments objectAtIndex:i];
-            if (comment.replyUserId == 0) {
-                [attrStr addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%lu", (unsigned long)comment.userId] range:NSMakeRange(position, comment.userNick.length)];
-                position += comment.userNick.length + comment.text.length + 3;
-            }else{
-                [attrStr addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%lu", (unsigned long)comment.userId] range:NSMakeRange(position, comment.userNick.length)];
-                position += comment.userNick.length + 2;
-                [attrStr addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%lu", (unsigned long)comment.replyUserId] range:NSMakeRange(position, comment.replyUserNick.length)];
-                position += comment.text.length + comment.replyUserNick.length + 3;
-            }
-            
-        }
-        
-        item.commentsStr = attrStr;
-    }
+    NSMutableArray *comments = item.comments;
     
+    for (int i=0; i<comments.count;i++) {
+        DFLineCommentItem *comment = [comments objectAtIndex:i];
+        
+        NSString *resultStr;
+        if (comment.replyUserId == 0) {
+            resultStr = [NSString stringWithFormat:@"%@: %@",comment.userNick, comment.text];
+        }else{
+            resultStr = [NSString stringWithFormat:@"%@回复%@: %@",comment.userNick, comment.replyUserNick, comment.text];
+        }
+        
+        NSMutableAttributedString *commentStr = [[NSMutableAttributedString alloc]initWithString:resultStr];
+        if (comment.replyUserId == 0) {
+            [commentStr addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%lu", (unsigned long)comment.userId] range:NSMakeRange(0, comment.userNick.length)];
+        }else{
+            NSUInteger localPos = 0;
+            [commentStr addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%lu", (unsigned long)comment.userId] range:NSMakeRange(localPos, comment.userNick.length)];
+            localPos += comment.userNick.length + 2;
+            [commentStr addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%lu", (unsigned long)comment.replyUserId] range:NSMakeRange(localPos, comment.replyUserNick.length)];
+        }
+        
+        NSLog(@"ffff: %@", resultStr);
+        
+        [item.commentStrArray addObject:commentStr];
+    }
 }
 
 

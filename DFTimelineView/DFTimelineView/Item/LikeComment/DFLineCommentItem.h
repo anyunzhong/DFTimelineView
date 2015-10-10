@@ -9,6 +9,8 @@
 
 @interface DFLineCommentItem : NSObject
 
+@property (nonatomic, assign) long long commentId;
+
 @property (nonatomic, assign) NSUInteger userId;
 
 @property (nonatomic, strong) NSString *userNick;

@@ -97,6 +97,7 @@
     
     
     DFLineCommentItem *commentItem1_1 = [[DFLineCommentItem alloc] init];
+    commentItem1_1.commentId = 10001;
     commentItem1_1.userId = 10086;
     commentItem1_1.userNick = @"习大大";
     commentItem1_1.text = @"精彩 大家鼓掌";
@@ -104,6 +105,7 @@
     
     
     DFLineCommentItem *commentItem1_2 = [[DFLineCommentItem alloc] init];
+    commentItem1_2.commentId = 10002;
     commentItem1_2.userId = 10088;
     commentItem1_2.userNick = @"奥巴马";
     commentItem1_2.text = @"欢迎来到美利坚";
@@ -113,6 +115,7 @@
     
     
     DFLineCommentItem *commentItem1_3 = [[DFLineCommentItem alloc] init];
+    commentItem1_3.commentId = 10003;
     commentItem1_3.userId = 10010;
     commentItem1_3.userNick = @"神雕侠侣";
     commentItem1_3.text = @"呵呵";
@@ -194,6 +197,13 @@
     textImageItem3.height = 360;
     
     textImageItem3.location = @"广州信息港";
+    
+    DFLineCommentItem *commentItem3_1 = [[DFLineCommentItem alloc] init];
+    commentItem3_1.userId = 10010;
+    commentItem3_1.userNick = @"狄仁杰";
+    commentItem3_1.text = @"神探是我";
+    [textImageItem3.comments addObject:commentItem3_1];
+
     
     
     

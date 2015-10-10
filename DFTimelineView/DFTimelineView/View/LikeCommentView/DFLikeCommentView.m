@@ -12,6 +12,8 @@
 #import "DFLineCommentItem.h"
 #import "Const.h"
 
+#import <MLLinkClickLabel.h>
+
 
 #define TopMargin 10
 #define BottomMargin 6
@@ -38,8 +40,10 @@
 
 #define LikeCommentSpace 5
 
+#define LinkLabelTag 100
 
-@interface DFLikeCommentView()
+
+@interface DFLikeCommentView()<MLLinkClickLabelDelegate>
 
 
 @property (nonatomic, strong) UIImageView *likeCmtBg;
@@ -48,9 +52,10 @@
 
 @property (strong, nonatomic) MLLinkLabel *likeLabel;
 
-@property (strong, nonatomic) MLLinkLabel *commentLabel;
-
 @property (strong, nonatomic) UIView *divider;
+
+
+@property (strong, nonatomic) NSMutableArray *commentLabels;
 
 @end
 
@@ -58,11 +63,13 @@
 
 @implementation DFLikeCommentView
 
-
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        _commentLabels = [NSMutableArray array];
+        
         [self initView];
     }
     return self;
@@ -115,38 +122,6 @@
         __block DFLikeCommentView *likeCommentView = self;
         
         [_likeLabel setDidClickLinkBlock:^(MLLink *link, NSString *linkText, MLLinkLabel *label) {
-
-            if (_delegate != nil && [_delegate respondsToSelector:@selector(onClickUser:)]) {
-                
-                NSUInteger userId = [link.linkValue integerValue];
-                [likeCommentView.delegate onClickUser:userId];
-            }
-        }];
-        
-        
-        [self addSubview:_likeLabel];
-    }
-
-    
-    if (_commentLabel == nil) {
-        
-        _commentLabel =[[MLLinkLabel alloc] initWithFrame:CGRectZero];
-        _commentLabel.font = CommentLabelFont;
-        _commentLabel.numberOfLines = 0;
-        _commentLabel.adjustsFontSizeToFitWidth = NO;
-        _commentLabel.textInsets = UIEdgeInsetsZero;
-        
-        _commentLabel.dataDetectorTypes = MLDataDetectorTypeAll;
-        _commentLabel.allowLineBreakInsideLinks = NO;
-        _commentLabel.linkTextAttributes = nil;
-        _commentLabel.activeLinkTextAttributes = nil;
-        _commentLabel.lineHeightMultiple = CommentLabelLineHeight;
-        _commentLabel.linkTextAttributes = @{NSForegroundColorAttributeName: HighLightTextColor};
-        
-        
-        __block DFLikeCommentView *likeCommentView = self;
-        
-        [_commentLabel setDidClickLinkBlock:^(MLLink *link, NSString *linkText, MLLinkLabel *label) {
             
             if (_delegate != nil && [_delegate respondsToSelector:@selector(onClickUser:)]) {
                 
@@ -154,17 +129,19 @@
                 [likeCommentView.delegate onClickUser:userId];
             }
         }];
-
         
-        [self addSubview:_commentLabel];
+        
+        
+        [self addSubview:_likeLabel];
     }
+    
     
     if (_divider == nil) {
         _divider = [[UIView alloc] initWithFrame:CGRectZero];
         _divider.backgroundColor = [UIColor colorWithWhite:225/255.0 alpha:1.0];
         [self addSubview:_divider];
     }
-
+    
     
 }
 
@@ -184,7 +161,7 @@
 
 -(void)updateWithItem:(DFBaseLineItem *)item
 {
-    CGFloat x, y, width;
+    CGFloat x, y, width, height;
     
     
     _divider.hidden = YES;
@@ -212,44 +189,139 @@
         _likeLabel.hidden = YES;
         _likeIconView.hidden = YES;
     }
-
+    
     
     
     if (item.comments.count > 0) {
         
-        _commentLabel.hidden = NO;
-        
-        
-        x = CommentLabelMargin;
-        y = TopMargin;
         if (item.likes.count > 0) {
-            y = CGRectGetMaxY(_likeLabel.frame) + LikeCommentSpace;
-            
             //显示分割线
+            y = CGRectGetMaxY(_likeLabel.frame) + LikeCommentSpace;
             _divider.hidden = NO;
             _divider.frame = CGRectMake(0, y, self.frame.size.width, 0.5);
         }
-        width = self.frame.size.width - 2*CommentLabelMargin;
         
-        NSMutableAttributedString *commentsStr = item.commentsStr;
+        CGFloat sumHeight = TopMargin;
         
-        _commentLabel.attributedText = commentsStr;
+        if (item.likes.count > 0) {
+            sumHeight = CGRectGetMaxY(_likeLabel.frame) + LikeCommentSpace;
+        }
         
-        [_commentLabel sizeToFit];
+        NSUInteger labelCount = _commentLabels.count;
         
-        CGSize textSize = [MLLinkLabel getViewSize:commentsStr maxWidth:width font:CommentLabelFont lineHeight:CommentLabelLineHeight lines:0];
+        for (int i=0; i<labelCount; i++) {
+            MLLinkClickLabel *label = [_commentLabels objectAtIndex:i];
+            label.attributedText = nil;
+            label.frame = CGRectZero;
+            label.hidden = !(i<item.comments.count);
+        }
         
-        _commentLabel.frame = CGRectMake(x, y, width, textSize.height);
+        for (int i=0;i<item.comments.count;i++) {
+            
+            MLLinkClickLabel *label;
+            
+            if (i >= labelCount-1) {
+                label = [_commentLabels objectAtIndex:i];
+            }else{
+                label = [self createLinkLabel];
+                [_commentLabels addObject:label];
+                [self addSubview:label];
+            }
+            
+            DFLineCommentItem *commentItem = [item.comments objectAtIndex:i];
+            
+            
+            label.attributedText = [item.commentStrArray objectAtIndex:i];
+            label.uniqueId = commentItem.commentId;
+            [label sizeToFit];
+            
+            width = self.frame.size.width - 2*CommentLabelMargin;
+            CGSize size = [MLLabel getViewSize:label.attributedText maxWidth:width font:CommentLabelFont lineHeight:CommentLabelLineHeight lines:0];
+            
+            
+            x = CommentLabelMargin;
+            y = sumHeight;
+            height = size.height;
+            
+            sumHeight+=height;
+            
+            label.frame = CGRectMake(x, y, width, height);
+        }
+        
+        
+        
+        
     }else{
-        _commentLabel.hidden = YES;
+        
+        for (int i=0; i<_commentLabels.count; i++) {
+            MLLinkClickLabel *label = [_commentLabels objectAtIndex:i];
+            label.attributedText = nil;
+            label.frame = CGRectZero;
+            label.hidden = YES;
+        }
+        
     }
-
+    
     
     
     
 }
 
+-(void) onClickComment:(UIButton *) button
+{
+    NSLog(@"Click Comment: %ld", (long)button.tag);
+}
 
+
+-(MLLinkClickLabel *) createLinkLabel
+{
+    
+    MLLinkClickLabel *lable = [[MLLinkClickLabel alloc] initWithFrame:CGRectZero];
+    lable.clickDelegate = self;
+    
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+    [lable addGestureRecognizer:longPress];
+    
+    lable.tag = LinkLabelTag;
+    
+    
+    lable.font = LikeLabelFont;
+    lable.numberOfLines = 0;
+    lable.adjustsFontSizeToFitWidth = NO;
+    lable.textInsets = UIEdgeInsetsZero;
+    
+    lable.dataDetectorTypes = MLDataDetectorTypeAll;
+    lable.allowLineBreakInsideLinks = NO;
+    lable.linkTextAttributes = nil;
+    lable.activeLinkTextAttributes = nil;
+    lable.lineHeightMultiple = CommentLabelLineHeight;
+    lable.linkTextAttributes = @{NSForegroundColorAttributeName: HighLightTextColor};
+    
+    __block DFLikeCommentView *likeCommentView = self;
+    
+    [lable setDidClickLinkBlock:^(MLLink *link, NSString *linkText, MLLinkLabel *label) {
+        
+        if (_delegate != nil && [_delegate respondsToSelector:@selector(onClickUser:)]) {
+            
+            NSUInteger userId = [link.linkValue integerValue];
+            [likeCommentView.delegate onClickUser:userId];
+        }
+    }];
+    
+    
+    return lable;
+    
+}
+
+-(void)longPress:(UITapGestureRecognizer*)recognizer
+{
+    NSLog(@"长按了Label");
+}
+
+-(void)onClickOutsideLink:(long long)uniqueId
+{
+    NSLog(@"单击了Label: %lld", uniqueId);
+}
 
 
 +(CGFloat)getHeight:(DFBaseLineItem *)item maxWidth:(CGFloat)maxWidth
@@ -264,22 +336,23 @@
         
         height+= textSize.height;
     }
-
+    
     
     if (item.comments.count > 0) {
         
         CGFloat width = maxWidth - CommentLabelMargin*2;
         
-        CGSize textSize = [MLLinkLabel getViewSize:item.commentsStr maxWidth:width font:CommentLabelFont lineHeight:CommentLabelLineHeight lines:0];
+        NSMutableArray *commentStrArray = item.commentStrArray;
         
-        height+= textSize.height;
+        for (NSMutableAttributedString *str in commentStrArray) {
+            CGSize textSize = [MLLinkLabel getViewSize:str maxWidth:width font:CommentLabelFont lineHeight:CommentLabelLineHeight lines:0];
+            height+= textSize.height;
+        }
         
         if (item.likes.count > 0) {
             height+= LikeCommentSpace;
         }
     }
-
-    
     
     
     height+=BottomMargin;

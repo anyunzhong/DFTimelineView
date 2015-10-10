@@ -17,6 +17,8 @@
         
         _likes = [NSMutableArray array];
         _comments = [NSMutableArray array];
+        
+        _commentStrArray = [NSMutableArray array];
     }
     return self;
 }

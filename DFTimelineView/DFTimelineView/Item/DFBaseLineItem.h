@@ -39,6 +39,7 @@ typedef NS_ENUM(NSUInteger, LineItemType){
 
 
 @property (nonatomic, strong) NSMutableAttributedString *likesStr;
-@property (nonatomic, strong) NSMutableAttributedString *commentsStr;
+
+@property (nonatomic, strong) NSMutableArray *commentStrArray;
 
 @end
