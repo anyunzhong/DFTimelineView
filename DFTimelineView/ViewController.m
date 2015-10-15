@@ -14,6 +14,7 @@
 #import "DFLineLikeItem.h"
 #import "DFLineCommentItem.h"
 
+#import "UserTimelineViewController.h"
 
 @interface ViewController ()
 
@@ -253,6 +254,9 @@
 {
     //点击左边头像 或者 点击评论和赞的用户昵称
     NSLog(@"onClickUser: %ld", userId);
+    
+    UserTimelineViewController *controller = [[UserTimelineViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 

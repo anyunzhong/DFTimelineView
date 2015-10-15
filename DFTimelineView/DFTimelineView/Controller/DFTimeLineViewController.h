@@ -11,18 +11,15 @@
 #import "DFLineLikeItem.h"
 #import "DFLineCommentItem.h"
 
-@interface DFTimeLineViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+#import "DFBaseTimeLineViewController.h"
+
+@interface DFTimeLineViewController : DFBaseTimeLineViewController
 
 -(void) addItem:(DFBaseLineItem *) item;
 
 -(void) addLikeItem:(DFLineLikeItem *) likeItem itemId:(long long) itemId;
 
 -(void) addCommentItem:(DFLineCommentItem *) commentItem itemId:(long long) itemId replyCommentId:(long long) replyCommentId;
-
-
--(void) endLoadMore;
-
--(void) endRefresh;
 
 
 @end

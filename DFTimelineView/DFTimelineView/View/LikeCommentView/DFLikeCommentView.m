@@ -12,7 +12,9 @@
 #import "DFLineCommentItem.h"
 #import "Const.h"
 
-#import <MLLinkClickLabel.h>
+//#import <MLLinkClickLabel.h>
+
+#import "MLClickColorLinkLabel.h"
 
 
 #define TopMargin 10
@@ -270,10 +272,10 @@
 
 
 
--(MLLinkClickLabel *) createLinkLabel
+-(MLClickColorLinkLabel *) createLinkLabel
 {
     
-    MLLinkClickLabel *lable = [[MLLinkClickLabel alloc] initWithFrame:CGRectZero];
+    MLClickColorLinkLabel *lable = [[MLClickColorLinkLabel alloc] initWithFrame:CGRectZero];
     lable.clickDelegate = self;
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];

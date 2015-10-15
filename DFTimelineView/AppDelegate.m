@@ -10,9 +10,17 @@
 
 #import "ViewController.h"
 
+
+#import "UserTimelineViewController.h"
+
+
+
 @interface AppDelegate ()
 
 @property (nonatomic, strong) ViewController *controller;
+
+
+@property (nonatomic, strong) UserTimelineViewController *userTimelineController;
 
 @end
 
@@ -22,6 +30,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     _controller = [[ViewController alloc] init];
+    
+    _userTimelineController = [[UserTimelineViewController alloc] init];
+    
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:_controller];
     
