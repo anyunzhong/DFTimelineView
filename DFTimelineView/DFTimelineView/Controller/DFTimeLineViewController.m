@@ -371,22 +371,22 @@
 }
 
 
--(void)addCommentItem:(DFLineCommentItem *)commentItem itemId:(long long)itemId
+-(void)addCommentItem:(DFLineCommentItem *)commentItem itemId:(long long)itemId replyCommentId:(long long)replyCommentId
+
 {
     DFBaseLineItem *item = [self getItem:itemId];
     [item.comments addObject:commentItem];
+    
+    if (replyCommentId > 0) {
+        DFLineCommentItem *replyCommentItem = [self getCommentItem:replyCommentId];
+        commentItem.replyUserId = replyCommentItem.userId;
+        commentItem.replyUserNick = replyCommentItem.userNick;
+    }
+    
     item.cellHeight = 0;
     [self genCommentAttrString:item];
     [_tableView reloadData];
     
-}
-
--(void)addReplyCommentItem:(DFLineCommentItem *)commentItem itemId:(long long)itemId replyCommentId:(long long)replyCommentId
-{
-    DFLineCommentItem *replyCommentItem = [self getCommentItem:replyCommentId];
-    commentItem.replyUserId = replyCommentItem.userId;
-    commentItem.replyUserNick = replyCommentItem.userNick;
-    [self addCommentItem:commentItem itemId:itemId];
 }
 
 -(DFLineCommentItem *)getCommentItem:(long long)commentId
@@ -444,7 +444,7 @@
     [_commentInputView show];
     
     DFLineCommentItem *comment = [_commentDic objectForKey:[NSNumber numberWithLongLong:commentId]];
-    [_commentInputView setPlaceHolder:[NSString stringWithFormat:@"回复: %@", comment.userNick]];
+    [_commentInputView setPlaceHolder:[NSString stringWithFormat:@"  回复: %@", comment.userNick]];
     
 }
 

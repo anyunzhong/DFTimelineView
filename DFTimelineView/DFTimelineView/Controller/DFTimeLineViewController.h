@@ -17,10 +17,7 @@
 
 -(void) addLikeItem:(DFLineLikeItem *) likeItem itemId:(long long) itemId;
 
--(void) addCommentItem:(DFLineCommentItem *) commentItem itemId:(long long) itemId;
-
--(void) addReplyCommentItem:(DFLineCommentItem *) commentItem itemId:(long long) itemId replyCommentId:(long long) replyCommentId;
-
+-(void) addCommentItem:(DFLineCommentItem *) commentItem itemId:(long long) itemId replyCommentId:(long long) replyCommentId;
 
 
 -(void) endLoadMore;

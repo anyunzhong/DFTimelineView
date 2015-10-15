@@ -226,26 +226,12 @@
 
 -(void)onCommentCreate:(long long)commentId text:(NSString *)text itemId:(long long) itemId
 {
-    //如果commentId=0 表示新增评论  否则为回复已经存在的某个评论
-    NSLog(@"新增评论: %lld  %@", commentId, text);
-    
-    if (commentId >0) {
-        
         DFLineCommentItem *commentItem = [[DFLineCommentItem alloc] init];
-        commentItem.commentId = 1000000;
+        commentItem.commentId = [[NSDate date] timeIntervalSince1970];
         commentItem.userId = 10098;
         commentItem.userNick = @"金三胖";
         commentItem.text = text;
-        [self addReplyCommentItem:commentItem itemId:itemId replyCommentId:commentId];
-        
-        
-    }else{
-        DFLineCommentItem *commentItem = [[DFLineCommentItem alloc] init];
-        commentItem.userId = 100998;
-        commentItem.userNick = @"笨蛋";
-        commentItem.text = text;
-        [self addCommentItem:commentItem itemId:itemId];
-    }
+        [self addCommentItem:commentItem itemId:itemId replyCommentId:commentId];
     
 }
 
