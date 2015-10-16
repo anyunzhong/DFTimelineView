@@ -24,6 +24,7 @@
 -(void) initData
 {
     DFTextImageUserLineItem *item = [[DFTextImageUserLineItem alloc] init];
+    item.itemId = 1111;
     item.ts = 1444902955586;
     item.cover = @"http://file-cdn.datafans.net/temp/11.jpg_200x200.jpeg";
     item.photoCount = 5;
@@ -32,6 +33,7 @@
     
     
     DFTextImageUserLineItem *item2 = [[DFTextImageUserLineItem alloc] init];
+    item2.itemId = 11222;
     item2.ts = 1444902951586;
     item2.text = @"京东JD.COM-专业的综合网上购物商城，销售超数万品牌、4020万种商品，http://jd.com 囊括家电、手机、电脑、服装、图书、母婴、个护、食品、旅游等13大品类。秉承客户为先的理念，京东所售商品为正品行货、全国联保、机打发票。@刘强东";
     
@@ -39,6 +41,7 @@
     
     
     DFTextImageUserLineItem *item3 = [[DFTextImageUserLineItem alloc] init];
+    item3.itemId = 22221111;
     item3.ts = 1444102855586;
     item3.cover = @"http://file-cdn.datafans.net/temp/15.jpg_200x200.jpeg";
     item3.photoCount = 8;
@@ -46,6 +49,7 @@
     
     
     DFTextImageUserLineItem *item4 = [[DFTextImageUserLineItem alloc] init];
+    item4.itemId = 7771111;
     item4.ts = 1442912955586;
     item4.cover = @"http://file-cdn.datafans.net/temp/19.jpg_200x200.jpeg";
     item4.photoCount = 6;
@@ -54,6 +58,7 @@
     
     
     DFTextImageUserLineItem *item5 = [[DFTextImageUserLineItem alloc] init];
+    item5.itemId = 9991111;
     item5.ts = 1442912945586;
     item5.cover = @"http://file-cdn.datafans.net/temp/14.jpg_200x200.jpeg";
     item5.photoCount = 2;
@@ -116,6 +121,14 @@
         [self endLoadMore];
     });
 }
+
+
+
+-(void)onClickItem:(DFBaseUserLineItem *)item
+{
+    NSLog(@"click item: %lld", item.itemId);
+}
+
 
 
 @end

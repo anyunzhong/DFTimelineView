@@ -260,12 +260,10 @@
 }
 
 
--(void)onClickUserAvatar
+-(void)onClickHeaderUserAvatar
 {
-    //点击封面上的头像
-    NSLog(@"onClickUserAvatar");
+    [self onClickUser:1111];
 }
-
 
 
 

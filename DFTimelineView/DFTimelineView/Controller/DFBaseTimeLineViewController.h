@@ -20,4 +20,7 @@
 -(void) endRefresh;
 
 
+-(void) onClickHeaderUserAvatar;
+
+
 @end

@@ -331,8 +331,12 @@
 }
 
 
-
 -(void) onClickUserAvatar:(id) sender
+{
+    [self onClickHeaderUserAvatar];
+}
+
+-(void)onClickHeaderUserAvatar
 {
     
 }

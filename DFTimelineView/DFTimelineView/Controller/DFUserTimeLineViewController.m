@@ -13,7 +13,9 @@
 #import "DFUserLineCellAdapterManager.h"
 #import "DFTextImageUserLineCellAdapter.h"
 
-@interface DFUserTimeLineViewController()
+#import "DFBaseUserLineCell.h"
+
+@interface DFUserTimeLineViewController()<DFBaseUserLineCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *items;
 
@@ -79,8 +81,8 @@
     DFBaseUserLineItem *item = [_items objectAtIndex:indexPath.row];
     DFBaseUserLineCellAdapter *adapter = [self getAdapter:item.itemType];
     
-    UITableViewCell *cell = [adapter getCell:tableView];
-    
+    DFBaseUserLineCell *cell = (DFBaseUserLineCell *)[adapter getCell:tableView];
+    cell.delegate = self;
     [adapter updateCell:cell message:item];
     
     return cell;
@@ -123,6 +125,13 @@
     
     [_items addObject:item];
     [self.tableView reloadData];
+}
+
+
+
+-(void)onClickItem:(DFBaseUserLineItem *)item
+{
+    
 }
 
 

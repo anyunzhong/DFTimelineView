@@ -67,8 +67,9 @@
     }
     
     if (_bodyView == nil) {
-        _bodyView = [[UIView alloc] initWithFrame:CGRectZero];
+        _bodyView = [[UIButton alloc] initWithFrame:CGRectZero];
         //_bodyView.backgroundColor = [UIColor darkGrayColor];
+        [_bodyView addTarget:self action:@selector(onClickBodyView:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:_bodyView];
     }
 
@@ -116,6 +117,15 @@
     width = [UIScreen mainScreen].bounds.size.width - x - BodyViewRightMargin;
     _bodyView.frame = CGRectMake(x, y, width, height);
     
+    
+}
+
+
+-(void) onClickBodyView:(id)sender
+{
+    if(_delegate && [_delegate respondsToSelector:@selector(onClickItem:)]){
+        [_delegate onClickItem:self.item];
+    }
     
 }
 

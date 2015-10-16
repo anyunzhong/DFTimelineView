@@ -9,10 +9,23 @@
 #import "DFBaseUserLineItem.h"
 #import <UIImageView+WebCache.h>
 
+@protocol DFBaseUserLineCellDelegate <NSObject>
+
+@required
+
+-(void) onClickItem:(DFBaseUserLineItem *) item;
+
+@end
+
+
+
 @interface DFBaseUserLineCell : UITableViewCell
 
 
-@property (nonatomic, strong) UIView *bodyView;
+@property (nonatomic, strong) id<DFBaseUserLineCellDelegate> delegate;
+
+
+@property (nonatomic, strong) UIButton *bodyView;
 
 -(void) updateWithItem:(DFBaseUserLineItem *) item;
 
