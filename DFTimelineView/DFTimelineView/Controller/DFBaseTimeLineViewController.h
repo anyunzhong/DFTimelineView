@@ -9,8 +9,10 @@
 #import "UIImageView+WebCache.h"
 #import <MLLabel+Size.h>
 
+#import <DFBaseViewController.h>
 
-@interface DFBaseTimeLineViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+
+@interface DFBaseTimeLineViewController : DFBaseViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
