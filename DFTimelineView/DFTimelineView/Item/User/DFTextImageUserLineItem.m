@@ -10,4 +10,12 @@
 
 @implementation DFTextImageUserLineItem
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.itemType = UserLineItemTypeTextImage;
+    }
+    return self;
+}
 @end

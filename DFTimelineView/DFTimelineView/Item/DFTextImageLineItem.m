@@ -14,6 +14,9 @@
 {
     self = [super init];
     if (self) {
+        
+        self.itemType = LineItemTypeTextImage;
+        
         _text = @"";
         _thumbImages = [NSMutableArray array];
         _srcImages = [NSMutableArray array];

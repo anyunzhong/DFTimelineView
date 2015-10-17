@@ -16,13 +16,21 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 
+@property (nonatomic, assign) NSUInteger coverWidth;
+@property (nonatomic, assign) NSUInteger coverHeight;
+@property (nonatomic, assign) NSUInteger userAvatarSize;
+
 
 -(void) endLoadMore;
 
 -(void) endRefresh;
 
-
 -(void) onClickHeaderUserAvatar;
+
+
+-(void) setCover:(NSString *) url;
+-(void) setUserAvatar:(NSString *) url;
+-(void) setUserNick:(NSString *)nick;
 
 
 @end

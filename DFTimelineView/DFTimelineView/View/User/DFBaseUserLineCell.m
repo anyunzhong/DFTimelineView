@@ -8,10 +8,10 @@
 
 #import "DFBaseUserLineCell.h"
 
-#define TimeDayLabelLeftMargin 20
+#define TimeDayLabelLeftMargin 15
 #define TimeDayLabelTopMargin 20
 
-#define BodyViewLeftMargin 110
+#define BodyViewLeftMargin 90
 #define BodyViewRightMargin 15
 
 
@@ -61,7 +61,7 @@
     
     if (_timeMonthLabel == nil) {
         _timeMonthLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _timeMonthLabel.font = [UIFont systemFontOfSize:14];
+        _timeMonthLabel.font = [UIFont systemFontOfSize:12];
         //_timeDayLabel.backgroundColor = [UIColor lightGrayColor];
         [self.contentView addSubview:_timeMonthLabel];
     }
@@ -95,7 +95,7 @@
     _timeDayLabel.hidden = !item.bShowTime;
     
     
-    x = CGRectGetMinX(_timeDayLabel.frame)+38;
+    x = CGRectGetMinX(_timeDayLabel.frame)+35;
     y = CGRectGetMinY(_timeDayLabel.frame)+10;
     width = 30;
     height = 15;

@@ -12,6 +12,8 @@
 
 #define ImageTxtPadding 10
 
+#define TxtSinglePadding 9
+
 @interface DFTextImageUserLineCell()
 
 @property (nonatomic, strong) UIImageView *coverView;
@@ -57,8 +59,8 @@
     
     if (_photoCountLabel == nil) {
         _photoCountLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _photoCountLabel.font = [UIFont systemFontOfSize:11];
-        _photoCountLabel.textColor = [UIColor lightGrayColor];
+        _photoCountLabel.font = [UIFont systemFontOfSize:10];
+        _photoCountLabel.textColor = [UIColor darkGrayColor];
         [self.bodyView addSubview:_photoCountLabel];
     }
 }
@@ -87,15 +89,18 @@
     
     if (item.cover != nil) {
         x = CGRectGetMaxX(_coverView.frame) + ImageTxtPadding;
-        _txtLabel.backgroundColor = [UIColor clearColor];
-        _txtLabel.numberOfLines = 3;
+        width = CGRectGetWidth(self.bodyView.frame) - x;
+        height = CGRectGetHeight(self.bodyView.frame) - 20;
+        self.bodyView.backgroundColor = [UIColor clearColor];
     }else{
-        _txtLabel.backgroundColor = [UIColor colorWithWhite:245/255.0 alpha:1.0];
-        _txtLabel.numberOfLines = 4;
+        x = TxtSinglePadding;
+        y = TxtSinglePadding;
+        width = CGRectGetWidth(self.bodyView.frame) - 2*x;
+        height = CGRectGetHeight(self.bodyView.frame) - 2*y;
+        self.bodyView.backgroundColor = [UIColor colorWithWhite:245/255.0 alpha:1.0];
     }
     
-    width = CGRectGetWidth(self.bodyView.frame) - x;
-    height = CGRectGetHeight(self.bodyView.frame) - 20;
+    
     _txtLabel.frame = CGRectMake(x, y, width, height);
     _txtLabel.text = item.text;
     [_txtLabel sizeToFit];
@@ -107,7 +112,7 @@
         height = 12;
         y = CGRectGetMaxY(_coverView.frame)-height;
         _photoCountLabel.frame = CGRectMake(x, y, width, height);
-        _photoCountLabel.text = [NSString stringWithFormat:@"%ld张", item.photoCount];
+        _photoCountLabel.text = [NSString stringWithFormat:@"共%ld张", item.photoCount];
     }else{
         _photoCountLabel.hidden = YES;
     }

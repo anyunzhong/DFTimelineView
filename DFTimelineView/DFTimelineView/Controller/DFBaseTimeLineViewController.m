@@ -24,11 +24,11 @@
 
 @interface DFBaseTimeLineViewController()
 
-@property (nonatomic, strong) UIImageView *cover;
+@property (nonatomic, strong) UIImageView *coverView;
 
-@property (nonatomic, strong) UIImageView *userAvatar;
+@property (nonatomic, strong) UIImageView *userAvatarView;
 
-@property (nonatomic, strong) MLLabel *userNick;
+@property (nonatomic, strong) MLLabel *userNickView;
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
@@ -97,12 +97,12 @@
     
     //封面
     height = CoverHeight;
-    _cover = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    _coverView = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    _coverView.backgroundColor = [UIColor darkGrayColor];
     
-    //这里可以根据scale来获取相应尺寸的图片 图片可能比较大 加载慢
-    NSString *url = [self getCoverUrl:width*2 height:height*2];
-    [_cover sd_setImageWithURL:[NSURL URLWithString:url]];
-    [header addSubview:_cover];
+    self.coverWidth  = width*2;
+    self.coverHeight = height*2;
+    [header addSubview:_coverView];
     
     //用户头像
     x = self.view.frame.size.width - AvatarRightMargin - AvatarSize;
@@ -121,29 +121,20 @@
     y = x;
     width = CGRectGetWidth(avatarBg.frame) - 2*AvatarPadding;
     height = width;
-    _userAvatar = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
-    [avatarBg addSubview:_userAvatar];
-    [_userAvatar sd_setImageWithURL:[NSURL URLWithString:[self getAvatarUrl:width*2 height:height*2]]];
+    _userAvatarView = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    [avatarBg addSubview:_userAvatarView];
+    self.userAvatarSize = width*2;
+    
     
     //用户昵称
-    if (_userNick == nil) {
-        NSString *nick = [self getUserNick];
-        if (nick != nil) {
-            CGSize size = [MLLabel getViewSizeByString:nick font:NickFont];
-            width = size.width;
-            height = size.height;
-            x = CGRectGetMinX(avatarBg.frame) - width - 5;
-            y = CGRectGetMidY(avatarBg.frame) - height - 2;
-            _userNick = [[MLLabel alloc] initWithFrame:CGRectMake(x, y, width, height)];
-            _userNick.textColor = [UIColor whiteColor];
-            _userNick.text = nick;
-            _userNick.font = NickFont;
-            _userNick.numberOfLines = 1;
-            _userNick.adjustsFontSizeToFitWidth = NO;
-            _userNick.textInsets = UIEdgeInsetsZero;
-            
-            [header addSubview:_userNick];
-        }
+    if (_userNickView == nil) {
+        _userNickView = [[MLLabel alloc] initWithFrame:CGRectZero];
+        _userNickView.textColor = [UIColor whiteColor];
+        _userNickView.font = NickFont;
+        _userNickView.numberOfLines = 1;
+        _userNickView.adjustsFontSizeToFitWidth = NO;
+        [header addSubview:_userNickView];
+        
         
     }
     
@@ -310,24 +301,26 @@
 #pragma mark - Method
 
 
-
-
--(NSString *) getCoverUrl:(CGFloat) width height:(CGFloat) height
+-(void)setCover:(NSString *)url
 {
-    return nil;
+    [_coverView sd_setImageWithURL:[NSURL URLWithString:url]];
 }
 
-
--(NSString *) getAvatarUrl:(CGFloat) width height:(CGFloat) height
+-(void)setUserAvatar:(NSString *)url
 {
-    return nil;
+    [_userAvatarView sd_setImageWithURL:[NSURL URLWithString:url]];
 }
 
-
-
--(NSString *) getUserNick
+-(void)setUserNick:(NSString *)nick
 {
-    return nil;
+    CGFloat x, y, width, height;
+    
+    CGSize size = [MLLabel getViewSizeByString:nick font:NickFont];
+    width = size.width;
+    height = size.height;
+    x = CGRectGetMinX(_userAvatarView.frame) - width - 5;
+    y = CGRectGetMidY(_userAvatarView.frame) - height - 2;
+    _userNickView.text = nick;
 }
 
 
@@ -335,6 +328,7 @@
 {
     [self onClickHeaderUserAvatar];
 }
+
 
 -(void)onClickHeaderUserAvatar
 {

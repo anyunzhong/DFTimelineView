@@ -38,6 +38,20 @@
     
     [self initData];
     
+    [self setHeader];
+    
+}
+
+-(void) setHeader
+{
+    NSString *coverUrl = [NSString stringWithFormat:@"http://file-cdn.datafans.net/temp/12.jpg_%dx%d.jpeg", (int)self.coverWidth, (int)self.coverHeight];
+    [self setCover:coverUrl];
+    
+    NSString *avatarUrl = [NSString stringWithFormat:@"http://file-cdn.datafans.net/avatar/1.jpeg_%dx%d.jpeg", (int)self.userAvatarSize, (int)self.userAvatarSize];
+    [self setUserAvatar:avatarUrl];
+    
+    [self setUserNick:@"Allen"];
+    
 }
 
 
@@ -218,13 +232,6 @@
 
 
 
-//-(void)onComment:(long long)itemId
-//{
-//    //评论
-//    NSLog(@"onComment: %lld", itemId);
-//}
-
-
 -(void)onCommentCreate:(long long)commentId text:(NSString *)text itemId:(long long) itemId
 {
         DFLineCommentItem *commentItem = [[DFLineCommentItem alloc] init];
@@ -268,23 +275,6 @@
 
 
 
--(NSString *) getCoverUrl:(CGFloat) width height:(CGFloat) height
-{
-    return [NSString stringWithFormat:@"http://file-cdn.datafans.net/temp/12.jpg_%dx%d.jpeg", (int)width, (int)height];
-}
-
-
--(NSString *) getAvatarUrl:(CGFloat) width height:(CGFloat) height
-{
-    return [NSString stringWithFormat:@"http://file-cdn.datafans.net/avatar/1.jpeg_%dx%d.jpeg", (int)width, (int)height];
-}
-
-
-
--(NSString *) getUserNick
-{
-    return @"Allen";
-}
 
 
 -(void) refresh
