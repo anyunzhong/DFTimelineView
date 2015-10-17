@@ -31,6 +31,7 @@
 -(void) setCover:(NSString *) url;
 -(void) setUserAvatar:(NSString *) url;
 -(void) setUserNick:(NSString *)nick;
+-(void) setUserSign:(NSString *)sign;
 
 
 @end

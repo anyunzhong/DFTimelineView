@@ -8,7 +8,7 @@
 
 #import "DFBaseTimeLineViewController.h"
 
-#define TableHeaderHeight 270*([UIScreen mainScreen].bounds.size.width / 375.0)
+#define TableHeaderHeight 290*([UIScreen mainScreen].bounds.size.width / 375.0)
 #define CoverHeight 240*([UIScreen mainScreen].bounds.size.width / 375.0)
 
 
@@ -18,6 +18,8 @@
 
 
 #define NickFont [UIFont systemFontOfSize:20]
+
+#define SignFont [UIFont systemFontOfSize:11]
 
 
 
@@ -29,6 +31,8 @@
 @property (nonatomic, strong) UIImageView *userAvatarView;
 
 @property (nonatomic, strong) MLLabel *userNickView;
+
+@property (nonatomic, strong) MLLabel *userSignView;
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
@@ -106,7 +110,7 @@
     
     //用户头像
     x = self.view.frame.size.width - AvatarRightMargin - AvatarSize;
-    y = header.frame.size.height - AvatarSize;
+    y = header.frame.size.height - AvatarSize - 20;
     width = AvatarSize;
     height = width;
     
@@ -138,6 +142,18 @@
         
     }
     
+    
+    //用户签名
+    if (_userSignView== nil) {
+        _userSignView = [[MLLabel alloc] initWithFrame:CGRectZero];
+        _userSignView.textColor = [UIColor lightGrayColor];
+        _userSignView.font = SignFont;
+        _userSignView.numberOfLines = 1;
+        _userSignView.adjustsFontSizeToFitWidth = NO;
+        [header addSubview:_userSignView];
+        
+        
+    }
     
     //下拉刷新
     if (_refreshControl == nil) {
@@ -318,10 +334,27 @@
     CGSize size = [MLLabel getViewSizeByString:nick font:NickFont];
     width = size.width;
     height = size.height;
-    x = CGRectGetMinX(_userAvatarView.frame) - width - 5;
-    y = CGRectGetMidY(_userAvatarView.frame) - height - 2;
+    x = CGRectGetMinX(_userAvatarView.superview.frame) - width - 5;
+    y = CGRectGetMidY(_userAvatarView.superview.frame) - height - 2;
+    _userNickView.frame = CGRectMake(x, y, width, height);
     _userNickView.text = nick;
 }
+
+
+-(void)setUserSign:(NSString *)sign
+{
+    CGFloat x, y, width, height;
+    
+    CGSize size = [MLLabel getViewSizeByString:sign font:SignFont];
+    width = size.width;
+    height = size.height;
+    x = CGRectGetWidth(self.view.frame) - width - 15;
+    y = CGRectGetMaxY(_userAvatarView.superview.frame) + 5;
+    _userSignView.frame = CGRectMake(x, y, width, height);
+    _userSignView.text = sign;
+}
+
+
 
 
 -(void) onClickUserAvatar:(id) sender
