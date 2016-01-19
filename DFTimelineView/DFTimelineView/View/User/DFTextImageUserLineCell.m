@@ -112,7 +112,7 @@
         height = 12;
         y = CGRectGetMaxY(_coverView.frame)-height;
         _photoCountLabel.frame = CGRectMake(x, y, width, height);
-        _photoCountLabel.text = [NSString stringWithFormat:@"共%ld张", item.photoCount];
+        _photoCountLabel.text = [NSString stringWithFormat:@"共%ld张", (unsigned long)item.photoCount];
     }else{
         _photoCountLabel.hidden = YES;
     }

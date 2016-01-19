@@ -91,7 +91,7 @@
     width = 40;
     height = 25;
     _timeDayLabel.frame = CGRectMake(x, y, width, height);
-    _timeDayLabel.text = item.day < 10 ? [NSString stringWithFormat:@"0%ld", item.day]: [NSString stringWithFormat:@"%ld", item.day];
+    _timeDayLabel.text = item.day < 10 ? [NSString stringWithFormat:@"0%ld", (unsigned long)item.day]: [NSString stringWithFormat:@"%ld", (unsigned long)item.day];
     _timeDayLabel.hidden = !item.bShowTime;
     
     
@@ -100,7 +100,7 @@
     width = 30;
     height = 15;
     _timeMonthLabel.frame = CGRectMake(x, y, width, height);;
-    _timeMonthLabel.text = [NSString stringWithFormat:@"%ld月", item.month];
+    _timeMonthLabel.text = [NSString stringWithFormat:@"%ld月", (unsigned long)item.month];
     _timeMonthLabel.hidden = _timeDayLabel.hidden;
     
 }

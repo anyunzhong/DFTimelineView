@@ -7,7 +7,7 @@
 //
 
 #import "DFLikeCommentView.h"
-#import <MLLabel+Size.h>
+#import "MLLabel+Size.h"
 #import "DFLineLikeItem.h"
 #import "DFLineCommentItem.h"
 #import "Const.h"

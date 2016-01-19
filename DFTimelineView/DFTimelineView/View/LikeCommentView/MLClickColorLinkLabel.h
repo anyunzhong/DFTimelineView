@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 Datafans, Inc. All rights reserved.
 //
 
-#import <MLLinkClickLabel.h>
+#import "MLLinkClickLabel.h"
 
 @interface MLClickColorLinkLabel : MLLinkClickLabel
 
