@@ -8,13 +8,7 @@
 
 #import "ViewController.h"
 
-#import "DFTextImageLineItem.h"
-
-
-#import "DFLineLikeItem.h"
-#import "DFLineCommentItem.h"
-
-#import "UserTimelineViewController.h"
+#import "UserViewController.h"
 
 @interface ViewController ()
 
@@ -61,7 +55,6 @@
 {
     DFTextImageLineItem *textImageItem = [[DFTextImageLineItem alloc] init];
     textImageItem.itemId = 1;
-    textImageItem.itemType = LineItemTypeTextImage;
     textImageItem.userId = 10086;
     textImageItem.userAvatar = @"http://file-cdn.datafans.net/avatar/1.jpeg";
     textImageItem.userNick = @"Allen";
@@ -143,7 +136,6 @@
     
     DFTextImageLineItem *textImageItem2 = [[DFTextImageLineItem alloc] init];
     textImageItem2.itemId = 2;
-    textImageItem2.itemType = LineItemTypeTextImage;
     textImageItem2.userId = 10088;
     textImageItem2.userAvatar = @"http://file-cdn.datafans.net/avatar/2.jpg";
     textImageItem2.userNick = @"奥巴马";
@@ -195,7 +187,6 @@
     
     DFTextImageLineItem *textImageItem3 = [[DFTextImageLineItem alloc] init];
     textImageItem3.itemId = 3;
-    textImageItem3.itemType = LineItemTypeTextImage;
     textImageItem3.userId = 10088;
     textImageItem3.userAvatar = @"http://file-cdn.datafans.net/avatar/2.jpg";
     textImageItem3.userNick = @"奥巴马";
@@ -264,7 +255,7 @@
     //点击左边头像 或者 点击评论和赞的用户昵称
     NSLog(@"onClickUser: %ld", userId);
     
-    UserTimelineViewController *controller = [[UserTimelineViewController alloc] init];
+    UserViewController *controller = [[UserViewController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -295,12 +286,11 @@
 {
     //加载更多
     //模拟网络请求
-    dispatch_time_t time=dispatch_time(DISPATCH_TIME_NOW, 2*NSEC_PER_SEC);
+    dispatch_time_t time=dispatch_time(DISPATCH_TIME_NOW, 1*NSEC_PER_SEC);
     dispatch_after(time, dispatch_get_main_queue(), ^{
         
         DFTextImageLineItem *textImageItem = [[DFTextImageLineItem alloc] init];
         textImageItem.itemId = 3;
-        textImageItem.itemType = LineItemTypeTextImage;
         textImageItem.userId = 10018;
         textImageItem.userAvatar = @"http://file-cdn.datafans.net/avatar/1.jpeg";
         textImageItem.userNick = @"富二代";
@@ -332,10 +322,71 @@
 }
 
 
+
+//选择照片后得到数据
+-(void)onSendTextImage:(NSString *)text images:(NSArray *)images
+{
+    DFTextImageLineItem *textImageItem = [[DFTextImageLineItem alloc] init];
+    textImageItem.itemId = 10000000; //随便设置一个 待服务器生成
+    textImageItem.userId = 10018;
+    textImageItem.userAvatar = @"http://file-cdn.datafans.net/avatar/1.jpeg";
+    textImageItem.userNick = @"富二代";
+    textImageItem.title = @"发表了";
+    textImageItem.text = text;
+    
+    
+    NSMutableArray *srcImages = [NSMutableArray array];
+    textImageItem.srcImages = srcImages; //大图 可以是本地路径 也可以是网络地址 会自动判断
+    
+    NSMutableArray *thumbImages = [NSMutableArray array];
+    textImageItem.thumbImages = thumbImages; //小图 可以是本地路径 也可以是网络地址 会自动判断
+    
+    
+    for (id img in images) {
+        [srcImages addObject:img];
+        [thumbImages addObject:img];
+    }
+    
+    textImageItem.location = @"广州信息港";
+    [self addItemTop:textImageItem];
+    
+    
+    //接着上传图片 和 请求服务器接口
+    //请求完成之后 刷新整个界面
+
+}
+
+
+//发送视频 目前没有实现填写文字
+-(void)onSendVideo:(NSString *)text videoPath:(NSString *)videoPath screenShot:(UIImage *)screenShot
+{
+    DFVideoLineItem *videoItem = [[DFVideoLineItem alloc] init];
+    videoItem.itemId = 10000000; //随便设置一个 待服务器生成
+    videoItem.userId = 10018;
+    videoItem.userAvatar = @"http://file-cdn.datafans.net/avatar/1.jpeg";
+    videoItem.userNick = @"富二代";
+    videoItem.title = @"发表了";
+    videoItem.text = @"新年过节 哈哈"; //这里需要present一个界面 用户填入文字后再发送 场景和发图片一样
+    videoItem.location = @"广州";
+    
+    videoItem.localVideoPath = videoPath;
+    videoItem.videoUrl = @""; //网络路径
+    videoItem.thumbUrl = @"";
+    videoItem.thumbImage = screenShot; //如果thumbImage存在 优先使用thumbImage
+    
+    [self addItemTop:videoItem];
+
+    //接着上传图片 和 请求服务器接口
+    //请求完成之后 刷新整个界面
+    
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
     
 }
+
 
 @end

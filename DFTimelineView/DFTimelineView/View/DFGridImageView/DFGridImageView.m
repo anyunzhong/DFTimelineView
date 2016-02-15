@@ -84,8 +84,18 @@
 }
 -(void)updateWithImages:(NSMutableArray *)images srcImages:(NSMutableArray *)srcImages oneImageWidth:(CGFloat)oneImageWidth oneImageHeight:(CGFloat)oneImageHeight
 {
+    
     self.images = images;
     self.srcImages = srcImages;
+    
+    if (images.count > 0) {
+        id img = [images objectAtIndex:0];
+        if ([img isKindOfClass:[UIImage class]]) {
+            UIImage *image = img;
+            oneImageWidth = image.size.width;
+            oneImageHeight = image.size.height;
+        }
+    }
     
     if (images.count == 1) {
         _oneImageView.hidden = NO;
@@ -97,7 +107,13 @@
             _oneImageView.frame = CGRectMake(0, 0, oneImageWidth, oneImageHeight);
             _oneImageButton.frame = CGRectMake(0, 0, oneImageWidth, oneImageHeight);
         }
-        [_oneImageView sd_setImageWithURL:[NSURL URLWithString:[images objectAtIndex:0]]];
+        
+        id img = [images objectAtIndex:0];
+        if ([img isKindOfClass:[UIImage class]]) {
+            _oneImageView.image = img;
+        }else{
+            [_oneImageView sd_setImageWithURL:[NSURL URLWithString:[images objectAtIndex:0]]];
+        }
         _oneImageButton.tag = 0;
         
     }else{
@@ -113,11 +129,23 @@
             
             if (images.count == 4) {
                 if (i == 0 || i == 1 ) {
-                    [imageUnitView.imageView sd_setImageWithURL:[NSURL URLWithString:[images objectAtIndex:i]]];
+                    id img = [images objectAtIndex:i];
+                    if ([img isKindOfClass:[UIImage class]]) {
+                        imageUnitView.imageView.image = img;
+                    }else{
+                        [imageUnitView.imageView sd_setImageWithURL:[NSURL URLWithString:[images objectAtIndex:i]]];
+                    }
                     imageUnitView.hidden = NO;
                     imageUnitView.imageButton.tag = i;
                 }else if (i == 3 || i == 4 ) {
-                    [imageUnitView.imageView sd_setImageWithURL:[NSURL URLWithString:[images objectAtIndex:i-1]]];
+                    
+                    id img = [images objectAtIndex:i-1];
+                    if ([img isKindOfClass:[UIImage class]]) {
+                        imageUnitView.imageView.image = img;
+                    }else{
+                        [imageUnitView.imageView sd_setImageWithURL:[NSURL URLWithString:[images objectAtIndex:i-1]]];
+                    }
+                    
                     imageUnitView.hidden = NO;
                     imageUnitView.imageButton.tag = i-1;
                 }else{
@@ -125,7 +153,14 @@
                 }
             }else{
                 if (i < images.count) {
-                    [imageUnitView.imageView sd_setImageWithURL:[NSURL URLWithString:[images objectAtIndex:i]]];
+                    
+                    id img = [images objectAtIndex:i];
+                    if ([img isKindOfClass:[UIImage class]]) {
+                        imageUnitView.imageView.image = img;
+                    }else{
+                        [imageUnitView.imageView sd_setImageWithURL:[NSURL URLWithString:[images objectAtIndex:i]]];
+                    }
+                    
                     imageUnitView.imageButton.tag = i;
                     imageUnitView.hidden = NO;
                 }else{
@@ -150,14 +185,26 @@
         
         for (int i=0; i<self.images.count; i++) {
             MJPhoto *photo = [[MJPhoto alloc] init];
-            photo.url = [NSURL URLWithString:[self.srcImages objectAtIndex:i]];
+            
+            id img = [self.srcImages objectAtIndex:i];
+            if ([img isKindOfClass:[UIImage class]]) {
+                photo.image = img;
+            }else{
+                photo.url = [NSURL URLWithString:[self.srcImages objectAtIndex:i]];
+            }
             photo.srcImageView = ((DFImageUnitView *)[_imageViews objectAtIndex:i]).imageView;
             [photos addObject:photo];
         }
         
     }else{
         MJPhoto *photo = [[MJPhoto alloc] init];
-        photo.url = [NSURL URLWithString:[self.srcImages objectAtIndex:0]];
+        id img = [self.srcImages objectAtIndex:0];
+        if ([img isKindOfClass:[UIImage class]]) {
+            photo.image = img;
+        }else{
+            photo.url = [NSURL URLWithString:[self.srcImages objectAtIndex:0]];
+        }
+        
         photo.srcImageView = _oneImageView;
         [photos addObject:photo];
         
@@ -182,6 +229,13 @@
     }
     
     if (images.count == 1) {
+        id img = [images objectAtIndex:0];
+        if ([img isKindOfClass:[UIImage class]]) {
+            UIImage *image = img;
+            oneImageWidth = image.size.width;
+            oneImageHeight = image.size.height;
+        }
+        
         if (oneImageWidth > OneImageMaxWidth) {
             return oneImageHeight*(OneImageMaxWidth/oneImageWidth);
         }

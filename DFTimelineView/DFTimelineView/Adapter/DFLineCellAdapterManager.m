@@ -48,14 +48,14 @@ static DFLineCellAdapterManager  *_manager=nil;
 #pragma mark - Method
 
 
--(void) registerAdapter:(LineItemType) itemType adapter:(DFBaseLineCellAdapter *) adapter{
-    [_dic setObject:adapter forKey:[NSNumber numberWithInteger:itemType]];
+-(void) registerAdapter:(Class) itemClass adapter:(DFBaseLineCellAdapter *) adapter{
+    [_dic setObject:adapter forKey:NSStringFromClass(itemClass)];
 }
 
 
--(DFBaseLineCellAdapter *) getAdapter:(LineItemType) itemType
+-(DFBaseLineCellAdapter *) getAdapter:(Class) itemClass
 {
-    return [_dic objectForKey:[NSNumber numberWithInteger:itemType]];
+    return [_dic objectForKey:NSStringFromClass(itemClass)];
 }
 
 

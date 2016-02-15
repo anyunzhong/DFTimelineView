@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		110D424D1BCF54CA00081824 /* MLClickColorLinkLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 110D424C1BCF54CA00081824 /* MLClickColorLinkLabel.m */; };
+		1173E4F31C71813E004C9979 /* Camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1173E4F11C71813E004C9979 /* Camera@2x.png */; };
+		1173E4F41C71813E004C9979 /* Camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1173E4F21C71813E004C9979 /* Camera@3x.png */; };
+		1173E4F71C71834D004C9979 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1173E4F61C71834D004C9979 /* UserViewController.m */; };
+		1173E5201C71B239004C9979 /* DFImagesSendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1173E51F1C71B239004C9979 /* DFImagesSendViewController.m */; };
+		1173E5231C71BAF0004C9979 /* DFPlainGridImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1173E5221C71BAF0004C9979 /* DFPlainGridImageView.m */; };
+		1173E5251C71BF63004C9979 /* AlbumAddBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1173E5241C71BF63004C9979 /* AlbumAddBtn@2x.png */; };
+		1173E5351C720F7C004C9979 /* DFVideoLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1173E5341C720F7C004C9979 /* DFVideoLineCell.m */; };
+		1173E53B1C7210EA004C9979 /* DFVideoLineItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1173E53A1C7210EA004C9979 /* DFVideoLineItem.m */; };
+		1173E53E1C72150F004C9979 /* DFVideoLineCellAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1173E53D1C72150F004C9979 /* DFVideoLineCellAdapter.m */; };
 		11D758261BB7D43B00F554D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D758251BB7D43B00F554D7 /* main.m */; };
 		11D758291BB7D43B00F554D7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D758281BB7D43B00F554D7 /* AppDelegate.m */; };
 		11D7582C1BB7D43B00F554D7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D7582B1BB7D43B00F554D7 /* ViewController.m */; };
@@ -39,7 +48,6 @@
 		11E157981BC0293900F2F99A /* DFFaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E157971BC0293900F2F99A /* DFFaceManager.m */; };
 		11E157CF1BC8F6E500F2F99A /* CommentInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E157CE1BC8F6E500F2F99A /* CommentInputView.m */; };
 		11F07F951BCF93970084DAA3 /* DFUserTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F07F941BCF93970084DAA3 /* DFUserTimeLineViewController.m */; };
-		11F07F9B1BCF95E40084DAA3 /* UserTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F07F9A1BCF95E40084DAA3 /* UserTimelineViewController.m */; };
 		11F07F9E1BCF9BBE0084DAA3 /* DFBaseTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F07F9D1BCF9BBE0084DAA3 /* DFBaseTimeLineViewController.m */; };
 		11F07FAA1BCFA42D0084DAA3 /* DFBaseLineCellAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F07FA51BCFA42D0084DAA3 /* DFBaseLineCellAdapter.m */; };
 		11F07FAB1BCFA42D0084DAA3 /* DFLineCellAdapterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F07FA71BCFA42D0084DAA3 /* DFLineCellAdapterManager.m */; };
@@ -57,6 +65,22 @@
 /* Begin PBXFileReference section */
 		110D424B1BCF54CA00081824 /* MLClickColorLinkLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLClickColorLinkLabel.h; sourceTree = "<group>"; };
 		110D424C1BCF54CA00081824 /* MLClickColorLinkLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLClickColorLinkLabel.m; sourceTree = "<group>"; };
+		1173E4F11C71813E004C9979 /* Camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Camera@2x.png"; sourceTree = "<group>"; };
+		1173E4F21C71813E004C9979 /* Camera@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Camera@3x.png"; sourceTree = "<group>"; };
+		1173E4F51C71834D004C9979 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
+		1173E4F61C71834D004C9979 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
+		1173E51E1C71B239004C9979 /* DFImagesSendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFImagesSendViewController.h; sourceTree = "<group>"; };
+		1173E51F1C71B239004C9979 /* DFImagesSendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFImagesSendViewController.m; sourceTree = "<group>"; };
+		1173E5211C71BAF0004C9979 /* DFPlainGridImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPlainGridImageView.h; sourceTree = "<group>"; };
+		1173E5221C71BAF0004C9979 /* DFPlainGridImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPlainGridImageView.m; sourceTree = "<group>"; };
+		1173E5241C71BF63004C9979 /* AlbumAddBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlbumAddBtn@2x.png"; sourceTree = "<group>"; };
+		1173E5331C720F7C004C9979 /* DFVideoLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFVideoLineCell.h; sourceTree = "<group>"; };
+		1173E5341C720F7C004C9979 /* DFVideoLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFVideoLineCell.m; sourceTree = "<group>"; };
+		1173E5391C7210EA004C9979 /* DFVideoLineItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFVideoLineItem.h; sourceTree = "<group>"; };
+		1173E53A1C7210EA004C9979 /* DFVideoLineItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFVideoLineItem.m; sourceTree = "<group>"; };
+		1173E53C1C72150F004C9979 /* DFVideoLineCellAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFVideoLineCellAdapter.h; sourceTree = "<group>"; };
+		1173E53D1C72150F004C9979 /* DFVideoLineCellAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFVideoLineCellAdapter.m; sourceTree = "<group>"; };
+		1173E53F1C721977004C9979 /* DFTimelineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DFTimelineView.h; sourceTree = "<group>"; };
 		11D758201BB7D43B00F554D7 /* DFTimelineView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DFTimelineView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11D758241BB7D43B00F554D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11D758251BB7D43B00F554D7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -108,8 +132,6 @@
 		11E157CE1BC8F6E500F2F99A /* CommentInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentInputView.m; sourceTree = "<group>"; };
 		11F07F931BCF93970084DAA3 /* DFUserTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFUserTimeLineViewController.h; sourceTree = "<group>"; };
 		11F07F941BCF93970084DAA3 /* DFUserTimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFUserTimeLineViewController.m; sourceTree = "<group>"; };
-		11F07F991BCF95E40084DAA3 /* UserTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTimelineViewController.h; sourceTree = "<group>"; };
-		11F07F9A1BCF95E40084DAA3 /* UserTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTimelineViewController.m; sourceTree = "<group>"; };
 		11F07F9C1BCF9BBD0084DAA3 /* DFBaseTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFBaseTimeLineViewController.h; sourceTree = "<group>"; };
 		11F07F9D1BCF9BBE0084DAA3 /* DFBaseTimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFBaseTimeLineViewController.m; sourceTree = "<group>"; };
 		11F07FA41BCFA42D0084DAA3 /* DFBaseLineCellAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFBaseLineCellAdapter.h; sourceTree = "<group>"; };
@@ -157,6 +179,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1173E51D1C71B1F5004C9979 /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				1173E51E1C71B239004C9979 /* DFImagesSendViewController.h */,
+				1173E51F1C71B239004C9979 /* DFImagesSendViewController.m */,
+				1173E5211C71BAF0004C9979 /* DFPlainGridImageView.h */,
+				1173E5221C71BAF0004C9979 /* DFPlainGridImageView.m */,
+			);
+			path = Plugin;
+			sourceTree = "<group>";
+		};
 		11D758171BB7D43B00F554D7 = {
 			isa = PBXGroup;
 			children = (
@@ -183,8 +216,8 @@
 				11D758281BB7D43B00F554D7 /* AppDelegate.m */,
 				11D7582A1BB7D43B00F554D7 /* ViewController.h */,
 				11D7582B1BB7D43B00F554D7 /* ViewController.m */,
-				11F07F991BCF95E40084DAA3 /* UserTimelineViewController.h */,
-				11F07F9A1BCF95E40084DAA3 /* UserTimelineViewController.m */,
+				1173E4F51C71834D004C9979 /* UserViewController.h */,
+				1173E4F61C71834D004C9979 /* UserViewController.m */,
 				11D758301BB7D43B00F554D7 /* Images.xcassets */,
 				11D758231BB7D43B00F554D7 /* Supporting Files */,
 				11D7584E1BB7D69700F554D7 /* prefix.pch */,
@@ -211,6 +244,7 @@
 				11D758531BB7DA4100F554D7 /* Controller */,
 				11D7584F1BB7D81500F554D7 /* View */,
 				11D7584A1BB7D63A00F554D7 /* Item */,
+				1173E53F1C721977004C9979 /* DFTimelineView.h */,
 			);
 			path = DFTimelineView;
 			sourceTree = "<group>";
@@ -224,6 +258,8 @@
 				11D7584C1BB7D66300F554D7 /* DFBaseLineItem.m */,
 				11D758641BB7E12800F554D7 /* DFTextImageLineItem.h */,
 				11D758651BB7E12800F554D7 /* DFTextImageLineItem.m */,
+				1173E5391C7210EA004C9979 /* DFVideoLineItem.h */,
+				1173E53A1C7210EA004C9979 /* DFVideoLineItem.m */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -240,6 +276,8 @@
 				11D758511BB7D85D00F554D7 /* DFBaseLineCell.m */,
 				11D7585E1BB7DCF700F554D7 /* DFTextImageLineCell.h */,
 				11D7585F1BB7DCF700F554D7 /* DFTextImageLineCell.m */,
+				1173E5331C720F7C004C9979 /* DFVideoLineCell.h */,
+				1173E5341C720F7C004C9979 /* DFVideoLineCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -247,6 +285,7 @@
 		11D758531BB7DA4100F554D7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1173E51D1C71B1F5004C9979 /* Plugin */,
 				11F07F9C1BCF9BBD0084DAA3 /* DFBaseTimeLineViewController.h */,
 				11F07F9D1BCF9BBE0084DAA3 /* DFBaseTimeLineViewController.m */,
 				11D758551BB7DACC00F554D7 /* DFTimeLineViewController.h */,
@@ -280,6 +319,9 @@
 		11D758E31BB8E6C300F554D7 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				1173E5241C71BF63004C9979 /* AlbumAddBtn@2x.png */,
+				1173E4F11C71813E004C9979 /* Camera@2x.png */,
+				1173E4F21C71813E004C9979 /* Camera@3x.png */,
 				11D759061BBACC2700F554D7 /* AlbumComment@2x.png */,
 				11D759071BBACC2700F554D7 /* AlbumComment@3x.png */,
 				11D759081BBACC2700F554D7 /* AlbumLike@2x.png */,
@@ -355,6 +397,8 @@
 				11F07FA71BCFA42D0084DAA3 /* DFLineCellAdapterManager.m */,
 				11F07FA81BCFA42D0084DAA3 /* DFTextImageLineCellAdapter.h */,
 				11F07FA91BCFA42D0084DAA3 /* DFTextImageLineCellAdapter.m */,
+				1173E53C1C72150F004C9979 /* DFVideoLineCellAdapter.h */,
+				1173E53D1C72150F004C9979 /* DFVideoLineCellAdapter.m */,
 			);
 			path = Adapter;
 			sourceTree = "<group>";
@@ -437,6 +481,7 @@
 				TargetAttributes = {
 					11D7581F1BB7D43B00F554D7 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 9A9AWW95H4;
 					};
 				};
 			};
@@ -447,6 +492,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = 11D758171BB7D43B00F554D7;
 			productRefGroup = 11D758211BB7D43B00F554D7 /* Products */;
@@ -467,12 +513,15 @@
 				11D758EA1BB8E6C300F554D7 /* AlbumOperateMore@2x.png in Resources */,
 				11D7590B1BBACC2700F554D7 /* AlbumComment@2x.png in Resources */,
 				11D758311BB7D43B00F554D7 /* Images.xcassets in Resources */,
+				1173E4F41C71813E004C9979 /* Camera@3x.png in Resources */,
 				11D7590E1BBACC2700F554D7 /* AlbumLike@3x.png in Resources */,
 				11D7590F1BBACC2700F554D7 /* AlbumOperateMoreViewBkg@2x.png in Resources */,
 				11D758F31BB8EA5E00F554D7 /* LikeCmtBg@3x.png in Resources */,
 				11D758F21BB8EA5E00F554D7 /* LikeCmtBg@2x.png in Resources */,
 				11D758EC1BB8E6C300F554D7 /* AlbumOperateMoreHL@2x.png in Resources */,
 				11D758EB1BB8E6C300F554D7 /* AlbumOperateMore@3x.png in Resources */,
+				1173E5251C71BF63004C9979 /* AlbumAddBtn@2x.png in Resources */,
+				1173E4F31C71813E004C9979 /* Camera@2x.png in Resources */,
 				11D7590D1BBACC2700F554D7 /* AlbumLike@2x.png in Resources */,
 				11D758EF1BB8E6C300F554D7 /* Like@3x.png in Resources */,
 				11D758ED1BB8E6C300F554D7 /* AlbumOperateMoreHL@3x.png in Resources */,
@@ -538,14 +587,17 @@
 				11F07FC81BCFA98E0084DAA3 /* DFUserLineCellAdapterManager.m in Sources */,
 				11F07FC21BCFA84C0084DAA3 /* DFTextImageUserLineItem.m in Sources */,
 				11F07FBF1BCFA7D10084DAA3 /* DFTextImageUserLineCell.m in Sources */,
+				1173E5201C71B239004C9979 /* DFImagesSendViewController.m in Sources */,
 				11D7582C1BB7D43B00F554D7 /* ViewController.m in Sources */,
 				11D758C71BB8216C00F554D7 /* DFGridImageView.m in Sources */,
 				11F07FC51BCFA8BF0084DAA3 /* DFTextImageUserLineCellAdapter.m in Sources */,
 				11F07FAC1BCFA42D0084DAA3 /* DFTextImageLineCellAdapter.m in Sources */,
+				1173E53E1C72150F004C9979 /* DFVideoLineCellAdapter.m in Sources */,
 				11D758661BB7E12800F554D7 /* DFTextImageLineItem.m in Sources */,
 				11D758601BB7DCF700F554D7 /* DFTextImageLineCell.m in Sources */,
 				11F07FBC1BCFA7290084DAA3 /* DFBaseUserLineCell.m in Sources */,
 				11D758291BB7D43B00F554D7 /* AppDelegate.m in Sources */,
+				1173E5351C720F7C004C9979 /* DFVideoLineCell.m in Sources */,
 				11D758CA1BB8385100F554D7 /* DFImageUnitView.m in Sources */,
 				11F07F9E1BCF9BBE0084DAA3 /* DFBaseTimeLineViewController.m in Sources */,
 				11F07FB81BCFA6DE0084DAA3 /* DFBaseUserLineCellAdapter.m in Sources */,
@@ -553,13 +605,15 @@
 				11D758261BB7D43B00F554D7 /* main.m in Sources */,
 				11E157981BC0293900F2F99A /* DFFaceManager.m in Sources */,
 				11D758FB1BBA8C4C00F554D7 /* DFLineLikeItem.m in Sources */,
+				1173E5231C71BAF0004C9979 /* DFPlainGridImageView.m in Sources */,
 				11F07F951BCF93970084DAA3 /* DFUserTimeLineViewController.m in Sources */,
+				1173E53B1C7210EA004C9979 /* DFVideoLineItem.m in Sources */,
 				110D424D1BCF54CA00081824 /* MLClickColorLinkLabel.m in Sources */,
 				11D759051BBAC8DD00F554D7 /* DFLikeCommentToolbar.m in Sources */,
 				11D7584D1BB7D66300F554D7 /* DFBaseLineItem.m in Sources */,
 				11D758F71BB8F36C00F554D7 /* DFLikeCommentView.m in Sources */,
 				11E157CF1BC8F6E500F2F99A /* CommentInputView.m in Sources */,
-				11F07F9B1BCF95E40084DAA3 /* UserTimelineViewController.m in Sources */,
+				1173E4F71C71834D004C9979 /* UserViewController.m in Sources */,
 				11F07FAA1BCFA42D0084DAA3 /* DFBaseLineCellAdapter.m in Sources */,
 				11D758521BB7D85D00F554D7 /* DFBaseLineCell.m in Sources */,
 				11F07FB41BCFA6B80084DAA3 /* DFBaseUserLineItem.m in Sources */,
@@ -656,7 +710,9 @@
 			baseConfigurationReference = 22443A8775E23D18891FEAC9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = DFTimelineView/prefix.pch;
 				INFOPLIST_FILE = DFTimelineView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -670,7 +726,9 @@
 			baseConfigurationReference = A2A89A39EA353891C22903B7 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = DFTimelineView/prefix.pch;
 				INFOPLIST_FILE = DFTimelineView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

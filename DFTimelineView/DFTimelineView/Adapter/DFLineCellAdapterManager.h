@@ -14,9 +14,9 @@
 
 +(instancetype) sharedInstance;
 
--(void) registerAdapter:(LineItemType) itemType adapter:(DFBaseLineCellAdapter *) adapter;
+-(void) registerAdapter:(Class) itemClass adapter:(DFBaseLineCellAdapter *) adapter;
 
--(DFBaseLineCellAdapter *) getAdapter:(LineItemType) itemType;
+-(DFBaseLineCellAdapter *) getAdapter:(Class) itemClass;
 
 
 @end

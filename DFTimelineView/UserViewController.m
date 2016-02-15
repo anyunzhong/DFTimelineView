@@ -6,10 +6,10 @@
 //  Copyright (c) 2015年 Datafans, Inc. All rights reserved.
 //
 
-#import "UserTimelineViewController.h"
+#import "UserViewController.h"
 #import "DFTextImageUserLineItem.h"
 
-@implementation UserTimelineViewController
+@implementation UserViewController
 
 
 -(void)viewDidLoad

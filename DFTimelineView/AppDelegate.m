@@ -10,8 +10,9 @@
 
 #import "ViewController.h"
 
+#import "UserViewController.h"
 
-#import "UserTimelineViewController.h"
+#import "DFImagesSendViewController.h"
 
 #define NavBarBgColor [UIColor colorWithRed:24/255.0 green:30/255.0 blue:43/255.0 alpha:1.0]
 #define NavBarFgColor [UIColor whiteColor]
@@ -23,8 +24,7 @@
 
 @property (nonatomic, strong) ViewController *controller;
 
-
-@property (nonatomic, strong) UserTimelineViewController *userTimelineController;
+@property (nonatomic, strong) UserViewController *userTimelineController;
 
 @end
 
@@ -35,8 +35,10 @@
     
     _controller = [[ViewController alloc] init];
     
-    _userTimelineController = [[UserTimelineViewController alloc] init];
+    _userTimelineController = [[UserViewController alloc] init];
     
+    
+    //DFImagesSendViewController *imageSendController = [[DFImagesSendViewController alloc] initWithImages:[NSArray array]];
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:_controller];
     

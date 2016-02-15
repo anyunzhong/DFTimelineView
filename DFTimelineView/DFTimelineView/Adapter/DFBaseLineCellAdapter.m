@@ -7,6 +7,7 @@
 //
 
 #import "DFBaseLineCellAdapter.h"
+#import "DFBaseLineCell.h"
 
 @implementation DFBaseLineCellAdapter
 
@@ -34,9 +35,9 @@
     return nil;
 }
 
--(void)updateCell:(UITableViewCell *)cell message:(DFBaseLineItem *)item
+-(void)updateCell:(DFBaseLineCell *)cell message:(DFBaseLineItem *)item
 {
-    
+    [cell updateWithItem:item];
 }
 
 @end

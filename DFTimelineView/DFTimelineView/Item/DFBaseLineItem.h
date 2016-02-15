@@ -7,18 +7,10 @@
 //
 
 
-typedef NS_ENUM(NSUInteger, LineItemType){
-    LineItemTypeTextImage,
-    LineItemTypeShare,
-};
-
-
 @interface DFBaseLineItem : NSObject
 
 //时间轴itemID 需要全局唯一 一般服务器下发
 @property (nonatomic, assign) long long itemId;
-
-@property (nonatomic, assign) LineItemType itemType;
 
 @property (nonatomic, assign) CGFloat cellHeight;
 

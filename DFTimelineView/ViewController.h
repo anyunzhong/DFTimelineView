@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 Datafans, Inc. All rights reserved.
 //
 
-#import "DFTimeLineViewController.h"
+#import "DFTimelineView.h"
 
 @interface ViewController : DFTimeLineViewController
 

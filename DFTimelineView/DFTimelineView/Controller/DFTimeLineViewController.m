@@ -10,17 +10,25 @@
 #import "DFLineCellAdapterManager.h"
 
 #import "DFTextImageLineCellAdapter.h"
+#import "DFVideoLineCellAdapter.h"
 #import "DFBaseLineCell.h"
 #import "DFLineLikeItem.h"
 #import "DFLineCommentItem.h"
-
-
-
 #import "CommentInputView.h"
 
+#import "MMPopupItem.h"
+#import "MMSheetView.h"
+#import "MMPopupWindow.h"
 
+#import "TZImagePickerController.h"
 
-@interface DFTimeLineViewController ()<DFLineCellDelegate, CommentInputViewDelegate>
+#import "DFImagesSendViewController.h"
+#import "DFVideoCaptureController.h"
+
+#import "DFTextImageLineItem.h"
+#import "DFVideoLineItem.h"
+
+@interface DFTimeLineViewController ()<DFLineCellDelegate, CommentInputViewDelegate, TZImagePickerControllerDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate, DFImagesSendViewControllerDelegate,DFVideoCaptureControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *items;
 
@@ -34,6 +42,7 @@
 
 @property (assign, nonatomic) long long currentItemId;
 
+@property (nonatomic, strong) UIImagePickerController *pickerController;
 
 @end
 
@@ -47,6 +56,15 @@
     self = [super init];
     if (self) {
         
+        
+        [[MMPopupWindow sharedWindow] cacheWindow];
+        [MMPopupWindow sharedWindow].touchWildToHide = YES;
+        
+        MMSheetViewConfig *sheetConfig = [MMSheetViewConfig globalConfig];
+        sheetConfig.defaultTextCancel = @"取消";
+
+        
+        
         _items = [NSMutableArray array];
         
         _itemDic = [NSMutableDictionary dictionary];
@@ -58,7 +76,12 @@
         DFLineCellAdapterManager *manager = [DFLineCellAdapterManager sharedInstance];
         
         DFTextImageLineCellAdapter *textImageCellAdapter = [[DFTextImageLineCellAdapter alloc] init];
-        [manager registerAdapter:LineItemTypeTextImage adapter:textImageCellAdapter];
+        [manager registerAdapter:[DFTextImageLineItem class] adapter:textImageCellAdapter];
+        
+        DFVideoLineCellAdapter *videoCellAdapter = [[DFVideoLineCellAdapter alloc] init];
+        [manager registerAdapter:[DFVideoLineItem class] adapter:videoCellAdapter];
+        
+        
         
     }
     return self;
@@ -127,11 +150,69 @@
 }
 
 
+#pragma mark - BarButtonItem
+
+
+-(UIBarButtonItem *)rightBarButtonItem
+{
+    return [UIBarButtonItem icon:@"Camera" selector:@selector(onClickCamera:) target:self];
+}
 
 
 
+-(void) onClickCamera:(id) sender
+{
+    MMPopupItemHandler block = ^(NSInteger index){
+        switch (index) {
+            case 0:
+                [self captureViedo];
+                break;
+            case 1:
+                [self takePhoto];
+                break;
+            case 2:
+                [self pickFromAlbum];
+                break;
+            default:
+                break;
+        }
+    };
+    
+    NSArray *items = @[MMItemMake(@"小视频", MMItemTypeNormal, block),
+      MMItemMake(@"拍照", MMItemTypeNormal, block),
+      MMItemMake(@"从相册选取", MMItemTypeNormal, block)];
+    
+    MMSheetView *sheetView = [[MMSheetView alloc] initWithTitle:@"" items:items];
+    
+    [sheetView show];
+}
 
 
+-(void) captureViedo
+{
+    DFVideoCaptureController *controller = [[DFVideoCaptureController alloc] init];
+    controller.delegate = self;
+    [self presentViewController:controller animated:YES completion:^{
+        
+    }];
+
+}
+
+
+-(void) takePhoto
+{
+    _pickerController = [[UIImagePickerController alloc] init];
+    _pickerController.delegate = self;
+    _pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [self presentViewController:_pickerController animated:YES completion:nil];
+}
+
+-(void) pickFromAlbum
+{
+    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];
+    imagePickerVc.allowPickingVideo = NO;
+    [self presentViewController:imagePickerVc animated:YES completion:nil];
+}
 
 #pragma mark - TableView DataSource
 
@@ -147,14 +228,14 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DFBaseLineItem *item = [_items objectAtIndex:indexPath.row];
-    DFBaseLineCellAdapter *adapter = [self getAdapter:item.itemType];
+    DFBaseLineCellAdapter *adapter = [self getAdapter:[item class]];
     return [adapter getCellHeight:item];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DFBaseLineItem *item = [_items objectAtIndex:indexPath.row];
-    DFBaseLineCellAdapter *adapter = [self getAdapter:item.itemType];
+    DFBaseLineCellAdapter *adapter = [self getAdapter:[item class]];
     
     UITableViewCell *cell = [adapter getCell:tableView];
     
@@ -186,23 +267,41 @@
 
 #pragma mark - Method
 
--(DFBaseLineCellAdapter *) getAdapter:(LineItemType)itemType
+-(DFBaseLineCellAdapter *) getAdapter:(Class)itemClass
 {
     DFLineCellAdapterManager *manager = [DFLineCellAdapterManager sharedInstance];
-    return [manager getAdapter:itemType];
+    return [manager getAdapter:itemClass];
 }
 
 -(void)addItem:(DFBaseLineItem *)item
 {
+    [self insertItem:item index:_items.count];
+}
+
+-(void) addItemTop:(DFBaseLineItem *) item
+{
+    [self insertItem:item index:0];
+}
+
+-(void) insertItem:(DFBaseLineItem *) item index:(NSUInteger)index
+{
     [self genLikeAttrString:item];
     [self genCommentAttrString:item];
     
-    [_items addObject:item];
+    [_items insertObject:item atIndex:index];
     
-
+    
     [_itemDic setObject:item forKey:[NSNumber numberWithLongLong:item.itemId]];
     
     [self.tableView reloadData];
+}
+
+
+-(void)deleteItem:(long long)itemId
+{
+    DFBaseLineItem *item = [self getItem:itemId];
+    [_items removeObject:item];
+    [_itemDic removeObjectForKey:[NSNumber numberWithLongLong:item.itemId]];
 }
 
 -(DFBaseLineItem *) getItem:(long long) itemId
@@ -375,5 +474,70 @@
 }
 
 
+#pragma mark - TZImagePickerControllerDelegate
+
+
+- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *) photos sourceAssets:(NSArray *)assets
+{
+    NSLog(@"%@", photos);
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        DFImagesSendViewController *controller = [[DFImagesSendViewController alloc] initWithImages:photos];
+        controller.delegate = self;
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+        [self presentViewController:navController animated:YES completion:nil];
+    });
+   
+    
+}
+- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *) photos sourceAssets:(NSArray *)assets infos:(NSArray<NSDictionary *> *)infos
+{
+
+}
+
+
+#pragma mark - UIImagePickerControllerDelegate
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [_pickerController dismissViewControllerAnimated:YES completion:nil];
+    
+    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    
+    DFImagesSendViewController *controller = [[DFImagesSendViewController alloc] initWithImages:@[image]];
+    controller.delegate = self;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+    [self presentViewController:navController animated:YES completion:nil];
+
+    
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [_pickerController dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
+#pragma mark - DFImagesSendViewControllerDelegate
+
+-(void)onSendTextImage:(NSString *)text images:(NSArray *)images
+{
+    
+}
+
+#pragma mark - DFVideoCaptureControllerDelegate
+-(void)onCaptureVideo:(NSString *)filePath screenShot:(UIImage *)screenShot
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self onSendVideo:@"" videoPath:filePath screenShot:screenShot];
+    });
+}
+
+-(void)onSendVideo:(NSString *)text videoPath:(NSString *)videoPath screenShot:(UIImage *)screenShot
+{
+    
+}
 
 @end

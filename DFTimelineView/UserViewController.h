@@ -8,6 +8,6 @@
 
 #import "DFUserTimeLineViewController.h"
 
-@interface UserTimelineViewController : DFUserTimeLineViewController
+@interface UserViewController : DFUserTimeLineViewController
 
 @end

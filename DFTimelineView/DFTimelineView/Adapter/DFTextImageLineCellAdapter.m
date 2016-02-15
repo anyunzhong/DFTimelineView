@@ -29,10 +29,5 @@
     return cell;
 }
 
--(void)updateCell:(DFBaseLineCell *)cell message:(DFBaseLineItem *)item
-{
-    [cell updateWithItem:item];
-}
-
 
 @end
