@@ -24,8 +24,8 @@ DFTimelineView
 [screenshot7]: http://file-cdn.datafans.net/github/dftimelineview/7.jpg
 [screenshot8_thumb]: http://file-cdn.datafans.net/github/dftimelineview/8.jpg_250.jpeg
 [screenshot8]: http://file-cdn.datafans.net/github/dftimelineview/8.jpg
-[screenshot9_thumb]: http://file-cdn.datafans.net/github/dftimelineview/9.jpg_250.jpeg
-[screenshot9]: http://file-cdn.datafans.net/github/dftimelineview/9.jpg
+[screenshot9_thumb]: http://file-cdn.datafans.net/github/dftimelineview/10.jpg_250.jpeg
+[screenshot9]: http://file-cdn.datafans.net/github/dftimelineview/10.jpg
 
 
 Installation
