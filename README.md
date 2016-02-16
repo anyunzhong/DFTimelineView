@@ -4,7 +4,7 @@ DFTimelineView
 [![License](https://img.shields.io/cocoapods/l/DFTimelineView.svg?style=flat)](http://cocoapods.org/pods/DFTimelineView)
 [![Platform](https://img.shields.io/cocoapods/p/DFTimelineView.svg?style=flat)](http://cocoapods.org/pods/DFTimelineView)
 
-仿微信朋友圈 支持**图文**和**短视频**
+仿微信朋友圈 仿微信朋友圈时间轴 支持发送图文 短视频 赞 评论 图片大图浏览 视频预览
 
 [![Alt][screenshot1_thumb]][screenshot1]    [![Alt][screenshot2_thumb]][screenshot2]    [![Alt][screenshot3_thumb]][screenshot3]    [![Alt][screenshot4_thumb]][screenshot4]    [![Alt][screenshot5_thumb]][screenshot5]    [![Alt][screenshot6_thumb]][screenshot6]    [![Alt][screenshot7_thumb]][screenshot7]    [![Alt][screenshot8_thumb]][screenshot8]    [![Alt][screenshot9_thumb]][screenshot9]
 
@@ -27,6 +27,9 @@ DFTimelineView
 [screenshot9_thumb]: http://file-cdn.datafans.net/github/dftimelineview/10.jpg_250.jpeg
 [screenshot9]: http://file-cdn.datafans.net/github/dftimelineview/10.jpg
 
+Android版
+============
+[https://github.com/anyunzhong/AndroidTimelineView](https://github.com/anyunzhong/AndroidTimelineView)
 
 Installation
 ============
@@ -155,6 +158,87 @@ Usage
 
 ```
 
+###### 下拉刷新和上拉更多
+```obj-c
+-(void) refresh
+{
+    //下来刷新 从服务器请求最新数据
+    //请求完成后结束刷新
+    [self endRefresh];
+}
+
+
+
+-(void) loadMore
+{
+    //加载更多 从服务器请求数据
+    //请求完成后结束上拉更多
+    [self endLoadMore];
+}
+
+```
+
+###### 设置封面 用户头像 昵称 签名
+```obj-c
+    NSString *coverUrl = [NSString stringWithFormat:@"http://file-cdn.datafans.net/temp/12.jpg_%dx%d.jpeg", (int)self.coverWidth, (int)self.coverHeight];
+    [self setCover:coverUrl];
+    
+    NSString *avatarUrl = [NSString stringWithFormat:@"http://file-cdn.datafans.net/avatar/1.jpeg_%dx%d.jpeg", (int)self.userAvatarSize, (int)self.userAvatarSize];
+    [self setUserAvatar:avatarUrl];
+    
+    [self setUserNick:@"Allen"];
+    
+    [self setUserSign:@"梦想还是要有的 万一实现了呢"];
+```
+
+###### 用户评论和点赞后回调
+```obj-c
+-(void)onCommentCreate:(long long)commentId text:(NSString *)text itemId:(long long) itemId
+{
+
+    DFLineCommentItem *commentItem = [[DFLineCommentItem alloc] init];
+    commentItem.commentId = [[NSDate date] timeIntervalSince1970];
+    commentItem.userId = 10098;
+    commentItem.userNick = @"金三胖";
+    commentItem.text = text;
+    [self addCommentItem:commentItem itemId:itemId replyCommentId:commentId];
+        
+    //接下来可以请求服务器操作数据 也可以先请求服务器后再刷新界面
+    
+}
+
+-(void)onLike:(long long)itemId
+{
+    //点赞
+    DFLineLikeItem *likeItem = [[DFLineLikeItem alloc] init];
+    likeItem.userId = 10092;
+    likeItem.userNick = @"琅琊榜";
+    [self addLikeItem:likeItem itemId:itemId];
+    
+    //接下来可以请求服务器操作数据 也可以先请求服务器后再刷新界面
+    
+}
+
+```
+
+
+###### 点击头像
+```obj-c
+-(void)onClickUser:(NSUInteger)userId
+{
+    //点击左边头像 或者 点击评论和赞的用户昵称
+    //例如去到用户单独的时间轴 也可以自定义到其它地方
+    UserViewController *controller = [[UserViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+
+-(void)onClickHeaderUserAvatar
+{
+    [self onClickUser:[当前用户ID]];
+}
+
+```
 
 Extend
 ===============
