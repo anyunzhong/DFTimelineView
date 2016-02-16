@@ -243,14 +243,79 @@ Usage
 Extend
 ===============
 
-###### 增加类型
+###### STEP1: 扩展新类型 继承 DFBaseLineItem 例如扩展一个分享文章的类型
 
+```obj-c
+@interface DFShareLineItem : DFBaseLineItem
+
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) UIImage *digest;
+...................
+@end
+```
+
+###### STEP2: 扩展CELL 继承 DFBaseLineCell 例如扩展一个分享文章的CELL为例
+
+```obj-c
+@implementation DFShareLineCell
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+       //初始化相关View
+       
+       UILabel *label = ......
+       
+       [self.bodyView addSubview:label]; 
+       //bodyView只中间部分的容器 比如图文就是文字+九宫格图片部分 视频就是文字+视频区域
+       //注意：不能把view直接加到cell的contentView上面
+    }
+    return self;
+}
+
+
+//更新数据 必需实现
+-(void)updateWithItem:(DFShareLineItem *)item
+{
+    [super updateWithItem:item];
+    
+    //将数据更新到相关view上 同时计算出总的高度
+    
+    //最后更新父容器的高度
+    [self updateBodyView:(计算出的高度)];
+    
+}
+
+//通过数据计算出cell的高度
+-(CGFloat)getCellHeight:(DFShareLineItem *)item
+{
+
+    CGFloat height = [super getCellHeight:item]; //父容器公共部分需要的高度
+
+    return height + body部分的高度;
+}
+
+```
+
+###### STEP3: 将实体和cell关联起来 加载数据的时候 通过实体去找对应的cell
+**注意:**  需要在数据加载之前就注册好
+```obj-c
+ DFLineCellManager *manager = [DFLineCellManager sharedInstance];
+ [manager registerCell:[DFShareLineItem class] cellClass:[DFShareLineCell class]];
+
+```
 
 TODO
 ===============
+* 性能优化
+* 用户时间轴完善
+* 增加其它新的类型
 
 ChangeLog
 ===============
+v1.3.0 重构cell管理模式 点击视频全屏播放
+
 v1.2.9 增加发送图片 发送短视频
 
 v1.2.8 加入pod
