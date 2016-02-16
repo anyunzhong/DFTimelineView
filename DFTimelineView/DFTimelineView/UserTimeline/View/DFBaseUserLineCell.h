@@ -27,13 +27,12 @@
 
 @property (nonatomic, strong) UIButton *bodyView;
 
+
 -(void) updateWithItem:(DFBaseUserLineItem *) item;
+
+-(CGFloat) getCellHeight:(DFBaseUserLineItem *) item;
 
 
 -(void) updateBodyWithHeight:(CGFloat)height;
-
-
-+(CGFloat) getCellHeight:(DFBaseUserLineItem *) item;
-
 
 @end

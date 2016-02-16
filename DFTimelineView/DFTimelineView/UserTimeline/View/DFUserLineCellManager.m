@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 Datafans, Inc. All rights reserved.
 //
 
-#import "DFLineCellAdapterManager.h"
+#import "DFUserLineCellManager.h"
 
-@interface DFLineCellAdapterManager()
+@interface DFUserLineCellManager()
 
 @property (strong, nonatomic) NSMutableDictionary *dic;
 
@@ -16,9 +16,9 @@
 
 
 
-@implementation DFLineCellAdapterManager
+@implementation DFUserLineCellManager
 
-static DFLineCellAdapterManager  *_manager=nil;
+static DFUserLineCellManager  *_manager=nil;
 
 
 #pragma mark - Lifecycle
@@ -27,7 +27,7 @@ static DFLineCellAdapterManager  *_manager=nil;
 {
     @synchronized(self){
         if (_manager == nil) {
-            _manager = [[DFLineCellAdapterManager alloc] init];
+            _manager = [[DFUserLineCellManager alloc] init];
         }
     }
     return _manager;
@@ -39,6 +39,8 @@ static DFLineCellAdapterManager  *_manager=nil;
     self = [super init];
     if (self) {
         _dic = [NSMutableDictionary dictionary];
+        
+        [self registerCell:[DFTextImageUserLineItem class] cellClass:[DFTextImageUserLineCell class]];
     }
     return self;
 }
@@ -48,12 +50,13 @@ static DFLineCellAdapterManager  *_manager=nil;
 #pragma mark - Method
 
 
--(void) registerAdapter:(Class) itemClass adapter:(DFBaseLineCellAdapter *) adapter{
-    [_dic setObject:adapter forKey:NSStringFromClass(itemClass)];
+-(void) registerCell:(Class) itemClass cellClass:(Class) cellClass
+{
+    [_dic setObject:[[cellClass alloc] init]  forKey:NSStringFromClass(itemClass)];
 }
 
 
--(DFBaseLineCellAdapter *) getAdapter:(Class) itemClass
+-(DFBaseUserLineCell *) getCell:(Class) itemClass
 {
     return [_dic objectForKey:NSStringFromClass(itemClass)];
 }

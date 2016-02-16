@@ -7,7 +7,6 @@
 //
 
 #import "UserViewController.h"
-#import "DFTextImageUserLineItem.h"
 
 @implementation UserViewController
 
@@ -17,7 +16,6 @@
     [super viewDidLoad];
     
     [self initData];
-    
     
     [self setHeader];
     
@@ -87,42 +85,6 @@
     [self addItem:item5];
 }
 
--(void) startRefresh
-{
-    NSLog(@"refresh");
-    
-    [self endRefresh];
-}
-
-
-
-
--(void) startLoadMore
-{
-    NSLog(@"loadmore");
-    
-    [self endLoadMore];
-}
-
-
-
--(NSString *) getCoverUrl:(CGFloat) width height:(CGFloat) height
-{
-    return [NSString stringWithFormat:@"http://file-cdn.datafans.net/temp/12.jpg_%dx%d.jpeg", (int)width, (int)height];
-}
-
-
--(NSString *) getAvatarUrl:(CGFloat) width height:(CGFloat) height
-{
-    return [NSString stringWithFormat:@"http://file-cdn.datafans.net/avatar/1.jpeg_%dx%d.jpeg", (int)width, (int)height];
-}
-
-
-
--(NSString *) getUserNick
-{
-    return @"Allen";
-}
 
 
 -(void) refresh

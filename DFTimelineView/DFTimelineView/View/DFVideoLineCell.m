@@ -18,6 +18,8 @@
 #import "DFToolUtil.h"
 #import "DFSandboxHelper.h"
 
+#import "DFVideoPlayController.h"
+
 #define TextFont [UIFont systemFontOfSize:14]
 
 #define TextLineHeight 1.2f
@@ -27,11 +29,15 @@
 #define VideoWidth (BodyMaxWidth)*0.9
 #define VideoHeight (VideoWidth)*0.7
 
+#define VideoCell @"timeline_cell_video"
+
 @interface DFVideoLineCell()<DFVideoDecoderDelegate>
 
 @property (strong, nonatomic) MLLinkLabel *textContentLabel;
 
 @property (strong, nonatomic) UIImageView *videoView;
+
+@property (strong, nonatomic) UIButton *clickButton;
 
 @property (strong, nonatomic) DFVideoLineItem *videoItem;
 
@@ -89,8 +95,23 @@
         
         _videoView = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
         [self.bodyView addSubview:_videoView];
+        
+        _clickButton = [[UIButton alloc] initWithFrame:_videoView.frame];
+        [self.bodyView addSubview:_clickButton];
+        [_clickButton addTarget:self action:@selector(onClickVideo:) forControlEvents:UIControlEventTouchUpInside];
     }
     
+}
+
+
+-(void) onClickVideo:(id) sender
+{
+    if (_videoItem.localVideoPath == nil || [_videoItem.localVideoPath isEqualToString:@""]) {
+        return;
+    }
+    UINavigationController *controller = [self getController];
+    DFVideoPlayController *playController = [[DFVideoPlayController alloc] initWithFile:_videoItem.localVideoPath];
+    [controller presentViewController:playController animated:YES completion:nil];
 }
 
 
@@ -129,7 +150,7 @@
     }
     
     NSFileManager *manager = [NSFileManager defaultManager];
-    if (_videoItem.videoUrl != nil) {
+    if (_videoItem.videoUrl != nil && ![_videoItem.videoUrl isEqualToString:@""]) {
         
         NSString *key = [DFToolUtil md5:_videoItem.videoUrl];
         NSString *dirPath = [NSString stringWithFormat:@"%@/%@",[DFSandboxHelper getDocPath], @"/videoCache/"];
@@ -195,10 +216,7 @@
     });
 }
 
-
-
-
-+(CGFloat)getCellHeight:(DFVideoLineItem *)item
+-(CGFloat)getCellHeight:(DFVideoLineItem *)item
 {
     if (item.attrText == nil) {
         item.attrText  = [item.text expressionAttributedStringWithExpression:[[DFFaceManager sharedInstance] sharedMLExpression]];
@@ -206,7 +224,7 @@
     
     CGSize textSize = [MLLinkLabel getViewSize:item.attrText maxWidth:BodyMaxWidth font:TextFont lineHeight:TextLineHeight lines:0];
     
-    CGFloat height = [DFBaseLineCell getCellHeight:item];
+    CGFloat height = [super getCellHeight:item];
     
     return height+textSize.height + VideoHeight+TextVideoSpace;
     

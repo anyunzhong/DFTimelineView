@@ -123,9 +123,9 @@
 
 
 
-+(CGFloat) getCellHeight:(DFTextImageUserLineItem *) item
+-(CGFloat) getCellHeight:(DFTextImageUserLineItem *) item
 {
-    return [DFBaseUserLineCell getCellHeight:item] + TextImageCellHeight;
+    return [super getCellHeight:item] + TextImageCellHeight;
 }
 
 @end

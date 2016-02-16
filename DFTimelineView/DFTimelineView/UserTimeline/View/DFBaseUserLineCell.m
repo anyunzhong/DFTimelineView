@@ -129,7 +129,7 @@
     
 }
 
-+(CGFloat) getCellHeight:(DFBaseUserLineItem *) item;
+-(CGFloat) getCellHeight:(DFBaseUserLineItem *) item;
 {
     return item.bShowTime? TimeDayLabelTopMargin+10:10;
 }

@@ -315,7 +315,22 @@
     
 }
 
-+(CGFloat)getCellHeight:(DFBaseLineItem *)item
+-(CGFloat)getReuseableCellHeight:(DFBaseLineItem *)item
+{
+    if (item.cellHeight != 0) {
+        NSLog(@"重用高度 %f", item.cellHeight);
+        return item.cellHeight;
+    }
+    CGFloat height = [self getCellHeight:item];
+    item.cellHeight = height;
+    NSLog(@"计算高度 %f", item.cellHeight);
+    
+    return height;
+}
+
+
+
+-(CGFloat)getCellHeight:(DFBaseLineItem *)item
 {
     //基本
     CGFloat height = Margin + UserAvatarSize;
@@ -337,6 +352,18 @@
 }
 
 
+-(DFBaseLineCell *)getCell:(UITableView *)tableView
+{
+    return nil;
+}
+
+
+-(UINavigationController *)getController
+{
+    UITableView *tableView = (UITableView *)self.superview.superview;
+    UIViewController *controller = (UIViewController *)tableView.dataSource;
+    return controller.navigationController;
+}
 
 
 -(void) onClickUserAvatar:(id)sender

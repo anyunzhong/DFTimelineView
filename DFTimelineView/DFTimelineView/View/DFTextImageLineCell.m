@@ -18,6 +18,8 @@
 
 #import "DFFaceManager.h"
 
+#define TextImageCell @"timeline_cell_text_image"
+
 
 #define TextFont [UIFont systemFontOfSize:14]
 
@@ -121,7 +123,7 @@
 }
 
 
-+(CGFloat)getCellHeight:(DFTextImageLineItem *)item
+-(CGFloat)getCellHeight:(DFTextImageLineItem *)item
 {
     if (item.attrText == nil) {
         item.attrText  = [item.text expressionAttributedStringWithExpression:[[DFFaceManager sharedInstance] sharedMLExpression]];
@@ -129,7 +131,7 @@
 
     CGSize textSize = [MLLinkLabel getViewSize:item.attrText maxWidth:BodyMaxWidth font:TextFont lineHeight:TextLineHeight lines:0];
     
-    CGFloat height = [DFBaseLineCell getCellHeight:item];
+    CGFloat height = [super getCellHeight:item];
     
     CGFloat gridHeight = [DFGridImageView getHeight:item.thumbImages maxWidth:GridMaxWidth oneImageWidth:item.width oneImageHeight:item.height];
 

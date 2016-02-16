@@ -16,7 +16,13 @@
 		1173E5251C71BF63004C9979 /* AlbumAddBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1173E5241C71BF63004C9979 /* AlbumAddBtn@2x.png */; };
 		1173E5351C720F7C004C9979 /* DFVideoLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1173E5341C720F7C004C9979 /* DFVideoLineCell.m */; };
 		1173E53B1C7210EA004C9979 /* DFVideoLineItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1173E53A1C7210EA004C9979 /* DFVideoLineItem.m */; };
-		1173E53E1C72150F004C9979 /* DFVideoLineCellAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1173E53D1C72150F004C9979 /* DFVideoLineCellAdapter.m */; };
+		1173E5661C72CEAE004C9979 /* DFUserTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1173E5581C72CEAD004C9979 /* DFUserTimeLineViewController.m */; };
+		1173E5671C72CEAE004C9979 /* DFBaseUserLineItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1173E55B1C72CEAD004C9979 /* DFBaseUserLineItem.m */; };
+		1173E5681C72CEAE004C9979 /* DFTextImageUserLineItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1173E55D1C72CEAD004C9979 /* DFTextImageUserLineItem.m */; };
+		1173E5691C72CEAE004C9979 /* DFBaseUserLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1173E5601C72CEAD004C9979 /* DFBaseUserLineCell.m */; };
+		1173E56A1C72CEAE004C9979 /* DFTextImageUserLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1173E5621C72CEAD004C9979 /* DFTextImageUserLineCell.m */; };
+		1173E56D1C72F0B6004C9979 /* DFLineCellManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1173E56C1C72F0B6004C9979 /* DFLineCellManager.m */; };
+		1173E5701C72F451004C9979 /* DFUserLineCellManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1173E56F1C72F451004C9979 /* DFUserLineCellManager.m */; };
 		11D758261BB7D43B00F554D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D758251BB7D43B00F554D7 /* main.m */; };
 		11D758291BB7D43B00F554D7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D758281BB7D43B00F554D7 /* AppDelegate.m */; };
 		11D7582C1BB7D43B00F554D7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D7582B1BB7D43B00F554D7 /* ViewController.m */; };
@@ -47,18 +53,7 @@
 		11D7590F1BBACC2700F554D7 /* AlbumOperateMoreViewBkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11D7590A1BBACC2700F554D7 /* AlbumOperateMoreViewBkg@2x.png */; };
 		11E157981BC0293900F2F99A /* DFFaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E157971BC0293900F2F99A /* DFFaceManager.m */; };
 		11E157CF1BC8F6E500F2F99A /* CommentInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E157CE1BC8F6E500F2F99A /* CommentInputView.m */; };
-		11F07F951BCF93970084DAA3 /* DFUserTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F07F941BCF93970084DAA3 /* DFUserTimeLineViewController.m */; };
 		11F07F9E1BCF9BBE0084DAA3 /* DFBaseTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F07F9D1BCF9BBE0084DAA3 /* DFBaseTimeLineViewController.m */; };
-		11F07FAA1BCFA42D0084DAA3 /* DFBaseLineCellAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F07FA51BCFA42D0084DAA3 /* DFBaseLineCellAdapter.m */; };
-		11F07FAB1BCFA42D0084DAA3 /* DFLineCellAdapterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F07FA71BCFA42D0084DAA3 /* DFLineCellAdapterManager.m */; };
-		11F07FAC1BCFA42D0084DAA3 /* DFTextImageLineCellAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F07FA91BCFA42D0084DAA3 /* DFTextImageLineCellAdapter.m */; };
-		11F07FB41BCFA6B80084DAA3 /* DFBaseUserLineItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F07FB31BCFA6B80084DAA3 /* DFBaseUserLineItem.m */; };
-		11F07FB81BCFA6DE0084DAA3 /* DFBaseUserLineCellAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F07FB71BCFA6DE0084DAA3 /* DFBaseUserLineCellAdapter.m */; };
-		11F07FBC1BCFA7290084DAA3 /* DFBaseUserLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F07FBB1BCFA7290084DAA3 /* DFBaseUserLineCell.m */; };
-		11F07FBF1BCFA7D10084DAA3 /* DFTextImageUserLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F07FBE1BCFA7D10084DAA3 /* DFTextImageUserLineCell.m */; };
-		11F07FC21BCFA84C0084DAA3 /* DFTextImageUserLineItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F07FC11BCFA84C0084DAA3 /* DFTextImageUserLineItem.m */; };
-		11F07FC51BCFA8BF0084DAA3 /* DFTextImageUserLineCellAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F07FC41BCFA8BF0084DAA3 /* DFTextImageUserLineCellAdapter.m */; };
-		11F07FC81BCFA98E0084DAA3 /* DFUserLineCellAdapterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F07FC71BCFA98E0084DAA3 /* DFUserLineCellAdapterManager.m */; };
 		FDBBC1BA891E2AED5A17C223 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7388AAC42C4B4A3183F925 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -78,9 +73,21 @@
 		1173E5341C720F7C004C9979 /* DFVideoLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFVideoLineCell.m; sourceTree = "<group>"; };
 		1173E5391C7210EA004C9979 /* DFVideoLineItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFVideoLineItem.h; sourceTree = "<group>"; };
 		1173E53A1C7210EA004C9979 /* DFVideoLineItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFVideoLineItem.m; sourceTree = "<group>"; };
-		1173E53C1C72150F004C9979 /* DFVideoLineCellAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFVideoLineCellAdapter.h; sourceTree = "<group>"; };
-		1173E53D1C72150F004C9979 /* DFVideoLineCellAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFVideoLineCellAdapter.m; sourceTree = "<group>"; };
 		1173E53F1C721977004C9979 /* DFTimelineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DFTimelineView.h; sourceTree = "<group>"; };
+		1173E5571C72CEAD004C9979 /* DFUserTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFUserTimeLineViewController.h; sourceTree = "<group>"; };
+		1173E5581C72CEAD004C9979 /* DFUserTimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFUserTimeLineViewController.m; sourceTree = "<group>"; };
+		1173E55A1C72CEAD004C9979 /* DFBaseUserLineItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFBaseUserLineItem.h; sourceTree = "<group>"; };
+		1173E55B1C72CEAD004C9979 /* DFBaseUserLineItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFBaseUserLineItem.m; sourceTree = "<group>"; };
+		1173E55C1C72CEAD004C9979 /* DFTextImageUserLineItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTextImageUserLineItem.h; sourceTree = "<group>"; };
+		1173E55D1C72CEAD004C9979 /* DFTextImageUserLineItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTextImageUserLineItem.m; sourceTree = "<group>"; };
+		1173E55F1C72CEAD004C9979 /* DFBaseUserLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFBaseUserLineCell.h; sourceTree = "<group>"; };
+		1173E5601C72CEAD004C9979 /* DFBaseUserLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFBaseUserLineCell.m; sourceTree = "<group>"; };
+		1173E5611C72CEAD004C9979 /* DFTextImageUserLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTextImageUserLineCell.h; sourceTree = "<group>"; };
+		1173E5621C72CEAD004C9979 /* DFTextImageUserLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTextImageUserLineCell.m; sourceTree = "<group>"; };
+		1173E56B1C72F0B6004C9979 /* DFLineCellManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFLineCellManager.h; sourceTree = "<group>"; };
+		1173E56C1C72F0B6004C9979 /* DFLineCellManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFLineCellManager.m; sourceTree = "<group>"; };
+		1173E56E1C72F451004C9979 /* DFUserLineCellManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFUserLineCellManager.h; sourceTree = "<group>"; };
+		1173E56F1C72F451004C9979 /* DFUserLineCellManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFUserLineCellManager.m; sourceTree = "<group>"; };
 		11D758201BB7D43B00F554D7 /* DFTimelineView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DFTimelineView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11D758241BB7D43B00F554D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11D758251BB7D43B00F554D7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -130,30 +137,8 @@
 		11E157971BC0293900F2F99A /* DFFaceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFFaceManager.m; sourceTree = "<group>"; };
 		11E157CD1BC8F6E500F2F99A /* CommentInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentInputView.h; sourceTree = "<group>"; };
 		11E157CE1BC8F6E500F2F99A /* CommentInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentInputView.m; sourceTree = "<group>"; };
-		11F07F931BCF93970084DAA3 /* DFUserTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFUserTimeLineViewController.h; sourceTree = "<group>"; };
-		11F07F941BCF93970084DAA3 /* DFUserTimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFUserTimeLineViewController.m; sourceTree = "<group>"; };
 		11F07F9C1BCF9BBD0084DAA3 /* DFBaseTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFBaseTimeLineViewController.h; sourceTree = "<group>"; };
 		11F07F9D1BCF9BBE0084DAA3 /* DFBaseTimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFBaseTimeLineViewController.m; sourceTree = "<group>"; };
-		11F07FA41BCFA42D0084DAA3 /* DFBaseLineCellAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFBaseLineCellAdapter.h; sourceTree = "<group>"; };
-		11F07FA51BCFA42D0084DAA3 /* DFBaseLineCellAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFBaseLineCellAdapter.m; sourceTree = "<group>"; };
-		11F07FA61BCFA42D0084DAA3 /* DFLineCellAdapterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFLineCellAdapterManager.h; sourceTree = "<group>"; };
-		11F07FA71BCFA42D0084DAA3 /* DFLineCellAdapterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFLineCellAdapterManager.m; sourceTree = "<group>"; };
-		11F07FA81BCFA42D0084DAA3 /* DFTextImageLineCellAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTextImageLineCellAdapter.h; sourceTree = "<group>"; };
-		11F07FA91BCFA42D0084DAA3 /* DFTextImageLineCellAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTextImageLineCellAdapter.m; sourceTree = "<group>"; };
-		11F07FB21BCFA6B80084DAA3 /* DFBaseUserLineItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFBaseUserLineItem.h; sourceTree = "<group>"; };
-		11F07FB31BCFA6B80084DAA3 /* DFBaseUserLineItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFBaseUserLineItem.m; sourceTree = "<group>"; };
-		11F07FB61BCFA6DE0084DAA3 /* DFBaseUserLineCellAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFBaseUserLineCellAdapter.h; sourceTree = "<group>"; };
-		11F07FB71BCFA6DE0084DAA3 /* DFBaseUserLineCellAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFBaseUserLineCellAdapter.m; sourceTree = "<group>"; };
-		11F07FBA1BCFA7290084DAA3 /* DFBaseUserLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFBaseUserLineCell.h; sourceTree = "<group>"; };
-		11F07FBB1BCFA7290084DAA3 /* DFBaseUserLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFBaseUserLineCell.m; sourceTree = "<group>"; };
-		11F07FBD1BCFA7D10084DAA3 /* DFTextImageUserLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTextImageUserLineCell.h; sourceTree = "<group>"; };
-		11F07FBE1BCFA7D10084DAA3 /* DFTextImageUserLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTextImageUserLineCell.m; sourceTree = "<group>"; };
-		11F07FC01BCFA84C0084DAA3 /* DFTextImageUserLineItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTextImageUserLineItem.h; sourceTree = "<group>"; };
-		11F07FC11BCFA84C0084DAA3 /* DFTextImageUserLineItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTextImageUserLineItem.m; sourceTree = "<group>"; };
-		11F07FC31BCFA8BF0084DAA3 /* DFTextImageUserLineCellAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTextImageUserLineCellAdapter.h; sourceTree = "<group>"; };
-		11F07FC41BCFA8BF0084DAA3 /* DFTextImageUserLineCellAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTextImageUserLineCellAdapter.m; sourceTree = "<group>"; };
-		11F07FC61BCFA98E0084DAA3 /* DFUserLineCellAdapterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFUserLineCellAdapterManager.h; sourceTree = "<group>"; };
-		11F07FC71BCFA98E0084DAA3 /* DFUserLineCellAdapterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFUserLineCellAdapterManager.m; sourceTree = "<group>"; };
 		22443A8775E23D18891FEAC9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A2A89A39EA353891C22903B7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DA7388AAC42C4B4A3183F925 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +173,49 @@
 				1173E5221C71BAF0004C9979 /* DFPlainGridImageView.m */,
 			);
 			path = Plugin;
+			sourceTree = "<group>";
+		};
+		1173E54E1C72CEAD004C9979 /* UserTimeline */ = {
+			isa = PBXGroup;
+			children = (
+				1173E5561C72CEAD004C9979 /* Controller */,
+				1173E5591C72CEAD004C9979 /* Item */,
+				1173E55E1C72CEAD004C9979 /* View */,
+			);
+			path = UserTimeline;
+			sourceTree = "<group>";
+		};
+		1173E5561C72CEAD004C9979 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1173E5571C72CEAD004C9979 /* DFUserTimeLineViewController.h */,
+				1173E5581C72CEAD004C9979 /* DFUserTimeLineViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1173E5591C72CEAD004C9979 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				1173E55A1C72CEAD004C9979 /* DFBaseUserLineItem.h */,
+				1173E55B1C72CEAD004C9979 /* DFBaseUserLineItem.m */,
+				1173E55C1C72CEAD004C9979 /* DFTextImageUserLineItem.h */,
+				1173E55D1C72CEAD004C9979 /* DFTextImageUserLineItem.m */,
+			);
+			path = Item;
+			sourceTree = "<group>";
+		};
+		1173E55E1C72CEAD004C9979 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1173E56E1C72F451004C9979 /* DFUserLineCellManager.h */,
+				1173E56F1C72F451004C9979 /* DFUserLineCellManager.m */,
+				1173E55F1C72CEAD004C9979 /* DFBaseUserLineCell.h */,
+				1173E5601C72CEAD004C9979 /* DFBaseUserLineCell.m */,
+				1173E5611C72CEAD004C9979 /* DFTextImageUserLineCell.h */,
+				1173E5621C72CEAD004C9979 /* DFTextImageUserLineCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		11D758171BB7D43B00F554D7 = {
@@ -237,7 +265,7 @@
 		11D758491BB7D5E500F554D7 /* DFTimelineView */ = {
 			isa = PBXGroup;
 			children = (
-				11F07FA31BCFA42D0084DAA3 /* Adapter */,
+				1173E54E1C72CEAD004C9979 /* UserTimeline */,
 				11D75AA31BBD7AE700F554D7 /* Define */,
 				11D758E31BB8E6C300F554D7 /* Resource */,
 				11D758671BB7E71400F554D7 /* Lib */,
@@ -252,7 +280,6 @@
 		11D7584A1BB7D63A00F554D7 /* Item */ = {
 			isa = PBXGroup;
 			children = (
-				11F07FB11BCFA6B80084DAA3 /* User */,
 				11D758F81BBA8C3100F554D7 /* LikeComment */,
 				11D7584B1BB7D66300F554D7 /* DFBaseLineItem.h */,
 				11D7584C1BB7D66300F554D7 /* DFBaseLineItem.m */,
@@ -267,13 +294,14 @@
 		11D7584F1BB7D81500F554D7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				11F07FB91BCFA6FE0084DAA3 /* User */,
 				11E157CC1BC8F6D400F2F99A /* CommentInputView */,
 				11D759021BBAC8B400F554D7 /* LikeCommentToolbar */,
 				11D758F41BB8F35000F554D7 /* LikeCommentView */,
 				11D758C41BB8213A00F554D7 /* DFGridImageView */,
 				11D758501BB7D85D00F554D7 /* DFBaseLineCell.h */,
 				11D758511BB7D85D00F554D7 /* DFBaseLineCell.m */,
+				1173E56B1C72F0B6004C9979 /* DFLineCellManager.h */,
+				1173E56C1C72F0B6004C9979 /* DFLineCellManager.m */,
 				11D7585E1BB7DCF700F554D7 /* DFTextImageLineCell.h */,
 				11D7585F1BB7DCF700F554D7 /* DFTextImageLineCell.m */,
 				1173E5331C720F7C004C9979 /* DFVideoLineCell.h */,
@@ -290,8 +318,6 @@
 				11F07F9D1BCF9BBE0084DAA3 /* DFBaseTimeLineViewController.m */,
 				11D758551BB7DACC00F554D7 /* DFTimeLineViewController.h */,
 				11D758561BB7DACC00F554D7 /* DFTimeLineViewController.m */,
-				11F07F931BCF93970084DAA3 /* DFUserTimeLineViewController.h */,
-				11F07F941BCF93970084DAA3 /* DFUserTimeLineViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -385,57 +411,6 @@
 				11E157CE1BC8F6E500F2F99A /* CommentInputView.m */,
 			);
 			path = CommentInputView;
-			sourceTree = "<group>";
-		};
-		11F07FA31BCFA42D0084DAA3 /* Adapter */ = {
-			isa = PBXGroup;
-			children = (
-				11F07FB51BCFA6DE0084DAA3 /* User */,
-				11F07FA41BCFA42D0084DAA3 /* DFBaseLineCellAdapter.h */,
-				11F07FA51BCFA42D0084DAA3 /* DFBaseLineCellAdapter.m */,
-				11F07FA61BCFA42D0084DAA3 /* DFLineCellAdapterManager.h */,
-				11F07FA71BCFA42D0084DAA3 /* DFLineCellAdapterManager.m */,
-				11F07FA81BCFA42D0084DAA3 /* DFTextImageLineCellAdapter.h */,
-				11F07FA91BCFA42D0084DAA3 /* DFTextImageLineCellAdapter.m */,
-				1173E53C1C72150F004C9979 /* DFVideoLineCellAdapter.h */,
-				1173E53D1C72150F004C9979 /* DFVideoLineCellAdapter.m */,
-			);
-			path = Adapter;
-			sourceTree = "<group>";
-		};
-		11F07FB11BCFA6B80084DAA3 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				11F07FB21BCFA6B80084DAA3 /* DFBaseUserLineItem.h */,
-				11F07FB31BCFA6B80084DAA3 /* DFBaseUserLineItem.m */,
-				11F07FC01BCFA84C0084DAA3 /* DFTextImageUserLineItem.h */,
-				11F07FC11BCFA84C0084DAA3 /* DFTextImageUserLineItem.m */,
-			);
-			path = User;
-			sourceTree = "<group>";
-		};
-		11F07FB51BCFA6DE0084DAA3 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				11F07FB61BCFA6DE0084DAA3 /* DFBaseUserLineCellAdapter.h */,
-				11F07FB71BCFA6DE0084DAA3 /* DFBaseUserLineCellAdapter.m */,
-				11F07FC31BCFA8BF0084DAA3 /* DFTextImageUserLineCellAdapter.h */,
-				11F07FC41BCFA8BF0084DAA3 /* DFTextImageUserLineCellAdapter.m */,
-				11F07FC61BCFA98E0084DAA3 /* DFUserLineCellAdapterManager.h */,
-				11F07FC71BCFA98E0084DAA3 /* DFUserLineCellAdapterManager.m */,
-			);
-			path = User;
-			sourceTree = "<group>";
-		};
-		11F07FB91BCFA6FE0084DAA3 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				11F07FBA1BCFA7290084DAA3 /* DFBaseUserLineCell.h */,
-				11F07FBB1BCFA7290084DAA3 /* DFBaseUserLineCell.m */,
-				11F07FBD1BCFA7D10084DAA3 /* DFTextImageUserLineCell.h */,
-				11F07FBE1BCFA7D10084DAA3 /* DFTextImageUserLineCell.m */,
-			);
-			path = User;
 			sourceTree = "<group>";
 		};
 		80C4F7CEF958C1F2DD0212BC /* Pods */ = {
@@ -584,29 +559,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11F07FC81BCFA98E0084DAA3 /* DFUserLineCellAdapterManager.m in Sources */,
-				11F07FC21BCFA84C0084DAA3 /* DFTextImageUserLineItem.m in Sources */,
-				11F07FBF1BCFA7D10084DAA3 /* DFTextImageUserLineCell.m in Sources */,
+				1173E5671C72CEAE004C9979 /* DFBaseUserLineItem.m in Sources */,
 				1173E5201C71B239004C9979 /* DFImagesSendViewController.m in Sources */,
 				11D7582C1BB7D43B00F554D7 /* ViewController.m in Sources */,
 				11D758C71BB8216C00F554D7 /* DFGridImageView.m in Sources */,
-				11F07FC51BCFA8BF0084DAA3 /* DFTextImageUserLineCellAdapter.m in Sources */,
-				11F07FAC1BCFA42D0084DAA3 /* DFTextImageLineCellAdapter.m in Sources */,
-				1173E53E1C72150F004C9979 /* DFVideoLineCellAdapter.m in Sources */,
 				11D758661BB7E12800F554D7 /* DFTextImageLineItem.m in Sources */,
 				11D758601BB7DCF700F554D7 /* DFTextImageLineCell.m in Sources */,
-				11F07FBC1BCFA7290084DAA3 /* DFBaseUserLineCell.m in Sources */,
+				1173E56A1C72CEAE004C9979 /* DFTextImageUserLineCell.m in Sources */,
 				11D758291BB7D43B00F554D7 /* AppDelegate.m in Sources */,
 				1173E5351C720F7C004C9979 /* DFVideoLineCell.m in Sources */,
+				1173E56D1C72F0B6004C9979 /* DFLineCellManager.m in Sources */,
 				11D758CA1BB8385100F554D7 /* DFImageUnitView.m in Sources */,
 				11F07F9E1BCF9BBE0084DAA3 /* DFBaseTimeLineViewController.m in Sources */,
-				11F07FB81BCFA6DE0084DAA3 /* DFBaseUserLineCellAdapter.m in Sources */,
-				11F07FAB1BCFA42D0084DAA3 /* DFLineCellAdapterManager.m in Sources */,
+				1173E5681C72CEAE004C9979 /* DFTextImageUserLineItem.m in Sources */,
 				11D758261BB7D43B00F554D7 /* main.m in Sources */,
+				1173E5661C72CEAE004C9979 /* DFUserTimeLineViewController.m in Sources */,
 				11E157981BC0293900F2F99A /* DFFaceManager.m in Sources */,
 				11D758FB1BBA8C4C00F554D7 /* DFLineLikeItem.m in Sources */,
+				1173E5701C72F451004C9979 /* DFUserLineCellManager.m in Sources */,
 				1173E5231C71BAF0004C9979 /* DFPlainGridImageView.m in Sources */,
-				11F07F951BCF93970084DAA3 /* DFUserTimeLineViewController.m in Sources */,
 				1173E53B1C7210EA004C9979 /* DFVideoLineItem.m in Sources */,
 				110D424D1BCF54CA00081824 /* MLClickColorLinkLabel.m in Sources */,
 				11D759051BBAC8DD00F554D7 /* DFLikeCommentToolbar.m in Sources */,
@@ -614,9 +585,8 @@
 				11D758F71BB8F36C00F554D7 /* DFLikeCommentView.m in Sources */,
 				11E157CF1BC8F6E500F2F99A /* CommentInputView.m in Sources */,
 				1173E4F71C71834D004C9979 /* UserViewController.m in Sources */,
-				11F07FAA1BCFA42D0084DAA3 /* DFBaseLineCellAdapter.m in Sources */,
+				1173E5691C72CEAE004C9979 /* DFBaseUserLineCell.m in Sources */,
 				11D758521BB7D85D00F554D7 /* DFBaseLineCell.m in Sources */,
-				11F07FB41BCFA6B80084DAA3 /* DFBaseUserLineItem.m in Sources */,
 				11D758571BB7DACC00F554D7 /* DFTimeLineViewController.m in Sources */,
 				11D758FE1BBA8C5D00F554D7 /* DFLineCommentItem.m in Sources */,
 			);

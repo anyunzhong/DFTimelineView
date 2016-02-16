@@ -12,6 +12,12 @@
 //主时间轴
 #import "DFTimeLineViewController.h"
 
+//用户时间轴
+#import "DFUserTimeLineViewController.h"
+
+//cell管理器 实体和显示cell对应关系
+#import "DFLineCellManager.h"
+
 //图文消息
 #import "DFTextImageLineItem.h"
 
@@ -23,4 +29,10 @@
 
 //评论
 #import "DFLineCommentItem.h"
+
+
+//用户图文消息
+#import "DFTextImageUserLineItem.h"
+
+
 #endif /* DFTimelineView_h */

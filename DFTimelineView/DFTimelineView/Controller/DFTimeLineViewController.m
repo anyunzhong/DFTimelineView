@@ -7,10 +7,8 @@
 //
 
 #import "DFTimeLineViewController.h"
-#import "DFLineCellAdapterManager.h"
+#import "DFLineCellManager.h"
 
-#import "DFTextImageLineCellAdapter.h"
-#import "DFVideoLineCellAdapter.h"
 #import "DFBaseLineCell.h"
 #import "DFLineLikeItem.h"
 #import "DFLineCommentItem.h"
@@ -24,9 +22,6 @@
 
 #import "DFImagesSendViewController.h"
 #import "DFVideoCaptureController.h"
-
-#import "DFTextImageLineItem.h"
-#import "DFVideoLineItem.h"
 
 @interface DFTimeLineViewController ()<DFLineCellDelegate, CommentInputViewDelegate, TZImagePickerControllerDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate, DFImagesSendViewControllerDelegate,DFVideoCaptureControllerDelegate>
 
@@ -70,18 +65,6 @@
         _itemDic = [NSMutableDictionary dictionary];
         
         _commentDic = [NSMutableDictionary dictionary];
-        
-        
-        
-        DFLineCellAdapterManager *manager = [DFLineCellAdapterManager sharedInstance];
-        
-        DFTextImageLineCellAdapter *textImageCellAdapter = [[DFTextImageLineCellAdapter alloc] init];
-        [manager registerAdapter:[DFTextImageLineItem class] adapter:textImageCellAdapter];
-        
-        DFVideoLineCellAdapter *videoCellAdapter = [[DFVideoLineCellAdapter alloc] init];
-        [manager registerAdapter:[DFVideoLineItem class] adapter:videoCellAdapter];
-        
-        
         
     }
     return self;
@@ -228,24 +211,30 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DFBaseLineItem *item = [_items objectAtIndex:indexPath.row];
-    DFBaseLineCellAdapter *adapter = [self getAdapter:[item class]];
-    return [adapter getCellHeight:item];
+    DFBaseLineCell *typeCell = [self getCell:[item class]];
+    return [typeCell getReuseableCellHeight:item];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DFBaseLineItem *item = [_items objectAtIndex:indexPath.row];
-    DFBaseLineCellAdapter *adapter = [self getAdapter:[item class]];
+    DFBaseLineCell *typeCell = [self getCell:[item class]];
     
-    UITableViewCell *cell = [adapter getCell:tableView];
-    
-    ((DFBaseLineCell *)cell).delegate = self;
+    NSString *reuseIdentifier = NSStringFromClass([typeCell class]);
+    DFBaseLineCell *cell = [tableView dequeueReusableCellWithIdentifier: reuseIdentifier];
+    if (cell == nil ) {
+        cell = [[[typeCell class] alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+    }else{
+        NSLog(@"重用Cell: %@", reuseIdentifier);
+    }
+
+    cell.delegate = self;
     
     cell.separatorInset = UIEdgeInsetsZero;
     if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
         cell.layoutMargins = UIEdgeInsetsZero;
     }
-    [adapter updateCell:cell message:item];
+    [cell updateWithItem:item];
     
     return cell;
 }
@@ -267,10 +256,10 @@
 
 #pragma mark - Method
 
--(DFBaseLineCellAdapter *) getAdapter:(Class)itemClass
+-(DFBaseLineCell *) getCell:(Class)itemClass
 {
-    DFLineCellAdapterManager *manager = [DFLineCellAdapterManager sharedInstance];
-    return [manager getAdapter:itemClass];
+    DFLineCellManager *manager = [DFLineCellManager sharedInstance];
+    return [manager getCell:itemClass];
 }
 
 -(void)addItem:(DFBaseLineItem *)item

@@ -27,6 +27,7 @@
 
 @optional
 -(void) onLike:(long long) itemId;
+
 -(void) onComment:(long long) itemId;
 
 -(void) onClickUser:(NSUInteger) userId;
@@ -44,12 +45,17 @@
 @property (nonatomic, assign) id<DFLineCellDelegate> delegate;
 
 
+
 -(void) updateWithItem:(DFBaseLineItem *) item;
 
-+(CGFloat) getCellHeight:(DFBaseLineItem *) item;
+-(CGFloat) getCellHeight:(DFBaseLineItem *) item;
+
+-(CGFloat) getReuseableCellHeight:(DFBaseLineItem *)item;
 
 -(void)updateBodyView:(CGFloat) height;
 
 -(void) hideLikeCommentToolbar;
+
+-(UINavigationController *) getController;
 
 @end

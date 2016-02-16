@@ -9,11 +9,13 @@
 #import "DFUserTimeLineViewController.h"
 #import "DFBaseUserLineItem.h"
 
-#import "DFBaseUserLineCellAdapter.h"
-#import "DFUserLineCellAdapterManager.h"
-#import "DFTextImageUserLineCellAdapter.h"
+#import "DFUserLineCellManager.h"
 
 #import "DFBaseUserLineCell.h"
+
+#import "DFTextImageUserLineCell.h"
+
+#import "DFTextImageUserLineItem.h"
 
 @interface DFUserTimeLineViewController()<DFBaseUserLineCellDelegate>
 
@@ -35,12 +37,6 @@
     self = [super init];
     if (self) {
         _items = [NSMutableArray array];
-        
-        DFUserLineCellAdapterManager *manager = [DFUserLineCellAdapterManager sharedInstance];
-        
-        DFTextImageUserLineCellAdapter *textImageCellAdapter = [[DFTextImageUserLineCellAdapter alloc] init];
-        [manager registerAdapter:UserLineItemTypeTextImage adapter:textImageCellAdapter];
-        
         
     }
     return self;
@@ -72,28 +68,37 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DFBaseUserLineItem *item = [_items objectAtIndex:indexPath.row];
-    DFBaseUserLineCellAdapter *adapter = [self getAdapter:item.itemType];
-    return [adapter getCellHeight:item];
+    DFBaseUserLineCell *typeCell = [self getCell:[item class]];
+    return [typeCell getCellHeight:item];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DFBaseUserLineItem *item = [_items objectAtIndex:indexPath.row];
-    DFBaseUserLineCellAdapter *adapter = [self getAdapter:item.itemType];
     
-    DFBaseUserLineCell *cell = (DFBaseUserLineCell *)[adapter getCell:tableView];
+    DFBaseUserLineCell *typeCell = [self getCell:[item class]];
+    
+    NSString *reuseIdentifier = NSStringFromClass([typeCell class]);
+    DFBaseUserLineCell *cell = [tableView dequeueReusableCellWithIdentifier: reuseIdentifier];
+    if (cell == nil ) {
+        cell = [[[typeCell class] alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+    }else{
+        NSLog(@"重用Cell: %@", reuseIdentifier);
+    }
+
+    
     cell.delegate = self;
-    [adapter updateCell:cell message:item];
+    [cell updateWithItem:item];
     
     return cell;
 }
 
 #pragma mark - Method
 
--(DFBaseUserLineCellAdapter *) getAdapter:(UserLineItemType)itemType
+-(DFBaseUserLineCell *) getCell:(Class)itemClass
 {
-    DFUserLineCellAdapterManager *manager = [DFUserLineCellAdapterManager sharedInstance];
-    return [manager getAdapter:itemType];
+    DFUserLineCellManager *manager = [DFUserLineCellManager sharedInstance];
+    return [manager getCell:itemClass];
 }
 
 
