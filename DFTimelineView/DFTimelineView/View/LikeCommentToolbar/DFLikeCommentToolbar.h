@@ -18,7 +18,7 @@
 @interface DFLikeCommentToolbar : UIImageView
 
 
-@property (nonatomic, assign) id<DFLikeCommentToolbarDelegate> delegate;
+@property (nonatomic, weak) id<DFLikeCommentToolbarDelegate> delegate;
 
 
 @end

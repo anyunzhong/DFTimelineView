@@ -22,7 +22,7 @@
 @interface DFBaseUserLineCell : UITableViewCell
 
 
-@property (nonatomic, strong) id<DFBaseUserLineCellDelegate> delegate;
+@property (nonatomic, weak) id<DFBaseUserLineCellDelegate> delegate;
 
 
 @property (nonatomic, strong) UIButton *bodyView;

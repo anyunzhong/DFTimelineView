@@ -18,7 +18,7 @@
 @end
 @interface DFImagesSendViewController : DFBaseViewController
 
-@property (nonatomic, strong) id<DFImagesSendViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<DFImagesSendViewControllerDelegate> delegate;
 
 - (instancetype)initWithImages:(NSArray *) images;
 

@@ -18,7 +18,7 @@
 @end
 @interface DFPlainGridImageView : UIView
 
-@property (nonatomic, assign) id<DFPlainGridImageViewDelegate> delegate;
+@property (nonatomic, weak) id<DFPlainGridImageViewDelegate> delegate;
 
 +(CGFloat)getHeight:(NSMutableArray *)images maxWidth:(CGFloat)maxWidth;
 

@@ -12,8 +12,4 @@
 
 @interface DFTextImageLineCell : DFBaseLineCell
 
-
-//+(CGFloat) getCellHeight:(DFBaseLineItem *) item;
-
-
 @end

@@ -42,7 +42,7 @@
 
 @property (nonatomic, strong) UIView *bodyView;
 
-@property (nonatomic, assign) id<DFLineCellDelegate> delegate;
+@property (nonatomic, weak) id<DFLineCellDelegate> delegate;
 
 
 

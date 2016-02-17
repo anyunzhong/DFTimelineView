@@ -23,7 +23,7 @@
 @interface CommentInputView : UIView
 
 
-@property (nonatomic, assign) id<CommentInputViewDelegate> delegate;
+@property (nonatomic, weak) id<CommentInputViewDelegate> delegate;
 
 @property (nonatomic, assign) long long commentId;
 

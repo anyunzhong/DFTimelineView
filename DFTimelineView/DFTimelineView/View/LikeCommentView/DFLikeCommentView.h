@@ -21,7 +21,7 @@
 @interface DFLikeCommentView : UIView
 
 
-@property (nonatomic, assign) id<DFLikeCommentViewDelegate> delegate;
+@property (nonatomic, weak) id<DFLikeCommentViewDelegate> delegate;
 
 
 -(void) updateWithItem:(DFBaseLineItem *) item;
