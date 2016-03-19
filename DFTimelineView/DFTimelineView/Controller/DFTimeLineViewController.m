@@ -138,7 +138,18 @@
 
 -(UIBarButtonItem *)rightBarButtonItem
 {
-    return [UIBarButtonItem icon:@"Camera" selector:@selector(onClickCamera:) target:self];
+    UIBarButtonItem *item = [UIBarButtonItem icon:@"Camera" selector:@selector(onClickCamera:) target:self];
+    UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onLongPressCamera:)];
+    [item.customView addGestureRecognizer:recognizer];
+    return item;
+}
+
+-(void) onLongPressCamera:(UIGestureRecognizer *) gesture
+{
+    DFImagesSendViewController *controller = [[DFImagesSendViewController alloc] initWithImages:nil];
+    controller.delegate = self;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 
