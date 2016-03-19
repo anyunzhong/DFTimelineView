@@ -178,15 +178,15 @@
         _placeholder.hidden = NO;
         
     }
-    if ([text isEqualToString:@"\n"]){
-        _mask.hidden = YES;
-        [_contentView resignFirstResponder];
-        if (range.location == 0)
-        {
-            _placeholder.hidden = NO;
-        }
-        return NO;
-    }
+//    if ([text isEqualToString:@"\n"]){
+//        _mask.hidden = YES;
+//        [_contentView resignFirstResponder];
+//        if (range.location == 0)
+//        {
+//            _placeholder.hidden = NO;
+//        }
+//        return NO;
+//    }
     
     return YES;
 }
