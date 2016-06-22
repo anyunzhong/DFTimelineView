@@ -14,6 +14,7 @@
 
 -(void) onCommentCreate:(long long ) commentId text:(NSString *) text;
 
+- (void) commentInputViewDidChangeOffsetY:(CGFloat)currentOffsetY;
 
 @end
 
@@ -38,5 +39,7 @@
 -(void) show;
 
 -(void) setPlaceHolder:(NSString *) text;
+
+-(void) hideInputView;
 
 @end

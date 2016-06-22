@@ -81,6 +81,7 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorInset = UIEdgeInsetsZero;
+//    _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     if ([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
         _tableView.layoutMargins = UIEdgeInsetsZero;
     }

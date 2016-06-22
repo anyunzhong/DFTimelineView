@@ -39,6 +39,9 @@
 
 @property (nonatomic, strong) UIImagePickerController *pickerController;
 
+@property (nonatomic) CGFloat currentSelectedLinkLabelY;
+@property (nonatomic) CGFloat keyboardOffsetY;
+
 @end
 
 @implementation DFTimeLineViewController
@@ -58,8 +61,6 @@
         MMSheetViewConfig *sheetConfig = [MMSheetViewConfig globalConfig];
         sheetConfig.defaultTextCancel = @"取消";
 
-        
-        
         _items = [NSMutableArray array];
         
         _itemDic = [NSMutableDictionary dictionary];
@@ -70,21 +71,12 @@
     return self;
 }
 
-
-
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self initCommentInputView];
     
 }
-
-
-
-
-
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -105,16 +97,6 @@
     
     [_commentInputView removeObserver];
 }
-
-
-
-
-
-
-
-
-
-
 
 -(void) initCommentInputView
 {
@@ -264,6 +246,9 @@
     }
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [_commentInputView hideInputView];
+}
 
 #pragma mark - Method
 
@@ -376,6 +361,7 @@
 }
 
 
+/**
 -(void)onClickComment:(long long)commentId itemId:(long long)itemId
 {
     
@@ -391,22 +377,39 @@
     [_commentInputView setPlaceHolder:[NSString stringWithFormat:@"  回复: %@", comment.userNick]];
     
 }
+ **/
 
+- (void)onClickComment:(long long)commentId itemId:(long long)itemId linkLabel:(UIView *)linkLabel {
+    _currentItemId = itemId;
+    
+    _commentInputView.hidden = NO;
+    
+    _commentInputView.commentId = commentId;
+    
+    [_commentInputView show];
+    
+    DFLineCommentItem *comment = [_commentDic objectForKey:[NSNumber numberWithLongLong:commentId]];
+    [_commentInputView setPlaceHolder:[NSString stringWithFormat:@"  回复: %@", comment.userNick]];
+
+    CGPoint linkLabelPoint = [self.view.window convertPoint:linkLabel.bounds.origin fromView:linkLabel];
+    self.currentSelectedLinkLabelY = linkLabelPoint.y;
+    CGFloat tableViewMovingDistance = (self.keyboardOffsetY - (self.currentSelectedLinkLabelY + linkLabel.frame.size.height));
+    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y - tableViewMovingDistance) animated:YES];
+}
+
+- (void)commentInputViewDidChangeOffsetY:(CGFloat)currentOffsetY {
+    self.keyboardOffsetY = currentOffsetY;
+}
 
 -(void)onCommentCreate:(long long)commentId text:(NSString *)text
 {
     [self onCommentCreate:commentId text:text itemId:_currentItemId];
 }
 
-
 -(void)onCommentCreate:(long long)commentId text:(NSString *)text itemId:(long long) itemId
 {
     
 }
-
-
-
-
 
 -(void) genLikeAttrString:(DFBaseLineItem *) item
 {

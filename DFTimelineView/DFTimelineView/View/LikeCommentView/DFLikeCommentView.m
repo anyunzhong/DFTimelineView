@@ -317,6 +317,15 @@
     NSLog(@"长按了Label");
 }
 
+- (void)onClickOutsideLink:(long long)uniqueId mllinkLabel:(MLLinkLabel *)linkLabel {
+    NSLog(@"单击了Label: %lld", uniqueId);
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickComment:linkLabel:)]) {
+        NSLog(@"linkLabel.y%f",linkLabel.frame.origin.y);
+        [_delegate onClickComment:uniqueId linkLabel:linkLabel];
+    }
+}
+
+/**
 -(void)onClickOutsideLink:(long long)uniqueId
 {
     NSLog(@"单击了Label: %lld", uniqueId);
@@ -324,6 +333,7 @@
         [_delegate onClickComment:uniqueId];
     }
 }
+ **/
 
 
 +(CGFloat)getHeight:(DFBaseLineItem *)item maxWidth:(CGFloat)maxWidth

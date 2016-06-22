@@ -50,7 +50,6 @@
     
 }
 
-
 -(void) initData
 {
     DFTextImageLineItem *textImageItem = [[DFTextImageLineItem alloc] init];

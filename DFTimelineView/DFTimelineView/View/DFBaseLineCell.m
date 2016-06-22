@@ -427,10 +427,19 @@
 
 }
 
+/**
 -(void)onClickComment:(long long)commentId
 {
     if (_delegate != nil && [_delegate respondsToSelector:@selector(onClickComment:itemId:)]) {
         [_delegate onClickComment:commentId itemId:self.item.itemId];
     }
 }
+ **/
+
+- (void)onClickComment:(long long)commentId linkLabel:(UIView *)linkLabel {
+    if (_delegate != nil && [_delegate respondsToSelector:@selector(onClickComment:itemId:linkLabel:)]) {
+        [_delegate onClickComment:commentId itemId:self.item.itemId linkLabel:linkLabel];
+    }
+}
+
 @end
