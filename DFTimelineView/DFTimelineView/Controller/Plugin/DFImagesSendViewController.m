@@ -206,7 +206,7 @@
 -(void)onClick:(NSUInteger)index
 {
     
-    if (_images.count <9 && index == _images.count-1) {
+    if (_images.count <= 9 && index == _images.count-1) {
         [self chooseImage];
     }else{
         MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
@@ -300,12 +300,8 @@
     [self presentViewController:imagePickerVc animated:YES completion:nil];
 }
 
-
 #pragma mark - TZImagePickerControllerDelegate
-
-
-- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *) photos sourceAssets:(NSArray *)assets
-{
+- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto {
     NSLog(@"%@", photos);
     
     for (UIImage *image in photos) {
@@ -313,10 +309,9 @@
     }
     
     [self refreshGridImageView];
-    
 }
-- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *) photos sourceAssets:(NSArray *)assets infos:(NSArray<NSDictionary *> *)infos
-{
+
+- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos {
     
 }
 
