@@ -18,11 +18,8 @@
     [self initData];
     
     [self setHeader];
-    
+
 }
-
-
-
 
 -(void) setHeader
 {
