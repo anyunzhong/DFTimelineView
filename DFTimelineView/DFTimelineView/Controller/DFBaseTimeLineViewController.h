@@ -22,6 +22,7 @@
 
 //结束上拉更多
 -(void) endLoadMore;
+- (void)endLoadMoreWithNoMoreData;
 
 //结束下拉刷新
 -(void) endRefresh;

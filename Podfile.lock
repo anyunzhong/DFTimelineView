@@ -34,7 +34,7 @@ PODS:
     - SDWebImage
     - SVProgressHUD
     - YLGIFImage
-  - MJRefresh (3.1.7)
+  - MJRefresh (3.1.9)
   - MLLabel (1.9.1)
   - MMPopupView (1.7.2):
     - Masonry
@@ -48,6 +48,7 @@ PODS:
 
 DEPENDENCIES:
   - DFCommon (from `https://github.com/chn-lyzhi/DFCommon.git`)
+  - MJRefresh (~> 3.1.7)
 
 EXTERNAL SOURCES:
   DFCommon:
@@ -55,7 +56,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   DFCommon:
-    :commit: bb925ac72371c2b7d332f56530f8454ca2ba67a5
+    :commit: f9caf699bca7564d0fd472aa652d301e4510d426
     :git: https://github.com/chn-lyzhi/DFCommon.git
 
 SPEC CHECKSUMS:
@@ -65,7 +66,7 @@ SPEC CHECKSUMS:
   Masonry: a1a931a0d08870ed8ae415a2ea5ea68ebcac77df
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJPhotoBrowser: f55e8490231f44a78ca6455105a1c798a142c95f
-  MJRefresh: f67f0750d57a4e4ae433da549359ca53b52cdc7d
+  MJRefresh: c5f1f1653e5a1b932c90f78074f2bc86f3f9bd5e
   MLLabel: 086ecaa4101505c166950cff986a3edcbcfb1c27
   MMPopupView: fe1dd010824029dfb632fdf1a531db5dd5386020
   ODRefreshControl: 907e6149d72dde488d5917ccfabee5bd8d711a20
@@ -74,6 +75,6 @@ SPEC CHECKSUMS:
   TZImagePickerController: 046f172ad54add0ce358dfae932d9183b7fafd03
   YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
 
-PODFILE CHECKSUM: 0ffe27b493b237ad473f21c86a413ee793587f3d
+PODFILE CHECKSUM: 749a4b6b86bc986211299ae8bbe69e1ceeb35324
 
 COCOAPODS: 1.0.1

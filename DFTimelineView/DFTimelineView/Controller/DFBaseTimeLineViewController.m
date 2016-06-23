@@ -7,6 +7,8 @@
 //
 
 #import "DFBaseTimeLineViewController.h"
+#import <MJRefresh.h>
+
 
 #define TableHeaderHeight 290*([UIScreen mainScreen].bounds.size.width / 375.0)
 #define CoverHeight 240*([UIScreen mainScreen].bounds.size.width / 375.0)
@@ -68,7 +70,7 @@
     
     [self initHeader];
     
-    [self initFooter];
+//    [self initFooter];
     
 }
 
@@ -81,6 +83,7 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorInset = UIEdgeInsetsZero;
+//    _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     if ([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
         _tableView.layoutMargins = UIEdgeInsetsZero;
     }
@@ -155,15 +158,23 @@
         
     }
     
+    
     //下拉刷新
+    __weak typeof(self) _self = self;
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [_self refresh];
+    }];
+    _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [_self loadMore];
+    }];
+    
+    /**
     if (_refreshControl == nil) {
         _refreshControl = [[UIRefreshControl alloc] init];
         [_refreshControl addTarget:self action:@selector(onPullDown:) forControlEvents:UIControlEventValueChanged];
         [_tableView addSubview:self.refreshControl];
     }
-    
-    
-    
+     **/
 }
 
 
@@ -227,7 +238,7 @@
 
 #pragma mark - PullMoreFooterDelegate
 
-
+/**
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     //NSLog(@"size: %f  offset:  %f", scrollView.contentSize.height, scrollView.contentOffset.y+self.tableView.frame.size.height);
@@ -241,6 +252,7 @@
         [self showFooter];
     }
 }
+ **/
 
 
 -(void) showFooter
@@ -258,10 +270,6 @@
     
     _isLoadingMore = YES;
     [self loadMore];
-    
-    
-    
-    
 }
 
 
@@ -304,12 +312,19 @@
 
 -(void)endLoadMore
 {
-    [self hideFooter];
+    [self.tableView.mj_footer endRefreshing];
+//    [self hideFooter];
+}
+
+- (void)endLoadMoreWithNoMoreData
+{
+    [self.tableView.mj_footer endRefreshingWithNoMoreData];
 }
 
 -(void)endRefresh
 {
-    [_refreshControl endRefreshing];
+    [self.tableView.mj_header endRefreshing];
+//    [_refreshControl endRefreshing];
 }
 
 
