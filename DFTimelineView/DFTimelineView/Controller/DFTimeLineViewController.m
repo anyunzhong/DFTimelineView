@@ -101,19 +101,16 @@
 -(void) initCommentInputView
 {
     if (_commentInputView == nil) {
-        _commentInputView = [[CommentInputView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 50)];
+        _commentInputView = [[CommentInputView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         _commentInputView.hidden = YES;
         _commentInputView.delegate = self;
         [self.view addSubview:_commentInputView];
     }
-        
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
 }
-
 
 #pragma mark - BarButtonItem
 

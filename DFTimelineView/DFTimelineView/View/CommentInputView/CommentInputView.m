@@ -48,10 +48,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-//        self.userInteractionEnabled = NO;
-//        [self setBackgroundColor:[UIColor clearColor]];
-//        self.alpha = 1.f;
+
         _keyboardAnimationDuration = 0.25;
         _keyboardAnimationCurve = 7;
         
@@ -72,7 +69,7 @@
     
     CGFloat x, y, width, height;
     
-    /**
+    
     if (_maskView == nil) {
         _maskView = [[UIView alloc] initWithFrame:self.frame];
         [self addSubview:_maskView];
@@ -80,15 +77,11 @@
         _maskView.alpha = 0.4;
         _maskView.hidden = YES;
     }
-     **/
-
-    
     
     width = CGRectGetWidth(self.frame);
     height = InputViewHeight;
     x= 0;
-//    y= CGRectGetHeight(self.frame)- height;
-    y = 0;
+    y= CGRectGetHeight(self.frame)- height;
     
     _inputView = [[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
     _inputView.backgroundColor = [UIColor colorWithWhite:250/255.0 alpha:1.0];
@@ -139,7 +132,7 @@
     
     
     
-    /**
+    
     if (_panGestureRecognizer == nil) {
         _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onTableViewPanAndTap:)];
         [_maskView addGestureRecognizer:_panGestureRecognizer];
@@ -151,17 +144,7 @@
         _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTableViewPanAndTap:)];
         [_maskView addGestureRecognizer:_tapGestureRecognizer];
     }
-     **/
-
-    
 }
-
-
-//- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
-//    [super pointInside:point withEvent:event];
-//    
-//}
-
 
 #pragma mark - Notification
 
@@ -171,15 +154,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onKeyboradShow:) name:UIKeyboardWillShowNotification object:nil];
 }
 
-
 -(void) removeNotify
 
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 
 }
-
-
 
 #pragma mark - Keyboard
 
@@ -193,8 +173,6 @@
     [self changeInputViewOffsetY:(frame.origin.y - InputViewHeight) ];
     
 }
-
-
 
 #pragma mark - Observer
 
@@ -304,9 +282,6 @@
     [self changeInputViewPosition:offsetY];
 }
 
-
-
-
 -(void)show
 {
     
@@ -314,11 +289,9 @@
     [_inputTextView becomeFirstResponder];
 }
 
-
 -(void)setPlaceHolder:(NSString *)text
 {
     _inputTextView.placeholder = text;
 }
-
 
 @end
