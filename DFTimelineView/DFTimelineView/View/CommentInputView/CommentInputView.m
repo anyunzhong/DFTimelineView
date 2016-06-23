@@ -48,8 +48,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-        
+
         _keyboardAnimationDuration = 0.25;
         _keyboardAnimationCurve = 7;
         
@@ -65,9 +64,6 @@
     [_maskView removeGestureRecognizer:_tapGestureRecognizer];
 }
 
-
-
-
 -(void) initView
 {
     
@@ -81,8 +77,6 @@
         _maskView.alpha = 0.4;
         _maskView.hidden = YES;
     }
-
-    
     
     width = CGRectGetWidth(self.frame);
     height = InputViewHeight;
@@ -92,13 +86,13 @@
     _inputView = [[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
     _inputView.backgroundColor = [UIColor colorWithWhite:250/255.0 alpha:1.0];
     _inputView.hidden = YES;
+    _inputView.userInteractionEnabled = YES;
     
     [self addSubview:_inputView];
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 0.5)];
-    line.backgroundColor = [UIColor darkGrayColor];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 1.0/[UIScreen mainScreen].scale)];
+    line.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [_inputView addSubview:line];
-    
     
     if (_sendButton == nil) {
         x = CGRectGetWidth(self.frame) - InputSendButtonWidth - InputViewPadding;
@@ -127,9 +121,10 @@
         
         _inputTextView.keyboardType = UIKeyboardTypeDefault;
         _inputTextView.returnKeyType = UIReturnKeySend;
-        _inputTextView.layer.borderWidth = 0.5;
-        _inputTextView.layer.cornerRadius = 15;
-        _inputTextView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _inputTextView.borderStyle = UITextBorderStyleRoundedRect;
+//        _inputTextView.layer.borderWidth = 0.5;
+//        _inputTextView.layer.cornerRadius = 15;
+//        _inputTextView.layer.borderColor = [UIColor lightGrayColor].CGColor;
         _inputTextView.font = [UIFont systemFontOfSize:15];
         
         _inputTextView.delegate = self;
@@ -149,13 +144,7 @@
         _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTableViewPanAndTap:)];
         [_maskView addGestureRecognizer:_tapGestureRecognizer];
     }
-
-    
 }
-
-
-
-
 
 #pragma mark - Notification
 
@@ -165,15 +154,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onKeyboradShow:) name:UIKeyboardWillShowNotification object:nil];
 }
 
-
 -(void) removeNotify
 
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 
 }
-
-
 
 #pragma mark - Keyboard
 
@@ -187,8 +173,6 @@
     [self changeInputViewOffsetY:(frame.origin.y - InputViewHeight) ];
     
 }
-
-
 
 #pragma mark - Observer
 
@@ -207,12 +191,13 @@
 {
     if ([keyPath isEqualToString:InputViewObserveKeyPath]) {
         CGFloat newOffsetY = [[change valueForKey:NSKeyValueChangeNewKey] floatValue];
-        
+        if (_delegate && [_delegate respondsToSelector:@selector(commentInputViewDidChangeOffsetY:)]) {
+            [_delegate commentInputViewDidChangeOffsetY:newOffsetY];
+        }
         [self changeInputViewPosition:newOffsetY];
     }
     
 }
-
 
 #pragma mark - UITextFieldDelegate
 
@@ -230,7 +215,6 @@
 -(void) changeInputViewOffsetY:(CGFloat) offsetY
 {
     [self setValue: [NSNumber numberWithDouble:offsetY] forKey:InputViewObserveKeyPath];
-    
 }
 
 -(void) changeInputViewPosition:(CGFloat) newOffsetY
@@ -258,13 +242,11 @@
 -(void) onTableViewPanAndTap:(UIGestureRecognizer *) gesture
 {
     [self hideInputView];
-    
 }
 
 
 -(void) onInputSendButtonClick:(UIButton *) button
 {
-    
     [self sendComment];
 }
 
@@ -300,9 +282,6 @@
     [self changeInputViewPosition:offsetY];
 }
 
-
-
-
 -(void)show
 {
     
@@ -310,11 +289,9 @@
     [_inputTextView becomeFirstResponder];
 }
 
-
 -(void)setPlaceHolder:(NSString *)text
 {
     _inputTextView.placeholder = text;
 }
-
 
 @end
