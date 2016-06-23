@@ -49,7 +49,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.userInteractionEnabled = NO;
+//        self.userInteractionEnabled = NO;
+//        [self setBackgroundColor:[UIColor clearColor]];
+//        self.alpha = 1.f;
         _keyboardAnimationDuration = 0.25;
         _keyboardAnimationCurve = 7;
         
@@ -85,7 +87,8 @@
     width = CGRectGetWidth(self.frame);
     height = InputViewHeight;
     x= 0;
-    y= CGRectGetHeight(self.frame)- height;
+//    y= CGRectGetHeight(self.frame)- height;
+    y = 0;
     
     _inputView = [[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
     _inputView.backgroundColor = [UIColor colorWithWhite:250/255.0 alpha:1.0];
@@ -136,7 +139,7 @@
     
     
     
-    
+    /**
     if (_panGestureRecognizer == nil) {
         _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onTableViewPanAndTap:)];
         [_maskView addGestureRecognizer:_panGestureRecognizer];
@@ -148,12 +151,16 @@
         _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTableViewPanAndTap:)];
         [_maskView addGestureRecognizer:_tapGestureRecognizer];
     }
+     **/
 
     
 }
 
 
-
+//- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+//    [super pointInside:point withEvent:event];
+//    
+//}
 
 
 #pragma mark - Notification
@@ -230,7 +237,6 @@
 -(void) changeInputViewOffsetY:(CGFloat) offsetY
 {
     [self setValue: [NSNumber numberWithDouble:offsetY] forKey:InputViewObserveKeyPath];
-    
 }
 
 -(void) changeInputViewPosition:(CGFloat) newOffsetY

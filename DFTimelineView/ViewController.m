@@ -271,6 +271,7 @@
 
 -(void) refresh
 {
+    
     //下来刷新
     //模拟网络请求
     dispatch_time_t time=dispatch_time(DISPATCH_TIME_NOW, 2*NSEC_PER_SEC);
@@ -316,7 +317,7 @@
         textImageItem.location = @"广州信息港";
         [self addItem:textImageItem];
         
-        [self endLoadMore];
+        [self endLoadMoreWithNoMoreData];
     });
 }
 

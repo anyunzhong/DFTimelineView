@@ -48,6 +48,7 @@ PODS:
 
 DEPENDENCIES:
   - DFCommon (from `https://github.com/chn-lyzhi/DFCommon.git`)
+  - MJRefresh (~> 3.1.7)
 
 EXTERNAL SOURCES:
   DFCommon:
@@ -74,6 +75,6 @@ SPEC CHECKSUMS:
   TZImagePickerController: 046f172ad54add0ce358dfae932d9183b7fafd03
   YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
 
-PODFILE CHECKSUM: 0ffe27b493b237ad473f21c86a413ee793587f3d
+PODFILE CHECKSUM: 749a4b6b86bc986211299ae8bbe69e1ceeb35324
 
 COCOAPODS: 1.0.1
