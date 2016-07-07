@@ -413,6 +413,9 @@
     if (_delegate != nil && [_delegate respondsToSelector:@selector(onComment:)]) {
         [_delegate onComment:self.item.itemId];
     }
+    if (_delegate != nil && [_delegate respondsToSelector:@selector(onComment:cell:)]) {
+        [_delegate onComment:self.item.itemId cell:self];
+    }
 }
 
 

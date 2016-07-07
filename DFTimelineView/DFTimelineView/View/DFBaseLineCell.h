@@ -22,13 +22,15 @@
 
 
 
-
+@class DFBaseLineCell;
 @protocol DFLineCellDelegate <NSObject>
 
 @optional
 -(void) onLike:(long long) itemId;
 
 -(void) onComment:(long long) itemId;
+
+- (void)onComment:(long long)itemId cell:(DFBaseLineCell *)cell;
 
 -(void) onClickUser:(NSUInteger) userId;
 

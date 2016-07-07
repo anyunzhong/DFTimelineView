@@ -19,7 +19,6 @@
 #define NavTextAttribute @{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont boldSystemFontOfSize:18]}
 
 
-
 @interface AppDelegate ()
 
 @property (nonatomic, strong) ViewController *controller;

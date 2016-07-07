@@ -135,6 +135,7 @@
 
 -(void) onClickCamera:(id) sender
 {
+    /**
     MMPopupItemHandler block = ^(NSInteger index){
         switch (index) {
             case 0:
@@ -151,9 +152,28 @@
         }
     };
     
+    
     NSArray *items = @[MMItemMake(@"小视频", MMItemTypeNormal, block),
       MMItemMake(@"拍照", MMItemTypeNormal, block),
       MMItemMake(@"从相册选取", MMItemTypeNormal, block)];
+     **/
+    MMPopupItemHandler block = ^(NSInteger index){
+        switch (index) {
+            case 0:
+                [self takePhoto];
+                break;
+            case 1:
+                [self pickFromAlbum];
+                break;
+            default:
+                break;
+        }
+    };
+    
+    NSArray *items = @[
+                       MMItemMake(@"拍照", MMItemTypeNormal, block),
+                       MMItemMake(@"从相册选取", MMItemTypeNormal, block)];
+
     
     MMSheetView *sheetView = [[MMSheetView alloc] initWithTitle:@"" items:items];
     
@@ -335,6 +355,7 @@
 
 #pragma mark - DFLineCellDelegate
 
+/**
 -(void)onComment:(long long)itemId
 {
     _currentItemId = itemId;
@@ -345,7 +366,21 @@
     
     [_commentInputView show];
 }
+ **/
 
+- (void)onComment:(long long)itemId cell:(DFBaseLineCell *)cell {
+    _currentItemId = itemId;
+    
+    _commentInputView.commentId = 0;
+    
+    _commentInputView.hidden = NO;
+    
+    [_commentInputView show];
+    
+    CGPoint linkLabelPoint = [self.view.window convertPoint:cell.bounds.origin fromView:cell];
+    CGFloat tableViewMovingDistance = (self.keyboardOffsetY - (linkLabelPoint.y + cell.frame.size.height));
+    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y - tableViewMovingDistance) animated:YES];
+}
 
 -(void)onLike:(long long)itemId
 {
@@ -389,8 +424,7 @@
     [_commentInputView setPlaceHolder:[NSString stringWithFormat:@"  回复: %@", comment.userNick]];
 
     CGPoint linkLabelPoint = [self.view.window convertPoint:linkLabel.bounds.origin fromView:linkLabel];
-    self.currentSelectedLinkLabelY = linkLabelPoint.y;
-    CGFloat tableViewMovingDistance = (self.keyboardOffsetY - (self.currentSelectedLinkLabelY + linkLabel.frame.size.height));
+    CGFloat tableViewMovingDistance = (self.keyboardOffsetY - (linkLabelPoint.y + linkLabel.frame.size.height));
     [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y - tableViewMovingDistance) animated:YES];
 }
 

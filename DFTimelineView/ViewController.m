@@ -218,8 +218,6 @@
     
     
     [self addItem:textImageItem3];
-    
-    
 }
 
 

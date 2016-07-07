@@ -59,6 +59,8 @@
             x = (width+Padding)*column;
             y = (height+Padding)*row;
             DFImageUnitView *imageUnitView = [[DFImageUnitView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+            imageUnitView.imageView.contentMode = UIViewContentModeScaleAspectFill;
+            imageUnitView.imageView.clipsToBounds = YES;
             [self addSubview:imageUnitView];
             imageUnitView.hidden = YES;
             [imageUnitView.imageButton addTarget:self action:@selector(onClickImage:) forControlEvents:UIControlEventTouchUpInside];

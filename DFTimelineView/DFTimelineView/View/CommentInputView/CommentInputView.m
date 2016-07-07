@@ -167,11 +167,13 @@
 {
     NSDictionary *info = notify.userInfo;
     CGRect frame = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    if ([[info objectForKey:UIKeyboardFrameBeginUserInfoKey]CGRectValue].size.height <= 0) {
+        return;
+    }
     _keyboardAnimationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     _keyboardAnimationCurve = [[info objectForKey:UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    
-    [self changeInputViewOffsetY:(frame.origin.y - InputViewHeight) ];
-    
+    NSLog(@"frame.origin.y%f",frame.origin.y);
+    [self changeInputViewOffsetY:(frame.origin.y - InputViewHeight)];
 }
 
 #pragma mark - Observer
@@ -180,7 +182,6 @@
 {
     [self addObserver:self forKeyPath:InputViewObserveKeyPath options:NSKeyValueObservingOptionNew context:nil];
 }
-
 
 -(void) removeObserver
 {
