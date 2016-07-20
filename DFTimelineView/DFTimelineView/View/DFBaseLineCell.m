@@ -51,6 +51,9 @@
 @property (nonatomic, strong) UIImageView *userAvatarView;
 @property (nonatomic, strong) UIButton *userAvatarButton;
 
+@property (strong, nonatomic) UIButton *moreButton;
+
+
 @property (nonatomic, strong) MLLinkLabel *userNickLabel;
 
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -156,8 +159,6 @@
         [self.contentView addSubview:_locationLabel];
     }
     
-    
-    
     if (_timeLabel == nil) {
         _timeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _timeLabel.textColor = [UIColor lightGrayColor];
@@ -165,7 +166,6 @@
         _timeLabel.hidden = YES;
         [self.contentView addSubview:_timeLabel];
     }
-    
     
     if (_likeCmtButton == nil) {
         _likeCmtButton = [[UIButton alloc] initWithFrame:CGRectZero];
@@ -197,6 +197,20 @@
         _likeCommentToolbar.delegate = self;
         _likeCommentToolbar.hidden = YES;
         [self.contentView addSubview:_likeCommentToolbar];
+    }
+
+    
+    if (_moreButton == nil) {
+        y = _userAvatarView.frame.origin.y + _userAvatarView.frame.size.height + 16;
+        x = _userAvatarView.frame.origin.x;
+        width = _userAvatarView.frame.size.width;
+        height = 44;
+        
+        _moreButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [_moreButton setTitle:@"更多" forState:UIControlStateNormal];
+        [_moreButton setFrame:CGRectMake(x, y, width, height)];
+        [_moreButton addTarget:self action:@selector(onClickMoreButton:) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:_moreButton];
     }
 
 }
@@ -370,6 +384,12 @@
 {
     if (_delegate != nil && [_delegate respondsToSelector:@selector(onClickUser:)]) {
         [_delegate onClickUser:self.item.userId];
+    }
+}
+
+- (void) onClickMoreButton:(UIButton *)sender {
+    if (_delegate != nil && [_delegate respondsToSelector:@selector(onClickMoreButton:)]) {
+        [_delegate onClickMoreButton:self.item.userId];
     }
 }
 

@@ -76,6 +76,7 @@
     
     [self initCommentInputView];
     
+    self.navigationItem.rightBarButtonItems = @[[self rightBarButtonItem],[self rightBarButtonItemAnotherOne]];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -114,6 +115,10 @@
 
 #pragma mark - BarButtonItem
 
+- (UIBarButtonItem *)rightBarButtonItemAnotherOne {
+    UIBarButtonItem *item = [UIBarButtonItem icon:@"AlbumAddBtn" selector:@selector(onLongPressCamera:) target:self];
+    return item;
+}
 
 -(UIBarButtonItem *)rightBarButtonItem
 {

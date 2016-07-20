@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"朋友圈";
+    self.title = @"个人秀";
     
     [self initData];
     
@@ -58,7 +58,12 @@
     textImageItem.userAvatar = @"http://file-cdn.datafans.net/avatar/1.jpeg";
     textImageItem.userNick = @"Allen";
     textImageItem.title = @"";
-    textImageItem.text = @"你是我的小苹果 小苹果 我爱你 就像老鼠爱大米 18680551720 [亲亲]";
+    textImageItem.text = @"“三个代表”思想要求中国共产党：\
+    \
+    要始终代表中国先进社会生产力的发展要求；\
+    要始终代表中国先进文化的前进方向；\
+    要始终代表中国最广大人民的根本利益。\
+    三个代表中列为第一位的是“先进社会生产力的发展要求的代表”，即进一步推进生产力发展的方针。";
     
     NSMutableArray *srcImages = [NSMutableArray array];
     [srcImages addObject:@"http://file-cdn.datafans.net/temp/11.jpg"];

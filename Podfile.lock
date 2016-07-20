@@ -39,9 +39,12 @@ PODS:
   - MMPopupView (1.7.2):
     - Masonry
   - ODRefreshControl (1.2)
+  - SDCycleScrollView (1.65):
+    - SDWebImage (~> 3.7)
   - SDWebImage (3.8.1):
     - SDWebImage/Core (= 3.8.1)
   - SDWebImage/Core (3.8.1)
+  - SKTagView (0.9.1)
   - SVProgressHUD (2.0.3)
   - TZImagePickerController (1.4.5)
   - YLGIFImage (0.11)
@@ -49,6 +52,8 @@ PODS:
 DEPENDENCIES:
   - DFCommon (from `https://github.com/chn-lyzhi/DFCommon.git`)
   - MJRefresh (~> 3.1.7)
+  - SDCycleScrollView (~> 1.61)
+  - SKTagView (~> 0.8)
 
 EXTERNAL SOURCES:
   DFCommon:
@@ -70,11 +75,13 @@ SPEC CHECKSUMS:
   MLLabel: 086ecaa4101505c166950cff986a3edcbcfb1c27
   MMPopupView: fe1dd010824029dfb632fdf1a531db5dd5386020
   ODRefreshControl: 907e6149d72dde488d5917ccfabee5bd8d711a20
+  SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+  SKTagView: a60e322f9a5cef6197302cafcb7c69156daa140e
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   TZImagePickerController: 046f172ad54add0ce358dfae932d9183b7fafd03
   YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
 
-PODFILE CHECKSUM: 749a4b6b86bc986211299ae8bbe69e1ceeb35324
+PODFILE CHECKSUM: c969f50d8717960854d567f26fbc9ddf144f31f5
 
 COCOAPODS: 1.0.1

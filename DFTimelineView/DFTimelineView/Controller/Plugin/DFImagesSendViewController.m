@@ -19,6 +19,9 @@
 
 #import <AssetsLibrary/AssetsLibrary.h>
 
+#import <SKTagView.h>
+#import <Masonry.h>
+
 #define ImageGridWidth [UIScreen mainScreen].bounds.size.width*0.7
 
 @interface DFImagesSendViewController()<DFPlainGridImageViewDelegate,TZImagePickerControllerDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextViewDelegate>
@@ -38,6 +41,9 @@
 @property (strong, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 @property (strong, nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
 
+@property (strong, nonatomic) SKTagView *tagView;
+@property (nonatomic, strong) UIView *tagBackgroup;
+
 @end
 
 @implementation DFImagesSendViewController
@@ -49,6 +55,8 @@
         _images = [NSMutableArray array];
         if (images != nil) {
             [_images addObjectsFromArray:images];
+            [_images addObject:[UIImage imageNamed:@"AlbumAddBtn"]];
+        } else {
             [_images addObject:[UIImage imageNamed:@"AlbumAddBtn"]];
         }
     }
@@ -67,13 +75,17 @@
 {
     [super viewDidLoad];
     [self initView];
-    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [_contentView becomeFirstResponder];
 }
 
 -(void) initView
 {
-    
     self.automaticallyAdjustsScrollViewInsets = NO;
+    [self.view setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
     CGFloat x, y, width, heigh;
     x=10;
@@ -96,12 +108,26 @@
     _placeholder.enabled = NO;
     [self.view addSubview:_placeholder];
     
-    
     _gridView = [[DFPlainGridImageView alloc] initWithFrame:CGRectZero];
     _gridView.delegate = self;
     [self.view addSubview:_gridView];
     
-    
+    //tag
+    _tagBackgroup = [[UIView alloc]initWithFrame:CGRectZero];
+    [_tagBackgroup setBackgroundColor:[UIColor redColor]];
+    _tagView = [[SKTagView alloc]init];
+    [_tagView setBackgroundColor:[UIColor whiteColor]];
+    _tagView.interitemSpacing = 8;
+    _tagView.lineSpacing = 8;
+    _tagView.preferredMaxLayoutWidth = width;
+    _tagView.padding = UIEdgeInsetsMake(8, 8, 8, 8);
+    [_tagView setUserInteractionEnabled:YES];
+    [_tagBackgroup addSubview:_tagView];
+    [_tagView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(_tagBackgroup);
+    }];
+    [self.view addSubview:_tagBackgroup];
+
     _mask = [[UIView alloc] initWithFrame:self.view.bounds];
     _mask.backgroundColor = [UIColor clearColor];
     _mask.hidden = YES;
@@ -114,20 +140,40 @@
     _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onPanAndTap:)];
     [_mask addGestureRecognizer:_tapGestureRecognizer];
     
-    
-    
     [self refreshGridImageView];
+    [self refreshTagView];
 }
 
 -(void) refreshGridImageView
 {
-    CGFloat x, y, width, heigh;
+    CGFloat x, y, width, height;
     x=10;
     y = CGRectGetMaxY(_contentView.frame)+10;
     width  = ImageGridWidth;
-    heigh = [DFPlainGridImageView getHeight:_images maxWidth:width];
-    _gridView.frame = CGRectMake(x, y, width, heigh);
+    height = [DFPlainGridImageView getHeight:_images maxWidth:width];
+    _gridView.frame = CGRectMake(x, y, width, height);
     [_gridView updateWithImages:_images];
+}
+
+- (void) refreshTagView {
+    [_tagView removeAllTags];
+    [@[@"AAAA",@"BBBB",@"CCCC",@"DDDD",@"DDDD",@"DDDD",@"DDDD",@"DDDD"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        SKTag *tag = [[SKTag alloc]initWithText:obj];
+        tag.textColor = [UIColor lightGrayColor];
+        //        tag.bgColor = [UIColor groupTableViewBackgroundColor];
+        tag.cornerRadius = 3;
+        tag.fontSize = 15;
+        tag.borderColor = [UIColor lightGrayColor];
+        tag.borderWidth = 1.f;
+        tag.padding = UIEdgeInsetsMake(3.5, 10.5, 3.5, 10.5);
+        [_tagView addTag:tag];
+    }];
+    CGSize size = [_tagView intrinsicContentSize];
+    [_tagBackgroup setFrame:CGRectMake(10, _gridView.frame.origin.y + _gridView.frame.size.height + 8, self.view.frame.size.width -2*10, size.height)];
+//    CGRect temp = _tagView.frame;
+//    temp.origin.x = _gridView.frame.origin.x;
+//    temp.origin.y = _gridView.frame.origin.y + _gridView.frame.size.height + 8;
+//    _tagView.frame = temp;
 }
 
 -(UIBarButtonItem *)leftBarButtonItem
@@ -142,7 +188,10 @@
 
 -(void) cancel
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [_contentView resignFirstResponder];
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 -(void) send
@@ -244,6 +293,7 @@
             case 0:
                 [_images removeObjectAtIndex:index];
                 [self refreshGridImageView];
+                [self refreshTagView];
                 break;
             default:
                 break;
@@ -309,6 +359,7 @@
     }
     
     [self refreshGridImageView];
+    [self refreshTagView];
 }
 
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos {
@@ -325,6 +376,7 @@
     [_images insertObject:image atIndex:(_images.count-1)];
     
     [self refreshGridImageView];
+    [self refreshTagView];
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

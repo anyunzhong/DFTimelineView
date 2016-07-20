@@ -34,6 +34,8 @@
 
 -(void) onClickUser:(NSUInteger) userId;
 
+- (void)onClickMoreButton:(NSUInteger)userID;
+
 -(void) onClickComment:(long long) commentId itemId:(long long) itemId;
 
 -(void) onClickComment:(long long) commentId itemId:(long long) itemId linkLabel:(UIView *)linkLabel;

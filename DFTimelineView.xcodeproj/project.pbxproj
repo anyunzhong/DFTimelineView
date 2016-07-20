@@ -54,6 +54,11 @@
 		11E157981BC0293900F2F99A /* DFFaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E157971BC0293900F2F99A /* DFFaceManager.m */; };
 		11E157CF1BC8F6E500F2F99A /* CommentInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E157CE1BC8F6E500F2F99A /* CommentInputView.m */; };
 		11F07F9E1BCF9BBE0084DAA3 /* DFBaseTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F07F9D1BCF9BBE0084DAA3 /* DFBaseTimeLineViewController.m */; };
+		658765601D3DCD0900588D32 /* u2_state0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6587655F1D3DCD0900588D32 /* u2_state0@2x.png */; };
+		65B64EBE1D3F1745001CB990 /* TENSubjectShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B64EBD1D3F1745001CB990 /* TENSubjectShowViewController.m */; };
+		65B64EC11D3F1759001CB990 /* SubjectShowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B64EC01D3F1759001CB990 /* SubjectShowTableViewCell.m */; };
+		65B64EC41D3F3157001CB990 /* TENSubjectShowDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B64EC31D3F3157001CB990 /* TENSubjectShowDetailViewController.m */; };
+		65B64EC71D3F5A67001CB990 /* TENBaseTimelineTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B64EC61D3F5A67001CB990 /* TENBaseTimelineTableViewController.m */; };
 		F6EC3B07A280F7A8DCB045F3 /* libPods-DFTimelineView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AEB4208C75F9B47EAAE19E80 /* libPods-DFTimelineView.a */; };
 /* End PBXBuildFile section */
 
@@ -140,6 +145,15 @@
 		11F07F9C1BCF9BBD0084DAA3 /* DFBaseTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFBaseTimeLineViewController.h; sourceTree = "<group>"; };
 		11F07F9D1BCF9BBE0084DAA3 /* DFBaseTimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFBaseTimeLineViewController.m; sourceTree = "<group>"; };
 		56800185CF8887378A48754C /* Pods-DFTimelineView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DFTimelineView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DFTimelineView/Pods-DFTimelineView.debug.xcconfig"; sourceTree = "<group>"; };
+		6587655F1D3DCD0900588D32 /* u2_state0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "u2_state0@2x.png"; sourceTree = "<group>"; };
+		65B64EBC1D3F1745001CB990 /* TENSubjectShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENSubjectShowViewController.h; sourceTree = "<group>"; };
+		65B64EBD1D3F1745001CB990 /* TENSubjectShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENSubjectShowViewController.m; sourceTree = "<group>"; };
+		65B64EBF1D3F1759001CB990 /* SubjectShowTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectShowTableViewCell.h; sourceTree = "<group>"; };
+		65B64EC01D3F1759001CB990 /* SubjectShowTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectShowTableViewCell.m; sourceTree = "<group>"; };
+		65B64EC21D3F3157001CB990 /* TENSubjectShowDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENSubjectShowDetailViewController.h; sourceTree = "<group>"; };
+		65B64EC31D3F3157001CB990 /* TENSubjectShowDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENSubjectShowDetailViewController.m; sourceTree = "<group>"; };
+		65B64EC51D3F5A67001CB990 /* TENBaseTimelineTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENBaseTimelineTableViewController.h; sourceTree = "<group>"; };
+		65B64EC61D3F5A67001CB990 /* TENBaseTimelineTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENBaseTimelineTableViewController.m; sourceTree = "<group>"; };
 		9959D93D9FA03E08D9405FAE /* Pods-DFTimelineView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DFTimelineView.release.xcconfig"; path = "Pods/Target Support Files/Pods-DFTimelineView/Pods-DFTimelineView.release.xcconfig"; sourceTree = "<group>"; };
 		AEB4208C75F9B47EAAE19E80 /* libPods-DFTimelineView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DFTimelineView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -310,6 +324,14 @@
 				11F07F9D1BCF9BBE0084DAA3 /* DFBaseTimeLineViewController.m */,
 				11D758551BB7DACC00F554D7 /* DFTimeLineViewController.h */,
 				11D758561BB7DACC00F554D7 /* DFTimeLineViewController.m */,
+				65B64EBC1D3F1745001CB990 /* TENSubjectShowViewController.h */,
+				65B64EBD1D3F1745001CB990 /* TENSubjectShowViewController.m */,
+				65B64EBF1D3F1759001CB990 /* SubjectShowTableViewCell.h */,
+				65B64EC01D3F1759001CB990 /* SubjectShowTableViewCell.m */,
+				65B64EC21D3F3157001CB990 /* TENSubjectShowDetailViewController.h */,
+				65B64EC31D3F3157001CB990 /* TENSubjectShowDetailViewController.m */,
+				65B64EC51D3F5A67001CB990 /* TENBaseTimelineTableViewController.h */,
+				65B64EC61D3F5A67001CB990 /* TENBaseTimelineTableViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -337,6 +359,7 @@
 		11D758E31BB8E6C300F554D7 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				6587655F1D3DCD0900588D32 /* u2_state0@2x.png */,
 				1173E5241C71BF63004C9979 /* AlbumAddBtn@2x.png */,
 				1173E4F11C71813E004C9979 /* Camera@2x.png */,
 				1173E4F21C71813E004C9979 /* Camera@3x.png */,
@@ -490,6 +513,7 @@
 				11D758311BB7D43B00F554D7 /* Images.xcassets in Resources */,
 				1173E4F41C71813E004C9979 /* Camera@3x.png in Resources */,
 				11D7590E1BBACC2700F554D7 /* AlbumLike@3x.png in Resources */,
+				658765601D3DCD0900588D32 /* u2_state0@2x.png in Resources */,
 				11D7590F1BBACC2700F554D7 /* AlbumOperateMoreViewBkg@2x.png in Resources */,
 				11D758F31BB8EA5E00F554D7 /* LikeCmtBg@3x.png in Resources */,
 				11D758F21BB8EA5E00F554D7 /* LikeCmtBg@2x.png in Resources */,
@@ -568,6 +592,7 @@
 				1173E56A1C72CEAE004C9979 /* DFTextImageUserLineCell.m in Sources */,
 				11D758291BB7D43B00F554D7 /* AppDelegate.m in Sources */,
 				1173E5351C720F7C004C9979 /* DFVideoLineCell.m in Sources */,
+				65B64EC11D3F1759001CB990 /* SubjectShowTableViewCell.m in Sources */,
 				1173E56D1C72F0B6004C9979 /* DFLineCellManager.m in Sources */,
 				11D758CA1BB8385100F554D7 /* DFImageUnitView.m in Sources */,
 				11F07F9E1BCF9BBE0084DAA3 /* DFBaseTimeLineViewController.m in Sources */,
@@ -580,15 +605,18 @@
 				1173E5231C71BAF0004C9979 /* DFPlainGridImageView.m in Sources */,
 				1173E53B1C7210EA004C9979 /* DFVideoLineItem.m in Sources */,
 				110D424D1BCF54CA00081824 /* MLClickColorLinkLabel.m in Sources */,
+				65B64EC41D3F3157001CB990 /* TENSubjectShowDetailViewController.m in Sources */,
 				11D759051BBAC8DD00F554D7 /* DFLikeCommentToolbar.m in Sources */,
 				11D7584D1BB7D66300F554D7 /* DFBaseLineItem.m in Sources */,
 				11D758F71BB8F36C00F554D7 /* DFLikeCommentView.m in Sources */,
 				11E157CF1BC8F6E500F2F99A /* CommentInputView.m in Sources */,
+				65B64EC71D3F5A67001CB990 /* TENBaseTimelineTableViewController.m in Sources */,
 				1173E4F71C71834D004C9979 /* UserViewController.m in Sources */,
 				1173E5691C72CEAE004C9979 /* DFBaseUserLineCell.m in Sources */,
 				11D758521BB7D85D00F554D7 /* DFBaseLineCell.m in Sources */,
 				11D758571BB7DACC00F554D7 /* DFTimeLineViewController.m in Sources */,
 				11D758FE1BBA8C5D00F554D7 /* DFLineCommentItem.m in Sources */,
+				65B64EBE1D3F1745001CB990 /* TENSubjectShowViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
