@@ -10,6 +10,7 @@
 #import <MJRefresh.h>
 #import <SDCycleScrollView.h>
 #import <SKTagView.h>
+#import "TENSubjectShowViewController.h"
 
 #define TableHeaderHeight 180*([UIScreen mainScreen].bounds.size.width / 375.0)
 #define CoverHeight 240*([UIScreen mainScreen].bounds.size.width / 375.0)
@@ -117,6 +118,8 @@
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [cell setFrame:CGRectMake(x, TableHeaderHeight, width, moreShowCellHeight)];
     cell.textLabel.text = @"更多主题秀";
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickMoreSubjectShowList)];
+    [cell addGestureRecognizer:tap];
     [header addSubview:cell];
     
     SKTagView *tagView = [[SKTagView alloc]initWithFrame:CGRectMake(x, TableHeaderHeight + moreShowCellHeight + 8, width, tagViewHeight)];
@@ -124,6 +127,7 @@
     tagView.interitemSpacing = 8;
     tagView.preferredMaxLayoutWidth = width;
     tagView.padding = UIEdgeInsetsMake(4, 8, 4, 8);
+    tagView.selectedType = SKTagViewSelectedSingle;
     [@[@"AAAA",@"BBBB",@"CCCC",@"DDDD"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         SKTag *tag = [[SKTag alloc]initWithText:obj];
         tag.textColor = [UIColor lightGrayColor];
@@ -133,6 +137,9 @@
         tag.borderColor = [UIColor lightGrayColor];
         tag.borderWidth = 1.f;
         tag.padding = UIEdgeInsetsMake(3.5, 10.5, 3.5, 10.5);
+        tag.selectedBgColor = [UIColor redColor];
+        tag.selectedTextColor = [UIColor whiteColor];
+
         [tagView addTag:tag];
     }];
     [header addSubview:tagView];
@@ -383,6 +390,9 @@
 //    [_refreshControl endRefreshing];
 }
 
+- (void)clickMoreSubjectShowList {
+    [self.navigationController pushViewController:[TENSubjectShowViewController new] animated:YES];
+}
 
 
 #pragma mark - Method

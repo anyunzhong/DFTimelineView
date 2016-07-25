@@ -46,6 +46,13 @@
 }
 
 #pragma mark -
+-(DFBaseLineCell *) getCell:(Class)itemClass
+{
+    DFLineCellManager *manager = [DFLineCellManager sharedInstance];
+    return [manager getCell:itemClass];
+}
+
+#pragma mark -
 - (void)refresh {
     
 }

@@ -19,13 +19,19 @@
     [super viewDidLoad];
     
     __weak typeof(self) _self = self;
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     self.tableView = [[UITableView alloc]init];
-    if (self.cellClass) {
+    if (!self.cellClass || self.cellClass.length <= 0) {
+        self.cellClass = NSStringFromClass([UITableViewCell class]);
+    }
+    Class class111 = NSClassFromString(self.cellClass);
+    Class class = NSClassFromString(self.cellClass);
+    if ([NSClassFromString(self.cellClass) isSubclassOfClass:[UITableViewCell class]]) {
         [self.tableView registerClass:NSClassFromString(self.cellClass) forCellReuseIdentifier:self.cellClass];
-    } else {
-        
     }
     
+    self.tableView.estimatedRowHeight = 200.f;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -34,7 +40,7 @@
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         [_self loadMore];
     }];
-    [self.tableView addSubview:self.view];
+    [self.view addSubview:self.tableView];
 
     // Do any additional setup after loading the view.
 }
@@ -44,6 +50,7 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
+    [self.tableView reloadData];
 }
 
 #pragma mark - tableViewDelegate
@@ -52,11 +59,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _datas.count;
+//    return _datas.count;
+    return 20;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id cell = [tableView dequeueReusableCellWithIdentifier:self.cellClass ? : @"cell"];
+    id cell = [tableView dequeueReusableCellWithIdentifier:self.cellClass];
     return cell;
 }
 
@@ -66,9 +74,17 @@
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 44.f;
+}
+
 #pragma mark - 子类实现方法
 - (NSString *)cellClass {
-    return nil;
+    return @"";
 }
 
 - (void)refresh {
@@ -80,7 +96,7 @@
 }
 
 - (void)setCell:(UITableViewCell *)cell indexPath:(NSIndexPath *)indexPath {
-    
+
 }
 
 @end

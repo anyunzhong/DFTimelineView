@@ -12,6 +12,7 @@
 #import "DFTextImageLineItem.h"
 #import <MJRefresh.h>
 #import "TENBaseTimelineTableViewController.h"
+#import "DFLineCellManager.h"
 
 @interface TENSubjectShowDetailViewController : TENBaseTimelineTableViewController <DFLineCellDelegate>
 

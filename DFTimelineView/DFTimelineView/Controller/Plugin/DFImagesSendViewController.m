@@ -121,6 +121,7 @@
     _tagView.lineSpacing = 8;
     _tagView.preferredMaxLayoutWidth = width;
     _tagView.padding = UIEdgeInsetsMake(8, 8, 8, 8);
+    _tagView.selectedType = SKTagViewSelectedMultiple;
     [_tagView setUserInteractionEnabled:YES];
     [_tagBackgroup addSubview:_tagView];
     [_tagView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -166,6 +167,9 @@
         tag.borderColor = [UIColor lightGrayColor];
         tag.borderWidth = 1.f;
         tag.padding = UIEdgeInsetsMake(3.5, 10.5, 3.5, 10.5);
+        tag.selectedBgColor = [UIColor redColor];
+        tag.selectedTextColor = [UIColor whiteColor];
+
         [_tagView addTag:tag];
     }];
     CGSize size = [_tagView intrinsicContentSize];

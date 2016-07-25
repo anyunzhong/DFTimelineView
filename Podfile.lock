@@ -44,7 +44,7 @@ PODS:
   - SDWebImage (3.8.1):
     - SDWebImage/Core (= 3.8.1)
   - SDWebImage/Core (3.8.1)
-  - SKTagView (0.9.1)
+  - SKTagView (0.9.2)
   - SVProgressHUD (2.0.3)
   - TZImagePickerController (1.4.5)
   - YLGIFImage (0.11)
@@ -53,16 +53,21 @@ DEPENDENCIES:
   - DFCommon (from `https://github.com/chn-lyzhi/DFCommon.git`)
   - MJRefresh (~> 3.1.7)
   - SDCycleScrollView (~> 1.61)
-  - SKTagView (~> 0.8)
+  - SKTagView (from `https://github.com/chn-lyzhi/SKTagView.git`)
 
 EXTERNAL SOURCES:
   DFCommon:
     :git: https://github.com/chn-lyzhi/DFCommon.git
+  SKTagView:
+    :git: https://github.com/chn-lyzhi/SKTagView.git
 
 CHECKOUT OPTIONS:
   DFCommon:
     :commit: f9caf699bca7564d0fd472aa652d301e4510d426
     :git: https://github.com/chn-lyzhi/DFCommon.git
+  SKTagView:
+    :commit: fad5d7224bf21a8a7a6424053ec9f22a7fef05af
+    :git: https://github.com/chn-lyzhi/SKTagView.git
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -77,11 +82,11 @@ SPEC CHECKSUMS:
   ODRefreshControl: 907e6149d72dde488d5917ccfabee5bd8d711a20
   SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
-  SKTagView: a60e322f9a5cef6197302cafcb7c69156daa140e
+  SKTagView: 59cdadcd16e4a09300746ad1811a72371e1327f7
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   TZImagePickerController: 046f172ad54add0ce358dfae932d9183b7fafd03
   YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
 
-PODFILE CHECKSUM: c969f50d8717960854d567f26fbc9ddf144f31f5
+PODFILE CHECKSUM: ffedad874681a7891367f7935a5af9fc9efb71bf
 
 COCOAPODS: 1.0.1

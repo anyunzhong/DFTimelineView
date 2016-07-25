@@ -18,15 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"话题秀";
-}
-
-#pragma makr - tableDelegate
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.datas.count;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 }
 
 #pragma mark -
@@ -42,6 +37,10 @@
     if ([cell isKindOfClass:[SubjectShowTableViewCell class]]) {
         [(SubjectShowTableViewCell *)cell setData:self.datas[indexPath.row]];
     }
+}
+
+- (NSString *)cellClass {
+    return @"SubjectShowTableViewCell";
 }
 
 @end

@@ -13,7 +13,7 @@
 
 @interface TENBaseTimelineTableViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic) UITableView *tableView;
+@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic) NSArray *datas;
 
 @property (nonatomic) NSString *cellClass;

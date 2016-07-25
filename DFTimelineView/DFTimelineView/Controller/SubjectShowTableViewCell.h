@@ -14,12 +14,19 @@
 @property (nonatomic) UIView *backView;
 
 @property (nonatomic) UILabel *titleLabel;
+@property (nonatomic) UILabel *detailLabel;
+
+@property (nonatomic) UIView *colorView;
+
+@property (nonatomic) UIView *lineView;
 
 @property (nonatomic) UILabel *stateLabel;
 
-@property (nonatomic) UILabel *itemNumber;
+@property (nonatomic) UILabel *itemNumber;  //发布数量
 
-@property (nonatomic) UILabel *likeNumber;
+@property (nonatomic) UILabel *likeNumber;  //点赞数量
+
+@property (nonatomic) UILabel *moreLabel;  //更多label
 
 @property (nonatomic) UILabel *imageContentTitle;
 
