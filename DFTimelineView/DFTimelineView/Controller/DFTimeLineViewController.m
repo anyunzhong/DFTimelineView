@@ -23,7 +23,17 @@
 #import "DFImagesSendViewController.h"
 #import "DFVideoCaptureController.h"
 
-@interface DFTimeLineViewController ()<DFLineCellDelegate, CommentInputViewDelegate, TZImagePickerControllerDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate, DFImagesSendViewControllerDelegate,DFVideoCaptureControllerDelegate>
+#import <SDCycleScrollView.h>
+
+#import <SKTagView.h>
+#import "TENSubjectShowViewController.h"
+
+#import <Masonry.h>
+
+#define TableHeaderHeight 180*([UIScreen mainScreen].bounds.size.width / 375.0)
+
+
+@interface DFTimeLineViewController ()<DFLineCellDelegate, CommentInputViewDelegate, TZImagePickerControllerDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate, DFImagesSendViewControllerDelegate,DFVideoCaptureControllerDelegate,SDCycleScrollViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *items;
 
@@ -33,6 +43,8 @@
 
 
 @property (strong, nonatomic) CommentInputView *commentInputView;
+
+@property (nonatomic, strong) SDCycleScrollView *topScrollView;
 
 
 @property (assign, nonatomic) long long currentItemId;
@@ -76,7 +88,14 @@
     
     [self initCommentInputView];
     
-    self.navigationItem.rightBarButtonItems = @[[self rightBarButtonItem],[self rightBarButtonItemAnotherOne]];
+    switch (self.type) {
+        case TimeLineTypeNone:
+            self.navigationItem.rightBarButtonItems = @[[self rightBarButtonItem],[self rightBarButtonItemAnotherOne]];
+            break;
+        case TImeLineTypeSubjectShow:
+            self.navigationItem.rightBarButtonItems = @[[self rightBarButtonItemAnotherOne]];
+            break;
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -107,6 +126,154 @@
         _commentInputView.delegate = self;
         [self.view addSubview:_commentInputView];
     }
+}
+
+- (void)initMyHeader {
+    switch (self.type) {
+        case TimeLineTypeNone:
+            [self initTimelineHeader];
+            break;
+        case TImeLineTypeSubjectShow:
+            [self initSubjectShowHeader];
+            break;
+    }
+}
+
+- (void) initSubjectShowHeader {
+    UIView *back = [UIView new];
+    
+    UILabel *titleLabel = [UILabel new];
+    titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+    
+    UILabel *timeLabel = [UILabel new];
+    timeLabel.textColor = [UIColor lightGrayColor];
+    timeLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    
+    UIImageView *imageView = [UIImageView new];
+    [imageView setBackgroundColor:[UIColor lightGrayColor]];
+    
+    UILabel *detailLabel = [UILabel new];
+    detailLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+    detailLabel.textColor = [UIColor lightGrayColor];
+    detailLabel.numberOfLines = 0;
+    
+    [back addSubview:titleLabel];
+    [back addSubview:timeLabel];
+    [back addSubview:imageView];
+    [back addSubview:detailLabel];
+    
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(titleLabel.superview.mas_leadingMargin);
+        make.top.equalTo(titleLabel.superview.mas_topMargin);
+        make.trailing.equalTo(titleLabel.superview.mas_trailingMargin);
+    }];
+    
+    [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.equalTo(titleLabel);
+        make.top.equalTo(titleLabel.mas_bottom).offset(8);
+        make.bottom.equalTo(imageView.mas_top).offset(-8);
+    }];
+    
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.equalTo(titleLabel);
+        make.top.equalTo(timeLabel.mas_bottom).offset(8);
+        make.height.mas_equalTo(200);
+        make.bottom.equalTo(detailLabel.mas_top).offset(-8);
+    }];
+    
+    [detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.equalTo(titleLabel);
+        make.top.equalTo(imageView.mas_bottom).offset(8);
+        make.bottom.equalTo(detailLabel.superview.mas_bottomMargin);
+    }];
+    
+    
+    //虚拟数据
+    titleLabel.text = @"titleLabel";
+    timeLabel.text = @"timeLabel";
+    imageView.image = [UIImage imageNamed:@"angle-mask@3x"];
+    detailLabel.text = @"detailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabel";
+    
+    self.tableView.tableHeaderView = back;
+    //TODO:!!!!!
+    [self sizeHeaderToFit];
+    
+}
+
+- (void)sizeHeaderToFit
+{
+    UIView *header = self.tableView.tableHeaderView;
+    
+    [header setNeedsLayout];
+    [header layoutIfNeeded];
+    
+    CGFloat height = [header systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    CGRect frame = header.frame;
+    
+    frame.size.height = height;
+    header.frame = frame;
+    
+    self.tableView.tableHeaderView = header;
+}
+
+
+- (void) initTimelineHeader {
+    CGFloat x,y,width, height;
+    x=0;
+    y=0;
+    CGFloat moreShowCellHeight = 44;
+    CGFloat tagViewHeight = 33;
+    width = self.view.frame.size.width;
+    height = TableHeaderHeight + moreShowCellHeight + 8 + tagViewHeight + 1;
+    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    header.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.tableView.tableHeaderView = header;
+    
+    _topScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(x, y, width, TableHeaderHeight) imageNamesGroup:@[@"u2_state0",@"u2_state0"]];
+    
+    _topScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
+    
+    [header addSubview:_topScrollView];
+    
+    UITableViewCell *cell = [[UITableViewCell alloc]init];
+    [cell setBackgroundColor:[UIColor whiteColor]];
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    [cell setFrame:CGRectMake(x, TableHeaderHeight, width, moreShowCellHeight)];
+    cell.textLabel.text = @"更多主题秀";
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickMoreSubjectShowList)];
+    [cell addGestureRecognizer:tap];
+    [header addSubview:cell];
+    
+    SKTagView *tagView = [[SKTagView alloc]initWithFrame:CGRectMake(x, TableHeaderHeight + moreShowCellHeight + 8, width, tagViewHeight)];
+    [tagView setBackgroundColor:[UIColor whiteColor]];
+    tagView.interitemSpacing = 8;
+    tagView.preferredMaxLayoutWidth = width;
+    tagView.padding = UIEdgeInsetsMake(4, 8, 4, 8);
+    tagView.selectedType = SKTagViewSelectedSingle;
+    [@[@"AAAA",@"BBBB",@"CCCC",@"DDDD"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        SKTag *tag = [[SKTag alloc]initWithText:obj];
+        tag.textColor = [UIColor lightGrayColor];
+        //        tag.bgColor = [UIColor groupTableViewBackgroundColor];
+        tag.cornerRadius = 3;
+        tag.fontSize = 15;
+        tag.borderColor = [UIColor lightGrayColor];
+        tag.borderWidth = 1.f;
+        tag.padding = UIEdgeInsetsMake(3.5, 10.5, 3.5, 10.5);
+        tag.selectedBgColor = [UIColor redColor];
+        tag.selectedTextColor = [UIColor whiteColor];
+        
+        [tagView addTag:tag];
+    }];
+    [header addSubview:tagView];
+}
+
+- (void)setHeaderDataTitle:(NSString *)title images:(NSArray<NSString *> *)imagss tags:(NSArray<NSString *> *)tags {
+    
+    //TODO:得到数据后重新生成HeaderView
+}
+
+- (void)setSubjectHeaderDataTitle:(NSString *)title time:(NSString *)time imageUrl:(NSString *)imageUrl content:(NSString *)content {
+    //
 }
 
 - (void)didReceiveMemoryWarning {
@@ -510,6 +677,10 @@
         
         [item.commentStrArray addObject:commentStr];
     }
+}
+
+- (void)clickMoreSubjectShowList {
+    
 }
 
 

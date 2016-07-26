@@ -8,11 +8,7 @@
 
 #import "DFBaseTimeLineViewController.h"
 #import <MJRefresh.h>
-#import <SDCycleScrollView.h>
-#import <SKTagView.h>
-#import "TENSubjectShowViewController.h"
 
-#define TableHeaderHeight 180*([UIScreen mainScreen].bounds.size.width / 375.0)
 #define CoverHeight 240*([UIScreen mainScreen].bounds.size.width / 375.0)
 
 
@@ -28,7 +24,7 @@
 
 
 
-@interface DFBaseTimeLineViewController() <SDCycleScrollViewDelegate>
+@interface DFBaseTimeLineViewController() 
 
 @property (nonatomic, strong) UIImageView *coverView;
 
@@ -43,9 +39,6 @@
 @property (nonatomic, strong) UIView *footer;
 
 @property (nonatomic, assign) BOOL isLoadingMore;
-
-@property (nonatomic, strong) SDCycleScrollView *topScrollView;
-
 
 
 @end
@@ -76,7 +69,6 @@
 //    [self initHeader];
     
 //    [self initFooter];
-    
 }
 
 
@@ -93,56 +85,6 @@
         _tableView.layoutMargins = UIEdgeInsetsZero;
     }
     [self.view addSubview:_tableView];
-}
-
-- (void) initMyHeader {
-    CGFloat x,y,width, height;
-    x=0;
-    y=0;
-    CGFloat moreShowCellHeight = 44;
-    CGFloat tagViewHeight = 33;
-    width = self.view.frame.size.width;
-    height = TableHeaderHeight + moreShowCellHeight + 8 + tagViewHeight + 1;
-    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
-    header.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    _tableView.tableHeaderView = header;
-    
-    _topScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(x, y, width, TableHeaderHeight) imageNamesGroup:@[@"u2_state0",@"u2_state0"]];
-
-    _topScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
-
-    [header addSubview:_topScrollView];
-    
-    UITableViewCell *cell = [[UITableViewCell alloc]init];
-    [cell setBackgroundColor:[UIColor whiteColor]];
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    [cell setFrame:CGRectMake(x, TableHeaderHeight, width, moreShowCellHeight)];
-    cell.textLabel.text = @"更多主题秀";
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickMoreSubjectShowList)];
-    [cell addGestureRecognizer:tap];
-    [header addSubview:cell];
-    
-    SKTagView *tagView = [[SKTagView alloc]initWithFrame:CGRectMake(x, TableHeaderHeight + moreShowCellHeight + 8, width, tagViewHeight)];
-    [tagView setBackgroundColor:[UIColor whiteColor]];
-    tagView.interitemSpacing = 8;
-    tagView.preferredMaxLayoutWidth = width;
-    tagView.padding = UIEdgeInsetsMake(4, 8, 4, 8);
-    tagView.selectedType = SKTagViewSelectedSingle;
-    [@[@"AAAA",@"BBBB",@"CCCC",@"DDDD"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        SKTag *tag = [[SKTag alloc]initWithText:obj];
-        tag.textColor = [UIColor lightGrayColor];
-//        tag.bgColor = [UIColor groupTableViewBackgroundColor];
-        tag.cornerRadius = 3;
-        tag.fontSize = 15;
-        tag.borderColor = [UIColor lightGrayColor];
-        tag.borderWidth = 1.f;
-        tag.padding = UIEdgeInsetsMake(3.5, 10.5, 3.5, 10.5);
-        tag.selectedBgColor = [UIColor redColor];
-        tag.selectedTextColor = [UIColor whiteColor];
-
-        [tagView addTag:tag];
-    }];
-    [header addSubview:tagView];
     
     //下拉刷新
     __weak typeof(self) _self = self;
@@ -155,18 +97,26 @@
 
 }
 
+- (void) initMyHeader {
+    
+}
+
+- (void) initSubjectShowHeader {
+    
+}
+
 -(void) initHeader
 {
     CGFloat x,y,width, height;
     x=0;
     y=0;
     width = self.view.frame.size.width;
-    height = TableHeaderHeight;
+    height = 180*([UIScreen mainScreen].bounds.size.width / 375.0);
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
     header.backgroundColor = [UIColor whiteColor];
     _tableView.tableHeaderView = header;
     
-    
+
     //封面
     height = CoverHeight;
     _coverView = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
@@ -390,9 +340,6 @@
 //    [_refreshControl endRefreshing];
 }
 
-- (void)clickMoreSubjectShowList {
-    [self.navigationController pushViewController:[TENSubjectShowViewController new] animated:YES];
-}
 
 
 #pragma mark - Method

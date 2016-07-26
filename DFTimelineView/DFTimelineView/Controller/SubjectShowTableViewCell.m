@@ -51,16 +51,6 @@
     [_backView addSubview:_gridView];
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    [self setupViewsLayout];
-}
-
-- (void)setNeedsUpdateConstraints {
-    [super setNeedsUpdateConstraints];
-    [self setupViewsLayout];
-}
-
 - (void)setupViewsLayout {
     [_backView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(8, 8, 0, 8));

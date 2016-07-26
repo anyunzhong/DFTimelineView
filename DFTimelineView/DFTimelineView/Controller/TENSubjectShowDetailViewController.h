@@ -14,6 +14,10 @@
 #import "TENBaseTimelineTableViewController.h"
 #import "DFLineCellManager.h"
 
-@interface TENSubjectShowDetailViewController : TENBaseTimelineTableViewController <DFLineCellDelegate>
+#import "DFBaseTimeLineViewController.h"
+
+@interface TENSubjectShowDetailViewController : DFBaseTimeLineViewController
+
+@property (nonatomic, strong) NSNumber *itemID;
 
 @end

@@ -24,8 +24,6 @@
     if (!self.cellClass || self.cellClass.length <= 0) {
         self.cellClass = NSStringFromClass([UITableViewCell class]);
     }
-    Class class111 = NSClassFromString(self.cellClass);
-    Class class = NSClassFromString(self.cellClass);
     if ([NSClassFromString(self.cellClass) isSubclassOfClass:[UITableViewCell class]]) {
         [self.tableView registerClass:NSClassFromString(self.cellClass) forCellReuseIdentifier:self.cellClass];
     }

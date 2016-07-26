@@ -1,24 +1,19 @@
 //
-//  ViewController.m
+//  SubjectShowListViewController.m
 //  DFTimelineView
 //
-//  Created by Allen Zhong on 15/9/27.
-//  Copyright (c) 2015年 Datafans, Inc. All rights reserved.
+//  Created by 刘一智 on 16/7/26.
+//  Copyright © 2016年 Datafans, Inc. All rights reserved.
 //
 
-#import "ViewController.h"
-
+#import "SubjectShowListViewController.h"
 #import "UserViewController.h"
 
-#import "SubjectShowListViewController.h"
-
-@interface ViewController ()
+@interface SubjectShowListViewController ()
 
 @end
 
-@implementation ViewController
-
-
+@implementation SubjectShowListViewController
 - (instancetype)init
 {
     self = [super init];
@@ -221,7 +216,7 @@
     commentItem3_1.userNick = @"狄仁杰";
     commentItem3_1.text = @"神探是我";
     [textImageItem3.comments addObject:commentItem3_1];
-
+    
     
     
     
@@ -232,12 +227,12 @@
 
 -(void)onCommentCreate:(long long)commentId text:(NSString *)text itemId:(long long) itemId
 {
-        DFLineCommentItem *commentItem = [[DFLineCommentItem alloc] init];
-        commentItem.commentId = [[NSDate date] timeIntervalSince1970];
-        commentItem.userId = 10098;
-        commentItem.userNick = @"金三胖";
-        commentItem.text = text;
-        [self addCommentItem:commentItem itemId:itemId replyCommentId:commentId];
+    DFLineCommentItem *commentItem = [[DFLineCommentItem alloc] init];
+    commentItem.commentId = [[NSDate date] timeIntervalSince1970];
+    commentItem.userId = 10098;
+    commentItem.userNick = @"金三胖";
+    commentItem.text = text;
+    [self addCommentItem:commentItem itemId:itemId replyCommentId:commentId];
     
 }
 
@@ -316,7 +311,7 @@
         
         textImageItem.width = 640;
         textImageItem.height = 360;
-
+        
         
         
         
@@ -359,7 +354,7 @@
     
     //接着上传图片 和 请求服务器接口
     //请求完成之后 刷新整个界面
-
+    
 }
 
 
@@ -381,14 +376,10 @@
     videoItem.thumbImage = screenShot; //如果thumbImage存在 优先使用thumbImage
     
     [self addItemTop:videoItem];
-
+    
     //接着上传图片 和 请求服务器接口
     //请求完成之后 刷新整个界面
-}
-
-- (void)clickMoreSubjectShowList {
-    SubjectShowListViewController *controller = [[SubjectShowListViewController alloc]init];
-    [self.navigationController pushViewController:controller animated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -396,7 +387,7 @@
 }
 
 - (DFTimeLineViewControllerType)type {
-    return TimeLineTypeNone;
+    return TImeLineTypeSubjectShow;
 }
 
 @end

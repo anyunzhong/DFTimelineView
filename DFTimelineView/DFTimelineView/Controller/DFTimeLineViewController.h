@@ -13,6 +13,11 @@
 
 #import "DFBaseTimeLineViewController.h"
 
+typedef enum : NSUInteger {
+    TimeLineTypeNone,   //
+    TImeLineTypeSubjectShow,
+} DFTimeLineViewControllerType;
+
 @interface DFTimeLineViewController : DFBaseTimeLineViewController
 
 //添加到末尾
@@ -36,5 +41,10 @@
 
 //发送视频消息
 -(void)onSendVideo:(NSString *)text videoPath:(NSString *)videoPath screenShot:(UIImage *) screenShot;
+
+//点击更多
+- (void)clickMoreSubjectShowList;
+
+@property (nonatomic) DFTimeLineViewControllerType type;
 
 @end
