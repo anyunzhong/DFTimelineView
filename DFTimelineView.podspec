@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "DFTimelineView"
-  s.version      = "1.3.3"
+  s.version      = "1.3.4"
   s.summary      = "仿微信朋友圈时间轴 支持发送图文 短视频 赞 评论 图片大图浏览 视频预览"
 
   s.homepage     = "https://github.com/anyunzhong/DFTimelineView"
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "7.0"
 
 
-  s.source       = { :git => "https://github.com/anyunzhong/DFTimelineView.git", :tag => "1.3.3" }
+  s.source       = { :git => "https://github.com/anyunzhong/DFTimelineView.git", :tag => "1.3.4" }
 
 
   s.source_files = "DFTimelineView/DFTimelineView/**/*.{h,m}"
@@ -25,8 +25,8 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
-  s.dependency 'DFCommon', '~> 1.4.3'
-  s.dependency 'AFNetworking', '~> 3.1.0'
+  s.dependency 'DFCommon'
+  s.dependency 'AFNetworking', '~> 3.0.0'
   s.dependency 'SDWebImage', '~> 3.8.1'
   s.dependency 'FMDB', '~> 2.6.2'
   s.dependency 'MBProgressHUD', '~> 0.9.1'

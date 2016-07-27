@@ -1,30 +1,30 @@
 PODS:
-  - AFNetworking (3.1.0):
-    - AFNetworking/NSURLSession (= 3.1.0)
-    - AFNetworking/Reachability (= 3.1.0)
-    - AFNetworking/Security (= 3.1.0)
-    - AFNetworking/Serialization (= 3.1.0)
-    - AFNetworking/UIKit (= 3.1.0)
-  - AFNetworking/NSURLSession (3.1.0):
+  - AFNetworking (3.0.4):
+    - AFNetworking/NSURLSession (= 3.0.4)
+    - AFNetworking/Reachability (= 3.0.4)
+    - AFNetworking/Security (= 3.0.4)
+    - AFNetworking/Serialization (= 3.0.4)
+    - AFNetworking/UIKit (= 3.0.4)
+  - AFNetworking/NSURLSession (3.0.4):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.1.0)
-  - AFNetworking/Security (3.1.0)
-  - AFNetworking/Serialization (3.1.0)
-  - AFNetworking/UIKit (3.1.0):
+  - AFNetworking/Reachability (3.0.4)
+  - AFNetworking/Security (3.0.4)
+  - AFNetworking/Serialization (3.0.4)
+  - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
-  - DFCommon (1.4.4):
-    - AFNetworking (~> 3.1.0)
-    - FMDB (~> 2.6.2)
+  - DFCommon (1.4.16):
+    - AFNetworking (~> 3.0.0)
+    - FMDB (~> 2.5)
     - MBProgressHUD (~> 0.9.1)
     - MJPhotoBrowser (~> 1.0.2)
-    - MJRefresh (~> 3.1.7)
-    - MLLabel (~> 1.9.1)
-    - MMPopupView (~> 1.7.2)
+    - MJRefresh (~> 3.1.0)
+    - MLLabel (~> 1.7)
+    - MMPopupView
     - ODRefreshControl (~> 1.2)
-    - SDWebImage (~> 3.8.1)
-    - TZImagePickerController (~> 1.4.5)
+    - SDWebImage (~> 3.7.3)
+    - TZImagePickerController
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
@@ -34,46 +34,35 @@ PODS:
     - SDWebImage
     - SVProgressHUD
     - YLGIFImage
-  - MJRefresh (3.1.7)
-  - MLLabel (1.9.1)
+  - MJRefresh (3.1.11)
+  - MLLabel (1.9.2)
   - MMPopupView (1.7.2):
     - Masonry
   - ODRefreshControl (1.2)
-  - SDWebImage (3.8.1):
-    - SDWebImage/Core (= 3.8.1)
-  - SDWebImage/Core (3.8.1)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
   - SVProgressHUD (2.0.3)
-  - TZImagePickerController (1.4.5)
+  - TZImagePickerController (1.5.0)
   - YLGIFImage (0.11)
 
 DEPENDENCIES:
-  - DFCommon (from `https://github.com/chn-lyzhi/DFCommon.git`)
-
-EXTERNAL SOURCES:
-  DFCommon:
-    :git: https://github.com/chn-lyzhi/DFCommon.git
-
-CHECKOUT OPTIONS:
-  DFCommon:
-    :commit: bb925ac72371c2b7d332f56530f8454ca2ba67a5
-    :git: https://github.com/chn-lyzhi/DFCommon.git
+  - DFCommon
 
 SPEC CHECKSUMS:
-  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  DFCommon: 4b0d981313438eff32b3f0a7824385953c653d34
+  AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
+  DFCommon: 074ea4f031ca0c6a5db158d1c561ac158fd15d57
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   Masonry: a1a931a0d08870ed8ae415a2ea5ea68ebcac77df
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJPhotoBrowser: f55e8490231f44a78ca6455105a1c798a142c95f
-  MJRefresh: f67f0750d57a4e4ae433da549359ca53b52cdc7d
-  MLLabel: 086ecaa4101505c166950cff986a3edcbcfb1c27
+  MJRefresh: 79d00be812184af91fe12990a9a537e242287c62
+  MLLabel: df58127ce0bd1f87890ecc3232db77a85ce4cd97
   MMPopupView: fe1dd010824029dfb632fdf1a531db5dd5386020
   ODRefreshControl: 907e6149d72dde488d5917ccfabee5bd8d711a20
-  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
-  TZImagePickerController: 046f172ad54add0ce358dfae932d9183b7fafd03
+  TZImagePickerController: d09eef6042852a9dd19224ae4e874f7430852a51
   YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
 
-PODFILE CHECKSUM: 0ffe27b493b237ad473f21c86a413ee793587f3d
-
-COCOAPODS: 1.0.1
+COCOAPODS: 0.39.0
