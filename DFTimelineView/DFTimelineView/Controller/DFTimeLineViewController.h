@@ -13,9 +13,10 @@
 
 #import "DFBaseTimeLineViewController.h"
 
+
 typedef enum : NSUInteger {
     TimeLineTypeNone,   //
-    TImeLineTypeSubjectShow,
+    TImeLineTypeSubjectShow,  //单个subject秀列表
 } DFTimeLineViewControllerType;
 
 @interface DFTimeLineViewController : DFBaseTimeLineViewController
@@ -44,6 +45,8 @@ typedef enum : NSUInteger {
 
 //点击更多
 - (void)clickMoreSubjectShowList;
+//点击滚动图片
+- (void)onClickScrollView:(UIView *)cycleScrollView index:(NSInteger)index;
 
 @property (nonatomic) DFTimeLineViewControllerType type;
 

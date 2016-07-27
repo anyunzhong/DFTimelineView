@@ -131,7 +131,7 @@
 - (void)initMyHeader {
     switch (self.type) {
         case TimeLineTypeNone:
-            [self initTimelineHeader];
+            [self initTimelineHeaderWithTitle:nil images:nil tags:nil];
             break;
         case TImeLineTypeSubjectShow:
             [self initSubjectShowHeader];
@@ -139,8 +139,16 @@
     }
 }
 
-- (void) initSubjectShowHeader {
+- (void) initJoinFooter {
     UIView *back = [UIView new];
+    [back setBackgroundColor:[UIColor orangeColor]];
+    back.tag = 888;
+    
+    
+}
+
+- (void) initSubjectShowHeader {
+    UIView *back = [[UIView alloc]initWithFrame:CGRectZero];
     
     UILabel *titleLabel = [UILabel new];
     titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
@@ -155,8 +163,21 @@
     UILabel *detailLabel = [UILabel new];
     detailLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
     detailLabel.textColor = [UIColor lightGrayColor];
+    //!!!!关键,问题6p 上 Margin 值和 6上的值并不一致
+    detailLabel.preferredMaxLayoutWidth = [[UIScreen mainScreen]bounds].size.width - 16;
     detailLabel.numberOfLines = 0;
     
+    //虚拟数据
+    titleLabel.text = @"titleLabel";
+    timeLabel.text = @"timeLabel";
+    imageView.image = [UIImage imageNamed:@"angle-mask@3x"];
+    detailLabel.text = @"“三个代表”思想要求中国共产党：\
+    \
+    要始终代表中国先进社会生产力的发展要求；\
+    要始终代表中国先进文化的前进方向；\
+    要始终代表中国最广大人民的根本利益。\
+    三个代表中列为第一位的是“先进社会生产力的发展要求的代表”，即进一步推进生产力发展的方针。";
+
     [back addSubview:titleLabel];
     [back addSubview:timeLabel];
     [back addSubview:imageView];
@@ -171,14 +192,13 @@
     [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.equalTo(titleLabel);
         make.top.equalTo(titleLabel.mas_bottom).offset(8);
-        make.bottom.equalTo(imageView.mas_top).offset(-8);
+//        make.bottom.equalTo(imageView.mas_top).offset(-8);
     }];
     
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.equalTo(titleLabel);
         make.top.equalTo(timeLabel.mas_bottom).offset(8);
-        make.height.mas_equalTo(200);
-        make.bottom.equalTo(detailLabel.mas_top).offset(-8);
+        make.height.mas_equalTo(130);
     }];
     
     [detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -187,17 +207,12 @@
         make.bottom.equalTo(detailLabel.superview.mas_bottomMargin);
     }];
     
-    
-    //虚拟数据
-    titleLabel.text = @"titleLabel";
-    timeLabel.text = @"timeLabel";
-    imageView.image = [UIImage imageNamed:@"angle-mask@3x"];
-    detailLabel.text = @"detailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabeldetailLabel";
-    
-    self.tableView.tableHeaderView = back;
     //TODO:!!!!!
-    [self sizeHeaderToFit];
-    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.tableView.tableHeaderView = nil;
+        self.tableView.tableHeaderView = back;
+        [self sizeHeaderToFit];
+    });
 }
 
 - (void)sizeHeaderToFit
@@ -217,19 +232,23 @@
 }
 
 
-- (void) initTimelineHeader {
+- (void) initTimelineHeaderWithTitle:(NSString *)title images:(NSArray<NSString *> *)images tags:(NSArray<NSString *> *)tags {
     CGFloat x,y,width, height;
     x=0;
     y=0;
     CGFloat moreShowCellHeight = 44;
     CGFloat tagViewHeight = 33;
     width = self.view.frame.size.width;
-    height = TableHeaderHeight + moreShowCellHeight + 8 + tagViewHeight + 1;
+    height = TableHeaderHeight + moreShowCellHeight + 8;
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
     header.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.tableHeaderView = header;
     
-    _topScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(x, y, width, TableHeaderHeight) imageNamesGroup:@[@"u2_state0",@"u2_state0"]];
+    if (images.count > 0) {
+        _topScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(x, y, width, TableHeaderHeight) imageURLStringsGroup:images];
+    } else {
+        _topScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(x, y, width, TableHeaderHeight) imageNamesGroup:@[@"u2_state0",@"u2_state0"]];
+    }
     
     _topScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
     
@@ -244,35 +263,40 @@
     [cell addGestureRecognizer:tap];
     [header addSubview:cell];
     
-    SKTagView *tagView = [[SKTagView alloc]initWithFrame:CGRectMake(x, TableHeaderHeight + moreShowCellHeight + 8, width, tagViewHeight)];
-    [tagView setBackgroundColor:[UIColor whiteColor]];
-    tagView.interitemSpacing = 8;
-    tagView.preferredMaxLayoutWidth = width;
-    tagView.padding = UIEdgeInsetsMake(4, 8, 4, 8);
-    tagView.selectedType = SKTagViewSelectedSingle;
-    [@[@"AAAA",@"BBBB",@"CCCC",@"DDDD"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        SKTag *tag = [[SKTag alloc]initWithText:obj];
-        tag.textColor = [UIColor lightGrayColor];
-        //        tag.bgColor = [UIColor groupTableViewBackgroundColor];
-        tag.cornerRadius = 3;
-        tag.fontSize = 15;
-        tag.borderColor = [UIColor lightGrayColor];
-        tag.borderWidth = 1.f;
-        tag.padding = UIEdgeInsetsMake(3.5, 10.5, 3.5, 10.5);
-        tag.selectedBgColor = [UIColor redColor];
-        tag.selectedTextColor = [UIColor whiteColor];
-        
-        [tagView addTag:tag];
-    }];
-    [header addSubview:tagView];
+    if (tags.count > 0) {
+        height = tagViewHeight + 1;
+        SKTagView *tagView = [[SKTagView alloc]initWithFrame:CGRectMake(x, TableHeaderHeight + moreShowCellHeight + 8, width, tagViewHeight)];
+        [tagView setBackgroundColor:[UIColor whiteColor]];
+        tagView.interitemSpacing = 8;
+        tagView.preferredMaxLayoutWidth = width;
+        tagView.padding = UIEdgeInsetsMake(4, 8, 4, 8);
+        tagView.selectedType = SKTagViewSelectedSingle;
+        [tags enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            SKTag *tag = [[SKTag alloc]initWithText:obj];
+            tag.textColor = [UIColor lightGrayColor];
+            //        tag.bgColor = [UIColor groupTableViewBackgroundColor];
+            tag.cornerRadius = 3;
+            tag.fontSize = 15;
+            tag.borderColor = [UIColor lightGrayColor];
+            tag.borderWidth = 1.f;
+            tag.padding = UIEdgeInsetsMake(3.5, 10.5, 3.5, 10.5);
+            tag.selectedBgColor = [UIColor redColor];
+            tag.selectedTextColor = [UIColor whiteColor];
+            
+            [tagView addTag:tag];
+        }];
+        [header addSubview:tagView];
+    }
 }
 
-- (void)setHeaderDataTitle:(NSString *)title images:(NSArray<NSString *> *)imagss tags:(NSArray<NSString *> *)tags {
-    
+- (void)setHeaderDataTitle:(NSString *)title images:(NSArray<NSString *> *)images tags:(NSArray<NSString *> *)tags {
+    [self initTimelineHeaderWithTitle:title images:images tags:tags];
     //TODO:得到数据后重新生成HeaderView
+    
 }
 
 - (void)setSubjectHeaderDataTitle:(NSString *)title time:(NSString *)time imageUrl:(NSString *)imageUrl content:(NSString *)content {
+    
     //
 }
 
@@ -744,6 +768,26 @@
 -(void)onSendVideo:(NSString *)text videoPath:(NSString *)videoPath screenShot:(UIImage *)screenShot
 {
     
+}
+
+#pragma mark - SDCycleScrollViewDelegate
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
+    [self onClickScrollView:cycleScrollView index:index];
+}
+
+- (void)onClickScrollView:(UIView *)cycleScrollView index:(NSInteger)index {
+    
+}
+
+#pragma mark - scrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    //没用到，join活动右上角
+    NSLog(@"contentOffsetyyy%f",scrollView.contentOffset.y);
+    CGFloat fixContentOffset = scrollView.contentOffset.y + 64;
+    UIView *footer = [self.view viewWithTag:888];
+    if (footer) {
+//        footer.alpha = 1.0/
+    }
 }
 
 @end

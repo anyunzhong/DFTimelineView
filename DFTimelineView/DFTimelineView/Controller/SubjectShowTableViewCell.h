@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DFPlainGridImageView.h"
+#import "DFGridImageView.h"
 
 @interface SubjectShowTableViewCell : UITableViewCell <DFPlainGridImageViewDelegate>
 
@@ -30,7 +31,7 @@
 
 @property (nonatomic) UILabel *imageContentTitle;
 
-@property (nonatomic) DFPlainGridImageView * gridView;
+@property (nonatomic) DFGridImageView * gridView;
 
 - (void)setData:(NSDictionary *)dictionary;
 

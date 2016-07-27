@@ -36,8 +36,7 @@
     _likeNumber = [self labelWithFontSize:11 color:[UIColor lightGrayColor]];
     _moreLabel = [self labelWithFontSize:11 color:[UIColor orangeColor]];
     _imageContentTitle = [self labelWithFontSize:13 color:[UIColor lightGrayColor]];
-    _gridView = [[DFPlainGridImageView alloc]initWithFrame:CGRectZero];
-    _gridView.delegate = self;
+    _gridView = [[DFGridImageView alloc]initWithFrame:CGRectMake(0, 0, 288, 0)];
     
     [self.contentView addSubview:_backView];
     [_backView addSubview:_colorView];
@@ -94,7 +93,7 @@
         make.top.equalTo(_lineView.mas_bottom).offset(8);
         make.trailing.equalTo(_detailLabel.superview.mas_trailingMargin);
         make.leading.equalTo(_stateLabel.mas_trailing).offset(8);
-        make.bottom.equalTo(_stateLabel.superview.mas_bottomMargin);
+        
     }];
 
     [_stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -103,13 +102,13 @@
         make.trailing.equalTo(_detailLabel.mas_leading).offset(-8);
     }];
     
-//    [_gridView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.leading.equalTo(_gridView.superview.mas_leadingMargin);
-//        make.top.equalTo(_detailLabel.mas_bottom).offset(8);
-//        make.trailing.equalTo(_backView.mas_trailingMargin);
-//        make.bottom.equalTo(_backView.mas_bottomMargin);
-//        make.height.mas_equalTo(0);
-//    }];
+    [_gridView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(_gridView.superview.mas_leadingMargin);
+        make.top.equalTo(_detailLabel.mas_bottom).offset(8);
+        make.trailing.equalTo(_backView.mas_trailingMargin);
+        make.bottom.equalTo(_backView.mas_bottomMargin);
+        make.size.mas_equalTo(CGSizeZero);
+    }];
 }
 
 - (void)setData:(NSDictionary *)dictionary {
@@ -119,11 +118,23 @@
     _itemNumber.text = [NSString stringWithFormat:@"发布量：%@",dictionary[@"pubishCount"]];
     _likeNumber.text = [NSString stringWithFormat:@"点赞数：%@",dictionary[@"praiseCount"]];
     
-//    CGFloat gridViewHeight = [DFPlainGridImageView getHeight:dictionary[@"picture"] maxWidth:self.contentView.frame.size.width];
-//    [_gridView updateWithImages:dictionary[@"picture"]];
-//    [_gridView mas_updateConstraints:^(MASConstraintMaker *make) {
-//        make.height.mas_equalTo(gridViewHeight);
-//    }];
+    NSMutableArray *array = [NSMutableArray new];
+    [array addObject:@"http://file-cdn.datafans.net/temp/11.jpg"];
+    [array addObject:@"http://file-cdn.datafans.net/temp/12.jpg"];
+    [array addObject:@"http://file-cdn.datafans.net/temp/13.jpg"];
+    [array addObject:@"http://file-cdn.datafans.net/temp/14.jpg"];
+    [array addObject:@"http://file-cdn.datafans.net/temp/15.jpg"];
+    [array addObject:@"http://file-cdn.datafans.net/temp/16.jpg"];
+
+    NSLog(@"%f",_backView.frame.size.width);
+    CGFloat gridViewWidth = _backView.frame.size.width - 16;
+    CGFloat gridViewHeight = [DFGridImageView getHeight:array maxWidth:gridViewWidth oneImageWidth:80 oneImageHeight:80];
+    [_gridView updateWithImages:array srcImages:array oneImageWidth:80 oneImageHeight:80];
+    [_gridView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(gridViewWidth, gridViewHeight));
+    }];
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
 }
 
 - (UILabel *)labelWithFontSize:(CGFloat)fontSize color:(UIColor *)color {

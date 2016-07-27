@@ -10,7 +10,7 @@
 
 #import "UserViewController.h"
 
-#import "SubjectShowListViewController.h"
+#import "SubjectShowViewController.h"
 
 @interface ViewController ()
 
@@ -387,7 +387,7 @@
 }
 
 - (void)clickMoreSubjectShowList {
-    SubjectShowListViewController *controller = [[SubjectShowListViewController alloc]init];
+    SubjectShowViewController *controller = [[SubjectShowViewController alloc]init];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

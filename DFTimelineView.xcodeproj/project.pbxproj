@@ -55,6 +55,7 @@
 		11E157CF1BC8F6E500F2F99A /* CommentInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E157CE1BC8F6E500F2F99A /* CommentInputView.m */; };
 		11F07F9E1BCF9BBE0084DAA3 /* DFBaseTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F07F9D1BCF9BBE0084DAA3 /* DFBaseTimeLineViewController.m */; };
 		658765601D3DCD0900588D32 /* u2_state0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6587655F1D3DCD0900588D32 /* u2_state0@2x.png */; };
+		6590A8571D484EF80031CF48 /* SubjectShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6590A8561D484EF80031CF48 /* SubjectShowViewController.m */; };
 		65B64EBE1D3F1745001CB990 /* TENSubjectShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B64EBD1D3F1745001CB990 /* TENSubjectShowViewController.m */; };
 		65B64EC11D3F1759001CB990 /* SubjectShowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B64EC01D3F1759001CB990 /* SubjectShowTableViewCell.m */; };
 		65B64EC41D3F3157001CB990 /* TENSubjectShowDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B64EC31D3F3157001CB990 /* TENSubjectShowDetailViewController.m */; };
@@ -147,6 +148,8 @@
 		11F07F9D1BCF9BBE0084DAA3 /* DFBaseTimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFBaseTimeLineViewController.m; sourceTree = "<group>"; };
 		56800185CF8887378A48754C /* Pods-DFTimelineView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DFTimelineView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DFTimelineView/Pods-DFTimelineView.debug.xcconfig"; sourceTree = "<group>"; };
 		6587655F1D3DCD0900588D32 /* u2_state0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "u2_state0@2x.png"; sourceTree = "<group>"; };
+		6590A8551D484EF80031CF48 /* SubjectShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectShowViewController.h; sourceTree = "<group>"; };
+		6590A8561D484EF80031CF48 /* SubjectShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectShowViewController.m; sourceTree = "<group>"; };
 		65B64EBC1D3F1745001CB990 /* TENSubjectShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENSubjectShowViewController.h; sourceTree = "<group>"; };
 		65B64EBD1D3F1745001CB990 /* TENSubjectShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENSubjectShowViewController.m; sourceTree = "<group>"; };
 		65B64EBF1D3F1759001CB990 /* SubjectShowTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectShowTableViewCell.h; sourceTree = "<group>"; };
@@ -253,6 +256,8 @@
 				11D758281BB7D43B00F554D7 /* AppDelegate.m */,
 				11D7582A1BB7D43B00F554D7 /* ViewController.h */,
 				11D7582B1BB7D43B00F554D7 /* ViewController.m */,
+				6590A8551D484EF80031CF48 /* SubjectShowViewController.h */,
+				6590A8561D484EF80031CF48 /* SubjectShowViewController.m */,
 				65E78D2D1D4762800053038F /* SubjectShowListViewController.h */,
 				65E78D2E1D4762800053038F /* SubjectShowListViewController.m */,
 				1173E4F51C71834D004C9979 /* UserViewController.h */,
@@ -590,6 +595,7 @@
 			files = (
 				1173E5671C72CEAE004C9979 /* DFBaseUserLineItem.m in Sources */,
 				65E78D2F1D4762800053038F /* SubjectShowListViewController.m in Sources */,
+				6590A8571D484EF80031CF48 /* SubjectShowViewController.m in Sources */,
 				1173E5201C71B239004C9979 /* DFImagesSendViewController.m in Sources */,
 				11D7582C1BB7D43B00F554D7 /* ViewController.m in Sources */,
 				11D758C71BB8216C00F554D7 /* DFGridImageView.m in Sources */,
