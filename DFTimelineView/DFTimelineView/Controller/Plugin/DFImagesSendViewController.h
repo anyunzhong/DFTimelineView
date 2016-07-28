@@ -8,11 +8,18 @@
 
 #import <DFCommon/DFCommon.h>
 
+typedef enum : NSUInteger {
+    DFImagesSendViewControllerTypeNone,
+    DFImagesSendViewControllerTypeTopic,
+} DFImagesSendViewControllerType;
+
 @protocol DFImagesSendViewControllerDelegate <NSObject>
 
 @optional
 
 -(void) onSendTextImage:(NSString *) text images:(NSArray *)images;
+- (DFImagesSendViewControllerType)imagesSendViewControllerType;
+- (NSString *)topicTitle;
 
 
 @end

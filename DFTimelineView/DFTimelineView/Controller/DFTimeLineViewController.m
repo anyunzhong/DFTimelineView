@@ -143,8 +143,6 @@
     UIView *back = [UIView new];
     [back setBackgroundColor:[UIColor orangeColor]];
     back.tag = 888;
-    
-    
 }
 
 - (void) initSubjectShowHeader {
@@ -208,10 +206,13 @@
     }];
     
     //TODO:!!!!!
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView beginUpdates];
         self.tableView.tableHeaderView = nil;
         self.tableView.tableHeaderView = back;
         [self sizeHeaderToFit];
+        [self.tableView endUpdates];
     });
 }
 
@@ -249,7 +250,7 @@
     } else {
         _topScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(x, y, width, TableHeaderHeight) imageNamesGroup:@[@"u2_state0",@"u2_state0"]];
     }
-    
+    _topScrollView.delegate = self;
     _topScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
     
     [header addSubview:_topScrollView];
@@ -327,7 +328,18 @@
     [self presentViewController:navController animated:YES completion:nil];
 }
 
-
+//接受imageUrl or image
+- (void)updateRightAvatarWithImage:(id)image {
+    if ([image isKindOfClass:[UIImage class]]) {
+        
+    }
+    if ([image isKindOfClass:[NSString class]]) {
+        NSURL *url = [NSURL URLWithString:image];
+        [[NSURLSession sharedSession]dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            
+        }].resume;
+    }
+}
 
 -(void) onClickCamera:(id) sender
 {
@@ -757,6 +769,20 @@
     
 }
 
+- (DFImagesSendViewControllerType)imagesSendViewControllerType {
+    switch (self.type) {
+        case TimeLineTypeNone:
+            return DFImagesSendViewControllerTypeNone;
+            break;
+        case TImeLineTypeSubjectShow:
+            return DFImagesSendViewControllerTypeTopic;
+    }
+}
+
+- (NSString *)topicTitle {
+    return @"本期主题：机器人大赛";
+}
+
 #pragma mark - DFVideoCaptureControllerDelegate
 -(void)onCaptureVideo:(NSString *)filePath screenShot:(UIImage *)screenShot
 {
@@ -775,6 +801,7 @@
     [self onClickScrollView:cycleScrollView index:index];
 }
 
+//复写
 - (void)onClickScrollView:(UIView *)cycleScrollView index:(NSInteger)index {
     
 }

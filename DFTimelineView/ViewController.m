@@ -391,8 +391,8 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (void)onClickScrollView:(UIView *)cycleScrollView index:(NSInteger)index {
+    NSLog(@"%ld",(long)index);
 }
 
 - (DFTimeLineViewControllerType)type {

@@ -25,7 +25,8 @@
     _backView = [UIView new];
     [_backView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     _colorView = [UIView new];
-    _colorView.backgroundColor = [UIColor blueColor];
+    _colorView.backgroundColor = [UIColor orangeColor];
+    _colorView.layer.cornerRadius = 4.f;
     _lineView = [UIView new];
     _lineView.backgroundColor = [UIColor lightGrayColor];
     
@@ -58,7 +59,7 @@
     [_colorView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.equalTo(_titleLabel);
         make.trailing.equalTo(_titleLabel.mas_leading).offset(-8);
-        make.width.mas_equalTo(8);
+        make.width.mas_equalTo(4);
     }];
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -107,7 +108,7 @@
         make.top.equalTo(_detailLabel.mas_bottom).offset(8);
         make.trailing.equalTo(_backView.mas_trailingMargin);
         make.bottom.equalTo(_backView.mas_bottomMargin);
-        make.size.mas_equalTo(CGSizeZero);
+//        make.size.mas_equalTo(CGSizeZero);
     }];
 }
 
@@ -126,15 +127,16 @@
     [array addObject:@"http://file-cdn.datafans.net/temp/15.jpg"];
     [array addObject:@"http://file-cdn.datafans.net/temp/16.jpg"];
 
-    NSLog(@"%f",_backView.frame.size.width);
     CGFloat gridViewWidth = _backView.frame.size.width - 16;
     CGFloat gridViewHeight = [DFGridImageView getHeight:array maxWidth:gridViewWidth oneImageWidth:80 oneImageHeight:80];
-    [_gridView updateWithImages:array srcImages:array oneImageWidth:80 oneImageHeight:80];
     [_gridView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(gridViewWidth, gridViewHeight));
     }];
     [self setNeedsLayout];
     [self layoutIfNeeded];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [_gridView updateWithImages:array srcImages:array oneImageWidth:80 oneImageHeight:80];
+    });
 }
 
 - (UILabel *)labelWithFontSize:(CGFloat)fontSize color:(UIColor *)color {

@@ -65,7 +65,6 @@
 
 - (void)dealloc
 {
-    
     [_mask removeGestureRecognizer:_panGestureRecognizer];
     [_mask removeGestureRecognizer:_tapGestureRecognizer];
 }
@@ -74,12 +73,108 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initView];
+    if ([self.delegate respondsToSelector:@selector(imagesSendViewControllerType)]) {
+        switch ([self.delegate imagesSendViewControllerType]) {
+            case DFImagesSendViewControllerTypeNone:
+                [self initView];
+                break;
+            case DFImagesSendViewControllerTypeTopic:
+                [self initViewForTopic];
+                break;
+        }
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [_contentView becomeFirstResponder];
+}
+
+- (void)initViewForTopic {
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    [self.view setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    
+    CGFloat x, y, width, heigh,titleViewHeight;
+    titleViewHeight = 70;
+    x=10;
+    y=74 + titleViewHeight;
+    width = self.view.frame.size.width -2*x;
+    heigh = 100;
+    
+    UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 70)];
+    [titleView setBackgroundColor:[UIColor whiteColor]];
+    UIView *colorView = [[UIView alloc]initWithFrame:CGRectZero];
+    colorView.layer.cornerRadius = 4.f;
+    [colorView setBackgroundColor:[UIColor orangeColor]];
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    if ([self.delegate respondsToSelector:@selector(topicTitle)]) {
+        titleLabel.text = [self.delegate topicTitle];
+    }
+    [titleView addSubview:colorView];
+    [titleView addSubview:titleLabel];
+    [colorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(titleView.mas_leading).offset(16);
+        make.centerY.equalTo(titleView.mas_centerY);
+        make.size.mas_equalTo(CGSizeMake(4, 70/3));
+        
+    }];
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(colorView.mas_trailing).offset(8);
+        make.centerY.equalTo(titleView.mas_centerY);
+        make.trailing.equalTo(titleView.mas_trailingMargin);
+    }];
+    [self.view addSubview:titleView];
+    
+    _contentView = [[UITextView alloc] initWithFrame:CGRectMake(x, y, width, heigh)];
+    _contentView.scrollEnabled = YES;
+    _contentView.delegate = self;
+    _contentView.font = [UIFont systemFontOfSize:17];
+    [self.view addSubview:_contentView];
+    
+    //placeholder
+    _placeholder = [[UILabel alloc] initWithFrame:CGRectMake(x+5, y+5, 150, 25)];
+    _placeholder.text = @"这一刻的想法...";
+    _placeholder.font = [UIFont systemFontOfSize:14];
+    _placeholder.textColor = [UIColor lightGrayColor];
+    _placeholder.enabled = NO;
+    [self.view addSubview:_placeholder];
+    
+    _gridView = [[DFPlainGridImageView alloc] initWithFrame:CGRectZero];
+    _gridView.delegate = self;
+    [self.view addSubview:_gridView];
+    
+    /**
+    //tag
+    _tagBackgroup = [[UIView alloc]initWithFrame:CGRectZero];
+    [_tagBackgroup setBackgroundColor:[UIColor redColor]];
+    _tagView = [[SKTagView alloc]init];
+    [_tagView setBackgroundColor:[UIColor whiteColor]];
+    _tagView.interitemSpacing = 8;
+    _tagView.lineSpacing = 8;
+    _tagView.preferredMaxLayoutWidth = width;
+    _tagView.padding = UIEdgeInsetsMake(8, 8, 8, 8);
+    _tagView.selectedType = SKTagViewSelectedMultiple;
+    [_tagView setUserInteractionEnabled:YES];
+    [_tagBackgroup addSubview:_tagView];
+    [_tagView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(_tagBackgroup);
+    }];
+    [self.view addSubview:_tagBackgroup];
+     **/
+    
+    _mask = [[UIView alloc] initWithFrame:self.view.bounds];
+    _mask.backgroundColor = [UIColor clearColor];
+    _mask.hidden = YES;
+    [self.view addSubview:_mask];
+    
+    _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPanAndTap:)];
+    [_mask addGestureRecognizer:_panGestureRecognizer];
+    _panGestureRecognizer.maximumNumberOfTouches = 1;
+    
+    _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onPanAndTap:)];
+    [_mask addGestureRecognizer:_tapGestureRecognizer];
+    
+    [self refreshGridImageView];
 }
 
 -(void) initView
@@ -96,8 +191,6 @@
     _contentView.scrollEnabled = YES;
     _contentView.delegate = self;
     _contentView.font = [UIFont systemFontOfSize:17];
-    //_contentView.layer.borderColor = [UIColor redColor].CGColor;
-    //_contentView.layer.borderWidth =2;
     [self.view addSubview:_contentView];
     
     //placeholder
@@ -174,10 +267,6 @@
     }];
     CGSize size = [_tagView intrinsicContentSize];
     [_tagBackgroup setFrame:CGRectMake(10, _gridView.frame.origin.y + _gridView.frame.size.height + 8, self.view.frame.size.width -2*10, size.height)];
-//    CGRect temp = _tagView.frame;
-//    temp.origin.x = _gridView.frame.origin.x;
-//    temp.origin.y = _gridView.frame.origin.y + _gridView.frame.size.height + 8;
-//    _tagView.frame = temp;
 }
 
 -(UIBarButtonItem *)leftBarButtonItem
