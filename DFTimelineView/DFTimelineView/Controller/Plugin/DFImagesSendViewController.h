@@ -20,7 +20,7 @@ typedef enum : NSUInteger {
 -(void) onSendTextImage:(NSString *) text images:(NSArray *)images;
 - (DFImagesSendViewControllerType)imagesSendViewControllerType;
 - (NSString *)topicTitle;
-
+- (NSArray<NSString *> *)tagsArray;
 
 @end
 @interface DFImagesSendViewController : DFBaseViewController

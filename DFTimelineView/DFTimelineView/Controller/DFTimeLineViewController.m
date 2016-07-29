@@ -90,7 +90,7 @@
     
     switch (self.type) {
         case TimeLineTypeNone:
-            self.navigationItem.rightBarButtonItems = @[[self rightBarButtonItem],[self rightBarButtonItemAnotherOne]];
+            self.navigationItem.rightBarButtonItems = @[[self rightBarButtonItemWithImage:nil],[self rightBarButtonItemAnotherOne]];
             break;
         case TImeLineTypeSubjectShow:
             self.navigationItem.rightBarButtonItems = @[[self rightBarButtonItemAnotherOne]];
@@ -134,7 +134,7 @@
             [self initTimelineHeaderWithTitle:nil images:nil tags:nil];
             break;
         case TImeLineTypeSubjectShow:
-            [self initSubjectShowHeader];
+            [self initSubjectShowHeaderWithTitle:nil time:nil imageUrl:nil detail:nil];
             break;
     }
 }
@@ -145,7 +145,7 @@
     back.tag = 888;
 }
 
-- (void) initSubjectShowHeader {
+- (void) initSubjectShowHeaderWithTitle:(NSString *)title time:(NSString *)time imageUrl:(NSString *)imageUrl detail:(NSString *)detail {
     UIView *back = [[UIView alloc]initWithFrame:CGRectZero];
     
     UILabel *titleLabel = [UILabel new];
@@ -166,10 +166,12 @@
     detailLabel.numberOfLines = 0;
     
     //虚拟数据
-    titleLabel.text = @"titleLabel";
-    timeLabel.text = @"timeLabel";
-    imageView.image = [UIImage imageNamed:@"angle-mask@3x"];
-    detailLabel.text = @"“三个代表”思想要求中国共产党：\
+    titleLabel.text = title ?: @"无";
+    timeLabel.text = time ?: @"1874-01-01";
+    if (imageUrl) {
+        [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl]];
+    }
+    detailLabel.text = detail ?: @"“三个代表”思想要求中国共产党：\
     \
     要始终代表中国先进社会生产力的发展要求；\
     要始终代表中国先进文化的前进方向；\
@@ -234,46 +236,35 @@
 
 
 - (void) initTimelineHeaderWithTitle:(NSString *)title images:(NSArray<NSString *> *)images tags:(NSArray<NSString *> *)tags {
-    CGFloat x,y,width, height;
-    x=0;
-    y=0;
-    CGFloat moreShowCellHeight = 44;
-    CGFloat tagViewHeight = 33;
-    width = self.view.frame.size.width;
-    height = TableHeaderHeight + moreShowCellHeight + 8;
-    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    
+    UIView *header = [[UIView alloc] initWithFrame:CGRectZero];
     header.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    self.tableView.tableHeaderView = header;
+    
     
     if (images.count > 0) {
-        _topScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(x, y, width, TableHeaderHeight) imageURLStringsGroup:images];
+        _topScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero imageURLStringsGroup:images];
     } else {
-        _topScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(x, y, width, TableHeaderHeight) imageNamesGroup:@[@"u2_state0",@"u2_state0"]];
+        _topScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero imageNamesGroup:@[@"u2_state0",@"u2_state0"]];
     }
     _topScrollView.delegate = self;
     _topScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
     
-    [header addSubview:_topScrollView];
-    
     UITableViewCell *cell = [[UITableViewCell alloc]init];
     [cell setBackgroundColor:[UIColor whiteColor]];
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    [cell setFrame:CGRectMake(x, TableHeaderHeight, width, moreShowCellHeight)];
     cell.textLabel.text = @"更多主题秀";
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickMoreSubjectShowList)];
     [cell addGestureRecognizer:tap];
-    [header addSubview:cell];
     
+    SKTagView *tagView = [[SKTagView alloc]initWithFrame:CGRectZero];
     if (tags.count > 0) {
-        height = tagViewHeight + 1;
-        SKTagView *tagView = [[SKTagView alloc]initWithFrame:CGRectMake(x, TableHeaderHeight + moreShowCellHeight + 8, width, tagViewHeight)];
         [tagView setBackgroundColor:[UIColor whiteColor]];
         tagView.interitemSpacing = 8;
-        tagView.preferredMaxLayoutWidth = width;
+        tagView.preferredMaxLayoutWidth = self.view.frame.size.width - 16;
         tagView.padding = UIEdgeInsetsMake(4, 8, 4, 8);
         tagView.selectedType = SKTagViewSelectedSingle;
-        [tags enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            SKTag *tag = [[SKTag alloc]initWithText:obj];
+        for (NSString *string in tags) {
+            SKTag *tag = [[SKTag alloc]initWithText:string];
             tag.textColor = [UIColor lightGrayColor];
             //        tag.bgColor = [UIColor groupTableViewBackgroundColor];
             tag.cornerRadius = 3;
@@ -285,19 +276,51 @@
             tag.selectedTextColor = [UIColor whiteColor];
             
             [tagView addTag:tag];
-        }];
-        [header addSubview:tagView];
+        }
     }
+    [header addSubview:_topScrollView];
+    [header addSubview:cell];
+    [header addSubview:tagView];
+    
+    
+    [_topScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_topScrollView.superview.mas_top);
+        make.leading.trailing.equalTo(_topScrollView.superview);
+        make.bottom.equalTo(cell.mas_top);
+        make.height.mas_equalTo(180);
+    }];
+    
+    [cell mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.equalTo(cell.superview);
+        make.top.equalTo(_topScrollView.mas_bottom);
+        make.bottom.equalTo(tagView.mas_top).offset(-8);
+        make.height.mas_equalTo(44);
+    }];
+    
+    [tagView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.equalTo(tagView.superview);
+        make.top.equalTo(cell.mas_bottom).offset(8);
+        make.bottom.equalTo(tagView.superview.mas_bottom);
+    }];
+    
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView beginUpdates];
+//        self.tableView.tableHeaderView = nil;
+        self.tableView.tableHeaderView = header;
+        [self sizeHeaderToFit];
+        [self.tableView endUpdates];
+    });
+    
 }
 
 - (void)setHeaderDataTitle:(NSString *)title images:(NSArray<NSString *> *)images tags:(NSArray<NSString *> *)tags {
     [self initTimelineHeaderWithTitle:title images:images tags:tags];
     //TODO:得到数据后重新生成HeaderView
-    
 }
 
-- (void)setSubjectHeaderDataTitle:(NSString *)title time:(NSString *)time imageUrl:(NSString *)imageUrl content:(NSString *)content {
-    
+- (void)setHeaderForTopicDataTitle:(NSString *)title time:(NSString *)time imageUrl:(NSString *)imageUrl content:(NSString *)content {
+    [self initSubjectShowHeaderWithTitle:title time:time imageUrl:imageUrl detail:content];
     //
 }
 
@@ -307,17 +330,25 @@
 
 #pragma mark - BarButtonItem
 
+//加号
 - (UIBarButtonItem *)rightBarButtonItemAnotherOne {
     UIBarButtonItem *item = [UIBarButtonItem icon:@"AlbumAddBtn" selector:@selector(onLongPressCamera:) target:self];
     return item;
 }
 
--(UIBarButtonItem *)rightBarButtonItem
+-(UIBarButtonItem *)rightBarButtonItemWithImage:(UIImage *)image
 {
-    UIBarButtonItem *item = [UIBarButtonItem icon:@"Camera" selector:@selector(onClickCamera:) target:self];
-    UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onLongPressCamera:)];
-    [item.customView addGestureRecognizer:recognizer];
-    return item;
+    if (image) {
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
+        [button setImage:image forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(onLongPressCamera:) forControlEvents:UIControlEventTouchUpInside];
+        return [[UIBarButtonItem alloc] initWithCustomView:button];
+    } else {
+        UIBarButtonItem *item = [UIBarButtonItem icon:@"Camera" selector:@selector(onClickCamera:) target:self];
+        UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onLongPressCamera:)];
+        [item.customView addGestureRecognizer:recognizer];
+        return item;
+    }
 }
 
 -(void) onLongPressCamera:(UIGestureRecognizer *) gesture
@@ -335,9 +366,10 @@
     }
     if ([image isKindOfClass:[NSString class]]) {
         NSURL *url = [NSURL URLWithString:image];
-        [[NSURLSession sharedSession]dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            
-        }].resume;
+        [[[NSURLSession sharedSession]dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            UIImage *image = [UIImage imageWithData:data];
+            self.navigationItem.rightBarButtonItems = @[[self rightBarButtonItemWithImage:image],[self rightBarButtonItemAnotherOne]];
+        }] resume];
     }
 }
 
@@ -779,9 +811,7 @@
     }
 }
 
-- (NSString *)topicTitle {
-    return @"本期主题：机器人大赛";
-}
+
 
 #pragma mark - DFVideoCaptureControllerDelegate
 -(void)onCaptureVideo:(NSString *)filePath screenShot:(UIImage *)screenShot

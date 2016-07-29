@@ -47,6 +47,11 @@ typedef enum : NSUInteger {
 - (void)clickMoreSubjectShowList;
 //点击滚动图片
 - (void)onClickScrollView:(UIView *)cycleScrollView index:(NSInteger)index;
+//
+- (void)updateRightAvatarWithImage:(id)image;
+
+- (void)setHeaderDataTitle:(NSString *)title images:(NSArray<NSString *> *)images tags:(NSArray<NSString *> *)tags;
+- (void)setHeaderForTopicDataTitle:(NSString *)title time:(NSString *)time imageUrl:(NSString *)imageUrl content:(NSString *)content;
 
 @property (nonatomic) DFTimeLineViewControllerType type;
 

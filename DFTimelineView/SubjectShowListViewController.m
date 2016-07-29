@@ -390,4 +390,10 @@
     return TImeLineTypeSubjectShow;
 }
 
+- (NSString *)topicTitle {
+    return @"本期主题：机器人大赛";
+}
+
+
+
 @end

@@ -11,6 +11,7 @@
 #import "UserViewController.h"
 
 #import "SubjectShowViewController.h"
+#import "SubjectShowListViewController.h"
 
 @interface ViewController ()
 
@@ -50,6 +51,15 @@
     
     [self setUserSign:@"梦想还是要有的 万一实现了呢"];
     
+    NSMutableArray *thumbImages = [NSMutableArray array];
+    [thumbImages addObject:@"http://file-cdn.datafans.net/temp/11.jpg_160x160.jpeg"];
+    [thumbImages addObject:@"http://file-cdn.datafans.net/temp/12.jpg_160x160.jpeg"];
+    [thumbImages addObject:@"http://file-cdn.datafans.net/temp/13.jpg_160x160.jpeg"];
+    [thumbImages addObject:@"http://file-cdn.datafans.net/temp/14.jpg_160x160.jpeg"];
+    [thumbImages addObject:@"http://file-cdn.datafans.net/temp/15.jpg_160x160.jpeg"];
+
+    [self setHeaderDataTitle:nil images:thumbImages tags:@[@"AAA",@"BBB",@"CCC"]];
+    [self updateRightAvatarWithImage:@"http://file-cdn.datafans.net/avatar/1.jpeg_100x100.jpeg"];
 }
 
 
@@ -392,11 +402,16 @@
 }
 
 - (void)onClickScrollView:(UIView *)cycleScrollView index:(NSInteger)index {
-    NSLog(@"%ld",(long)index);
+    SubjectShowListViewController *controller = [[SubjectShowListViewController alloc]init];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (DFTimeLineViewControllerType)type {
     return TimeLineTypeNone;
+}
+
+- (NSArray *)tagsArray {
+    return @[@"AAA",@"BBB",@"CCC"];
 }
 
 @end

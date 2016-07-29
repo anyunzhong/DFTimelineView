@@ -205,22 +205,24 @@
     _gridView.delegate = self;
     [self.view addSubview:_gridView];
     
-    //tag
-    _tagBackgroup = [[UIView alloc]initWithFrame:CGRectZero];
-    [_tagBackgroup setBackgroundColor:[UIColor redColor]];
-    _tagView = [[SKTagView alloc]init];
-    [_tagView setBackgroundColor:[UIColor whiteColor]];
-    _tagView.interitemSpacing = 8;
-    _tagView.lineSpacing = 8;
-    _tagView.preferredMaxLayoutWidth = width;
-    _tagView.padding = UIEdgeInsetsMake(8, 8, 8, 8);
-    _tagView.selectedType = SKTagViewSelectedMultiple;
-    [_tagView setUserInteractionEnabled:YES];
-    [_tagBackgroup addSubview:_tagView];
-    [_tagView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(_tagBackgroup);
-    }];
-    [self.view addSubview:_tagBackgroup];
+    if ([self.delegate respondsToSelector:@selector(tagsArray)]) {
+        //tag
+        _tagBackgroup = [[UIView alloc]initWithFrame:CGRectZero];
+        [_tagBackgroup setBackgroundColor:[UIColor redColor]];
+        _tagView = [[SKTagView alloc]init];
+        [_tagView setBackgroundColor:[UIColor whiteColor]];
+        _tagView.interitemSpacing = 8;
+        _tagView.lineSpacing = 8;
+        _tagView.preferredMaxLayoutWidth = width;
+        _tagView.padding = UIEdgeInsetsMake(8, 8, 8, 8);
+        _tagView.selectedType = SKTagViewSelectedMultiple;
+        [_tagView setUserInteractionEnabled:YES];
+        [_tagBackgroup addSubview:_tagView];
+        [_tagView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(_tagBackgroup);
+        }];
+        [self.view addSubview:_tagBackgroup];
+    }
 
     _mask = [[UIView alloc] initWithFrame:self.view.bounds];
     _mask.backgroundColor = [UIColor clearColor];
@@ -251,22 +253,24 @@
 
 - (void) refreshTagView {
     [_tagView removeAllTags];
-    [@[@"AAAA",@"BBBB",@"CCCC",@"DDDD",@"DDDD",@"DDDD",@"DDDD",@"DDDD"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        SKTag *tag = [[SKTag alloc]initWithText:obj];
-        tag.textColor = [UIColor lightGrayColor];
-        //        tag.bgColor = [UIColor groupTableViewBackgroundColor];
-        tag.cornerRadius = 3;
-        tag.fontSize = 15;
-        tag.borderColor = [UIColor lightGrayColor];
-        tag.borderWidth = 1.f;
-        tag.padding = UIEdgeInsetsMake(3.5, 10.5, 3.5, 10.5);
-        tag.selectedBgColor = [UIColor redColor];
-        tag.selectedTextColor = [UIColor whiteColor];
-
-        [_tagView addTag:tag];
-    }];
-    CGSize size = [_tagView intrinsicContentSize];
-    [_tagBackgroup setFrame:CGRectMake(10, _gridView.frame.origin.y + _gridView.frame.size.height + 8, self.view.frame.size.width -2*10, size.height)];
+    if ([self.delegate respondsToSelector:@selector(tagsArray)]) {
+        [[self.delegate tagsArray] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            SKTag *tag = [[SKTag alloc]initWithText:obj];
+            tag.textColor = [UIColor lightGrayColor];
+            //        tag.bgColor = [UIColor groupTableViewBackgroundColor];
+            tag.cornerRadius = 3;
+            tag.fontSize = 15;
+            tag.borderColor = [UIColor lightGrayColor];
+            tag.borderWidth = 1.f;
+            tag.padding = UIEdgeInsetsMake(3.5, 10.5, 3.5, 10.5);
+            tag.selectedBgColor = [UIColor redColor];
+            tag.selectedTextColor = [UIColor whiteColor];
+            
+            [_tagView addTag:tag];
+        }];
+        CGSize size = [_tagView intrinsicContentSize];
+        [_tagBackgroup setFrame:CGRectMake(10, _gridView.frame.origin.y + _gridView.frame.size.height + 8, self.view.frame.size.width -2*10, size.height)];
+    }
 }
 
 -(UIBarButtonItem *)leftBarButtonItem

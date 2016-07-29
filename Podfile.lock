@@ -34,8 +34,8 @@ PODS:
     - SDWebImage
     - SVProgressHUD
     - YLGIFImage
-  - MJRefresh (3.1.9)
-  - MLLabel (1.9.1)
+  - MJRefresh (3.1.12)
+  - MLLabel (1.9.2)
   - MMPopupView (1.7.2):
     - Masonry
   - ODRefreshControl (1.2)
@@ -66,7 +66,7 @@ CHECKOUT OPTIONS:
     :commit: f9caf699bca7564d0fd472aa652d301e4510d426
     :git: https://github.com/chn-lyzhi/DFCommon.git
   SKTagView:
-    :commit: fad5d7224bf21a8a7a6424053ec9f22a7fef05af
+    :commit: 90a80f6df78114cc2b711b658499b615d6524f38
     :git: https://github.com/chn-lyzhi/SKTagView.git
 
 SPEC CHECKSUMS:
@@ -76,8 +76,8 @@ SPEC CHECKSUMS:
   Masonry: a1a931a0d08870ed8ae415a2ea5ea68ebcac77df
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJPhotoBrowser: f55e8490231f44a78ca6455105a1c798a142c95f
-  MJRefresh: c5f1f1653e5a1b932c90f78074f2bc86f3f9bd5e
-  MLLabel: 086ecaa4101505c166950cff986a3edcbcfb1c27
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  MLLabel: df58127ce0bd1f87890ecc3232db77a85ce4cd97
   MMPopupView: fe1dd010824029dfb632fdf1a531db5dd5386020
   ODRefreshControl: 907e6149d72dde488d5917ccfabee5bd8d711a20
   SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
