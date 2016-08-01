@@ -293,6 +293,11 @@
 
 -(void) send
 {
+    if (_delegate && [_delegate respondsToSelector:@selector(onSendTextImage:images:tags:)]) {
+        [_images removeLastObject];
+        NSArray *tags = [_tagView allSelectedTagsTitle];
+        [_delegate onSendTextImage:_contentView.text images:_images tags:tags];
+    }
     if (_delegate && [_delegate respondsToSelector:@selector(onSendTextImage:images:)]) {
         
         [_images removeLastObject];

@@ -58,8 +58,11 @@
     [thumbImages addObject:@"http://file-cdn.datafans.net/temp/14.jpg_160x160.jpeg"];
     [thumbImages addObject:@"http://file-cdn.datafans.net/temp/15.jpg_160x160.jpeg"];
 
-    [self setHeaderDataTitle:nil images:thumbImages tags:@[@"AAA",@"BBB",@"CCC"]];
-    [self updateRightAvatarWithImage:@"http://file-cdn.datafans.net/avatar/1.jpeg_100x100.jpeg"];
+    //TODO:updateHeader
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self setHeaderDataTitle:nil images:thumbImages tags:@[@"AAA",@"BBB",@"CCC"]];
+        [self updateRightAvatarWithImage:@"http://file-cdn.datafans.net/avatar/1.jpeg_100x100.jpeg"];
+    });
 }
 
 
@@ -274,16 +277,15 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+- (void)onClickMoreButton:(NSUInteger)userID {
+    NSLog(@"onClickMoreButton:%ld",userID);
+}
+
 
 -(void)onClickHeaderUserAvatar
 {
     [self onClickUser:1111];
 }
-
-
-
-
-
 
 -(void) refresh
 {
@@ -342,6 +344,13 @@
 //选择照片后得到数据
 -(void)onSendTextImage:(NSString *)text images:(NSArray *)images
 {
+    //接着上传图片 和 请求服务器接口
+    //请求完成之后 刷新整个界面
+
+}
+
+//TODO:overset
+- (void)onSendTextImage:(NSString *)text images:(NSArray *)images tags:(NSArray<NSString *> *)tags {
     DFTextImageLineItem *textImageItem = [[DFTextImageLineItem alloc] init];
     textImageItem.itemId = 10000000; //随便设置一个 待服务器生成
     textImageItem.userId = 10018;
@@ -350,13 +359,11 @@
     textImageItem.title = @"发表了";
     textImageItem.text = text;
     
-    
     NSMutableArray *srcImages = [NSMutableArray array];
     textImageItem.srcImages = srcImages; //大图 可以是本地路径 也可以是网络地址 会自动判断
     
     NSMutableArray *thumbImages = [NSMutableArray array];
     textImageItem.thumbImages = thumbImages; //小图 可以是本地路径 也可以是网络地址 会自动判断
-    
     
     for (id img in images) {
         [srcImages addObject:img];
@@ -365,13 +372,7 @@
     
     textImageItem.location = @"广州信息港";
     [self addItemTop:textImageItem];
-    
-    
-    //接着上传图片 和 请求服务器接口
-    //请求完成之后 刷新整个界面
-
 }
-
 
 //发送视频 目前没有实现填写文字
 -(void)onSendVideo:(NSString *)text videoPath:(NSString *)videoPath screenShot:(UIImage *)screenShot
@@ -394,6 +395,10 @@
 
     //接着上传图片 和 请求服务器接口
     //请求完成之后 刷新整个界面
+}
+
+- (void)tagViewSelectedTitle:(NSArray *)array {
+    NSLog(@"%@",array);
 }
 
 - (void)clickMoreSubjectShowList {

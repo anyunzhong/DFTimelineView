@@ -43,6 +43,9 @@ typedef enum : NSUInteger {
 //发送视频消息
 -(void)onSendVideo:(NSString *)text videoPath:(NSString *)videoPath screenShot:(UIImage *) screenShot;
 
+
+//OnClickTagView
+- (void)tagViewSelectedTitle:(NSArray *)array;
 //点击更多
 - (void)clickMoreSubjectShowList;
 //点击滚动图片

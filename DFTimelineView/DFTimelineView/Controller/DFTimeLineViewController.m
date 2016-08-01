@@ -45,7 +45,7 @@
 @property (strong, nonatomic) CommentInputView *commentInputView;
 
 @property (nonatomic, strong) SDCycleScrollView *topScrollView;
-
+@property (nonatomic, strong) SKTagView *tagView;
 
 @property (assign, nonatomic) long long currentItemId;
 
@@ -240,7 +240,6 @@
     UIView *header = [[UIView alloc] initWithFrame:CGRectZero];
     header.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
-    
     if (images.count > 0) {
         _topScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero imageURLStringsGroup:images];
     } else {
@@ -256,13 +255,18 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickMoreSubjectShowList)];
     [cell addGestureRecognizer:tap];
     
-    SKTagView *tagView = [[SKTagView alloc]initWithFrame:CGRectZero];
+    _tagView = [[SKTagView alloc]initWithFrame:CGRectZero];
+    __weak typeof(self) _self = self;
+    _tagView.tag = 999;
+    _tagView.didTapTagAtIndex = ^(NSUInteger index){
+        [_self tagViewSelectedTag];
+    };
     if (tags.count > 0) {
-        [tagView setBackgroundColor:[UIColor whiteColor]];
-        tagView.interitemSpacing = 8;
-        tagView.preferredMaxLayoutWidth = self.view.frame.size.width - 16;
-        tagView.padding = UIEdgeInsetsMake(4, 8, 4, 8);
-        tagView.selectedType = SKTagViewSelectedSingle;
+        [_tagView setBackgroundColor:[UIColor whiteColor]];
+        _tagView.interitemSpacing = 8;
+        _tagView.preferredMaxLayoutWidth = self.view.frame.size.width - 16;
+        _tagView.padding = UIEdgeInsetsMake(4, 8, 4, 8);
+        _tagView.selectedType = SKTagViewSelectedSingle;
         for (NSString *string in tags) {
             SKTag *tag = [[SKTag alloc]initWithText:string];
             tag.textColor = [UIColor lightGrayColor];
@@ -275,13 +279,12 @@
             tag.selectedBgColor = [UIColor redColor];
             tag.selectedTextColor = [UIColor whiteColor];
             
-            [tagView addTag:tag];
+            [_tagView addTag:tag];
         }
     }
     [header addSubview:_topScrollView];
     [header addSubview:cell];
-    [header addSubview:tagView];
-    
+    [header addSubview:_tagView];
     
     [_topScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_topScrollView.superview.mas_top);
@@ -293,14 +296,14 @@
     [cell mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.equalTo(cell.superview);
         make.top.equalTo(_topScrollView.mas_bottom);
-        make.bottom.equalTo(tagView.mas_top).offset(-8);
+        make.bottom.equalTo(_tagView.mas_top).offset(-8);
         make.height.mas_equalTo(44);
     }];
     
-    [tagView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(tagView.superview);
+    [_tagView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.equalTo(_tagView.superview);
         make.top.equalTo(cell.mas_bottom).offset(8);
-        make.bottom.equalTo(tagView.superview.mas_bottom);
+        make.bottom.equalTo(_tagView.superview.mas_bottom);
     }];
     
     
@@ -368,7 +371,9 @@
         NSURL *url = [NSURL URLWithString:image];
         [[[NSURLSession sharedSession]dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             UIImage *image = [UIImage imageWithData:data];
-            self.navigationItem.rightBarButtonItems = @[[self rightBarButtonItemWithImage:image],[self rightBarButtonItemAnotherOne]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.navigationItem.rightBarButtonItems = @[[self rightBarButtonItemWithImage:image],[self rightBarButtonItemAnotherOne]];
+            });
         }] resume];
     }
 }
@@ -632,6 +637,10 @@
     
 }
 
+- (void)onClickMoreButton:(NSUInteger)userID {
+    
+}
+
 
 /**
 -(void)onClickComment:(long long)commentId itemId:(long long)itemId
@@ -801,6 +810,10 @@
     
 }
 
+- (void)onSendTextImage:(NSString *)text images:(NSArray *)images tags:(NSArray<NSString *> *)tags {
+    
+}
+
 - (DFImagesSendViewControllerType)imagesSendViewControllerType {
     switch (self.type) {
         case TimeLineTypeNone:
@@ -838,6 +851,7 @@
 
 #pragma mark - scrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    //TODO:footer 渐隐效果
     //没用到，join活动右上角
     NSLog(@"contentOffsetyyy%f",scrollView.contentOffset.y);
     CGFloat fixContentOffset = scrollView.contentOffset.y + 64;
@@ -845,6 +859,16 @@
     if (footer) {
 //        footer.alpha = 1.0/
     }
+}
+
+#pragma mark - tagViewSelected
+- (void)tagViewSelectedTag {
+    [self tagViewSelectedTitle:[_tagView allSelectedTagsTitle]];
+;
+}
+
+- (void)tagViewSelectedTitle:(NSArray *)array {
+    
 }
 
 @end
