@@ -107,7 +107,7 @@
     
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:(item.ts/1000)];
     NSCalendar* calendar = [NSCalendar currentCalendar];
-    NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
+    NSDateComponents* components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
     NSInteger month = [components month];
     NSInteger day = [components day];
     NSInteger year = [components year];

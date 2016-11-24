@@ -12,7 +12,7 @@
 #import "DFBaseViewController.h"
 
 
-@interface DFBaseTimeLineViewController : DFBaseViewController<UITableViewDataSource, UITableViewDelegate>
+@interface DFBaseTimeLineViewController : DFBaseViewController<UITableViewDataSource, UITableViewDelegate, UIViewControllerPreviewingDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 

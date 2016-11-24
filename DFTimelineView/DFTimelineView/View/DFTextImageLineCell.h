@@ -8,8 +8,12 @@
 
 #import "DFBaseLineCell.h"
 #import "DFBaseLineItem.h"
+#import "DFGridImageView.h"
 
 
 @interface DFTextImageLineCell : DFBaseLineCell
+@property (strong, nonatomic) DFGridImageView *gridImageView;
+
+-(NSInteger) getIndexFromPoint:(CGPoint) point;
 
 @end

@@ -39,7 +39,7 @@
     
     
     //DFImagesSendViewController *imageSendController = [[DFImagesSendViewController alloc] initWithImages:[NSArray array]];
-    
+
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:_controller];
     
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

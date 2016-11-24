@@ -7,6 +7,7 @@
 //
 
 #import "DFBaseTimeLineViewController.h"
+#import "DFImagePreviewViewController.h"
 
 #define TableHeaderHeight 290*([UIScreen mainScreen].bounds.size.width / 375.0)
 #define CoverHeight 240*([UIScreen mainScreen].bounds.size.width / 375.0)
@@ -65,6 +66,10 @@
     
     
     [self initTableView];
+    
+    if(self.traitCollection.forceTouchCapability==UIForceTouchCapabilityAvailable){
+        [self registerForPreviewingWithDelegate:self sourceView:self.tableView];
+    }
     
     [self initHeader];
     

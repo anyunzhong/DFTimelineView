@@ -122,6 +122,7 @@
     
     for (int i=0; i< _imageViews.count; i++) {
         DFImageUnitView *imageUnitView = [_imageViews objectAtIndex:i];
+        [imageUnitView.imageButton addTarget:self action:@selector(touchUpInside:) forControlEvents:UIControlEventTouchUpInside];
         
         if (images.count == 1) {
             imageUnitView.hidden = YES;
@@ -253,5 +254,69 @@
     return height*3+Padding*2;
     
 }
+
+
+- (void)touchUpInside:(id)sender
+{
+    NSLog(@"%@", sender);
+}
+
+
+-(NSInteger) getIndexFromPoint: (CGPoint) point
+{
+    
+    UIView *view = self.superview.superview.superview;
+    //NSLog(@"view: %@", view);
+    NSLog(@"touch: x: %f  y: %f", point.x, point.y);
+    
+    CGFloat x = view.frame.origin.x + self.frame.origin.x+60;
+    CGFloat y = view.frame.origin.y + self.frame.origin.y;
+    
+    NSLog(@"abs-grid: x: %f  y:%f", x, y);
+    
+    NSInteger diffY = point.y - y;
+    NSInteger diffX = point.x - x;
+    if (diffY <0 || diffX <0) {
+        return -1;
+    }
+    
+    if (_images.count == 1) {
+        if (diffX > _oneImageButton.frame.size.width || diffY > _oneImageButton.frame.size.height) {
+            return -1;
+        }
+        return 0;
+    }
+    
+    
+    NSLog(@"diffY: %ld  diffX: %ld", diffY, diffX);
+    
+    CGFloat gridWidth = self.frame.size.width;
+    NSInteger size = gridWidth/3+20;
+    //NSLog(@"size: %ld", size);
+    
+    if (diffY> gridWidth || diffX > gridWidth) {
+        return -1;
+    }
+    
+    
+    NSInteger index = diffX/size + 3*(diffY/size);
+    NSLog(@"index: %ld", index);
+    
+    if (_images.count == 4) {
+        if (index == 2) {
+            return -1;
+        }
+        if (index >=3) {
+            index--;
+        }
+    }
+    
+    if (index<0 || index>_images.count-1) {
+        return -1;
+    }
+    
+    return index;
+}
+
 
 @end

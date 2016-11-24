@@ -33,7 +33,7 @@
 
 @property (strong, nonatomic) MLLinkLabel *textContentLabel;
 
-@property (strong, nonatomic) DFGridImageView *gridImageView;
+
 
 @end
 
@@ -136,6 +136,11 @@
     CGFloat gridHeight = [DFGridImageView getHeight:item.thumbImages maxWidth:GridMaxWidth oneImageWidth:item.width oneImageHeight:item.height];
 
     return height+textSize.height + gridHeight+TextImageSpace;
+}
+
+-(NSInteger) getIndexFromPoint: (CGPoint) point
+{
+    return [_gridImageView getIndexFromPoint:point];
 }
 
 @end

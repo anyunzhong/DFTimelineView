@@ -23,6 +23,8 @@
 #import "DFImagesSendViewController.h"
 #import "DFVideoCaptureController.h"
 
+#import "DFImagePreviewViewController.h"
+
 @interface DFTimeLineViewController ()<DFLineCellDelegate, CommentInputViewDelegate, TZImagePickerControllerDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate, DFImagesSendViewControllerDelegate,DFVideoCaptureControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *items;
@@ -57,8 +59,6 @@
         
         MMSheetViewConfig *sheetConfig = [MMSheetViewConfig globalConfig];
         sheetConfig.defaultTextCancel = @"取消";
-
-        
         
         _items = [NSMutableArray array];
         
@@ -238,6 +238,7 @@
     }else{
         NSLog(@"重用Cell: %@", reuseIdentifier);
     }
+    
 
     cell.delegate = self;
     
@@ -535,5 +536,44 @@
 {
     
 }
+
+
+
+
+#pragma mark - UIViewControllerPreviewingDelegate
+
+-(UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
+{
+    NSIndexPath *indexPath=[self.tableView indexPathForRowAtPoint:location];
+    
+    if(indexPath)
+    {
+
+        DFBaseLineCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+
+        if (cell && [cell isKindOfClass:[DFTextImageLineCell class]]) {
+            DFTextImageLineCell *imageCell = (DFTextImageLineCell *)cell;
+            NSInteger index = [imageCell getIndexFromPoint:location];
+            
+            DFBaseLineItem *item = [_items objectAtIndex:indexPath.row];
+            if (item && [item isKindOfClass:[DFTextImageLineItem class]]) {
+                DFTextImageLineItem *textItem = (DFTextImageLineItem *) item;
+                if (index == -1) {
+                    return nil;
+                }
+                NSString *url  = [NSString stringWithFormat:@"%@_600x600.jpg", [textItem.srcImages objectAtIndex:index]];
+                DFImagePreviewViewController *previewController=[[DFImagePreviewViewController alloc] initWithImageUrl:url];
+                previewController.preferredContentSize=CGSizeMake(300, 300);
+                return previewController;
+            }
+        }
+    }
+    return nil;
+}
+-(void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit
+{
+    [self showViewController:viewControllerToCommit sender:self];
+}
+
 
 @end
