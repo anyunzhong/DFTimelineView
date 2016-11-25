@@ -17,6 +17,7 @@
         
         _text = @"";
         _thumbImages = [NSMutableArray array];
+        _thumbPreviewImages = [NSMutableArray array];
         _srcImages = [NSMutableArray array];
     }
     return self;

@@ -25,7 +25,7 @@
 
 #import "DFImagePreviewViewController.h"
 
-@interface DFTimeLineViewController ()<DFLineCellDelegate, CommentInputViewDelegate, TZImagePickerControllerDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate, DFImagesSendViewControllerDelegate,DFVideoCaptureControllerDelegate>
+@interface DFTimeLineViewController ()<DFLineCellDelegate, CommentInputViewDelegate, TZImagePickerControllerDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate, DFImagesSendViewControllerDelegate,DFVideoCaptureControllerDelegate, DFImagePreviewViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *items;
 
@@ -561,8 +561,9 @@
                 if (index == -1) {
                     return nil;
                 }
-                NSString *url  = [NSString stringWithFormat:@"%@_600x600.jpg", [textItem.srcImages objectAtIndex:index]];
-                DFImagePreviewViewController *previewController=[[DFImagePreviewViewController alloc] initWithImageUrl:url];
+                NSString *url  = [textItem.thumbPreviewImages objectAtIndex:index];
+                DFImagePreviewViewController *previewController=[[DFImagePreviewViewController alloc] initWithImageUrl:url itemId:item.itemId];
+                previewController.delegate = self;
                 previewController.preferredContentSize=CGSizeMake(300, 300);
                 return previewController;
             }

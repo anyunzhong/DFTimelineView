@@ -88,6 +88,20 @@
     [thumbImages addObject:@"http://file-cdn.datafans.net/temp/18.jpg_160x160.jpeg"];
     [thumbImages addObject:@"http://file-cdn.datafans.net/temp/19.jpg_160x160.jpeg"];
     textImageItem.thumbImages = thumbImages;
+
+    
+    NSMutableArray *thumbPreviewImages = [NSMutableArray array];
+    [thumbPreviewImages addObject:@"http://file-cdn.datafans.net/temp/11.jpg_600x600.jpeg"];
+    [thumbPreviewImages addObject:@"http://file-cdn.datafans.net/temp/12.jpg_600x600.jpeg"];
+    [thumbPreviewImages addObject:@"http://file-cdn.datafans.net/temp/13.jpg_600x600.jpeg"];
+    [thumbPreviewImages addObject:@"http://file-cdn.datafans.net/temp/14.jpg_600x600.jpeg"];
+    [thumbPreviewImages addObject:@"http://file-cdn.datafans.net/temp/15.jpg_600x600.jpeg"];
+    [thumbPreviewImages addObject:@"http://file-cdn.datafans.net/temp/16.jpg_600x600.jpeg"];
+    [thumbPreviewImages addObject:@"http://file-cdn.datafans.net/temp/17.jpg_600x600.jpeg"];
+    [thumbPreviewImages addObject:@"http://file-cdn.datafans.net/temp/18.jpg_600x600.jpeg"];
+    [thumbPreviewImages addObject:@"http://file-cdn.datafans.net/temp/19.jpg_600x600.jpeg"];
+    textImageItem.thumbPreviewImages = thumbPreviewImages;
+
     
     textImageItem.location = @"中国 • 广州";
     textImageItem.ts = [[NSDate date] timeIntervalSince1970]*1000;
@@ -157,6 +171,14 @@
     [thumbImages2 addObject:@"http://file-cdn.datafans.net/temp/23.jpg_160x160.jpeg"];
     textImageItem2.thumbImages = thumbImages2;
     
+    
+    NSMutableArray *thumbPreviewImages2 = [NSMutableArray array];
+    [thumbPreviewImages2 addObject:@"http://file-cdn.datafans.net/temp/20.jpg_600x600.jpeg"];
+    [thumbPreviewImages2 addObject:@"http://file-cdn.datafans.net/temp/21.jpg_600x600.jpeg"];
+    [thumbPreviewImages2 addObject:@"http://file-cdn.datafans.net/temp/22.jpg_600x600.jpeg"];
+    [thumbPreviewImages2 addObject:@"http://file-cdn.datafans.net/temp/23.jpg_600x600.jpeg"];
+    textImageItem2.thumbPreviewImages = thumbPreviewImages2;
+    
     DFLineLikeItem *likeItem2_1 = [[DFLineLikeItem alloc] init];
     likeItem2_1.userId = 10086;
     likeItem2_1.userNick = @"Allen";
@@ -201,6 +223,11 @@
     NSMutableArray *thumbImages3 = [NSMutableArray array];
     [thumbImages3 addObject:@"http://file-cdn.datafans.net/temp/21.jpg_640x420.jpeg"];
     textImageItem3.thumbImages = thumbImages3;
+    
+    
+    NSMutableArray *thumbPreviewImages3 = [NSMutableArray array];
+    [thumbPreviewImages3 addObject:@"http://file-cdn.datafans.net/temp/21.jpg_600x600.jpeg"];
+    textImageItem3.thumbPreviewImages = thumbPreviewImages3;
     
     
     textImageItem3.width = 640;
@@ -306,6 +333,11 @@
         NSMutableArray *thumbImages3 = [NSMutableArray array];
         [thumbImages3 addObject:@"http://file-cdn.datafans.net/temp/11.jpg_640x420.jpeg"];
         textImageItem.thumbImages = thumbImages3;
+        
+        
+        NSMutableArray *thumbPreviewImages3 = [NSMutableArray array];
+        [thumbPreviewImages3 addObject:@"http://file-cdn.datafans.net/temp/11.jpg_600x600.jpeg"];
+        textImageItem.thumbPreviewImages = thumbPreviewImages3;
         
         
         textImageItem.width = 640;

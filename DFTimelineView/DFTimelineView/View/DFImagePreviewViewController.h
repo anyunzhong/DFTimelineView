@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol DFImagePreviewViewControllerDelegate <NSObject>
+
+-(void) onLike:(long long) itemId;
+
+-(void) onComment:(long long) itemId;
+
+@end
+
+
 @interface DFImagePreviewViewController : UIViewController
-- (instancetype)initWithImageUrl:(NSString *) url;
+
+@property (nonatomic, weak) id<DFImagePreviewViewControllerDelegate> delegate;
+
+- (instancetype)initWithImageUrl:(NSString *) url itemId:(long long)itemId;
 @end

@@ -14,16 +14,18 @@
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) NSArray *actions;
 @property (nonatomic, strong) NSString *url;
+@property (nonatomic, assign) long long itemId;
 
 @end
 
 @implementation DFImagePreviewViewController
 
-- (instancetype)initWithImageUrl:(NSString *) url
+- (instancetype)initWithImageUrl:(NSString *) url itemId:(long long)itemId
 {
     self = [super init];
     if (self) {
         _url = url;
+        _itemId = itemId;
     }
     return self;
 }
@@ -40,15 +42,19 @@
     
     
     UIPreviewAction *likeAction=[UIPreviewAction actionWithTitle:@"赞" style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * action, UIViewController * previewViewController) {
+        if (_delegate && [_delegate respondsToSelector:@selector(onLike:)]) {
+            [_delegate onLike:_itemId];
+        }
     }];
     
     UIPreviewAction *commentAction=[UIPreviewAction actionWithTitle:@"评论" style:UIPreviewActionStyleDefault handler:^(UIPreviewAction *action, UIViewController * previewViewController) {
+        if (_delegate && [_delegate respondsToSelector:@selector(onComment:)]) {
+            [_delegate onComment:_itemId];
+        }
     }];
     
-    UIPreviewAction *forwardAction=[UIPreviewAction actionWithTitle:@"转发" style:UIPreviewActionStyleDefault handler:^(UIPreviewAction *action, UIViewController * previewViewController) {
-    }];
 
-    self.actions=@[likeAction,commentAction, forwardAction];
+    self.actions=@[likeAction,commentAction];
 
     
 }
