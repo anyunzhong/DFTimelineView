@@ -67,9 +67,11 @@
     
     [self initTableView];
     
+    #ifdef __IPHONE_9_0
     if(self.traitCollection.forceTouchCapability==UIForceTouchCapabilityAvailable){
         [self registerForPreviewingWithDelegate:self sourceView:self.tableView];
     }
+    #endif
     
     [self initHeader];
     
