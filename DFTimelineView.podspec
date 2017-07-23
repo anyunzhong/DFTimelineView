@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
 
   s.dependency 'DFCommon'
   s.dependency 'AFNetworking', '~> 3.0.0'
-  s.dependency 'SDWebImage', '~> 3.7.3'
+  s.dependency 'SDWebImage', '>= 3.7.3'
   s.dependency 'FMDB', '~> 2.5'
   s.dependency 'MBProgressHUD', '~> 0.9.1'
   s.dependency 'MLLabel', '~> 1.7'
